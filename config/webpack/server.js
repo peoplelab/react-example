@@ -1,0 +1,10 @@
+module.exports = {
+  watch: true,
+  devServer: {
+    contentBase: '/public/',
+    filename: 'bundle.js',
+    index: 'index.html',
+    historyApiFallback: true,
+    port: 3000,
+  }
+};
