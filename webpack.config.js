@@ -1,20 +1,11 @@
 const merge = require('webpack-merge');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
-const common = require('./config/webpack/common');
+const commonConfig = require('./config/webpack/common');
 const development = require('./config/webpack/development');
 const production = require('./config/webpack/production');
-const server = require('./config/webpack/server');
+const devServer = require('./config/webpack/server');
 
-
-let config;
-
-if (process.env.COMPILE) {
-  const clean = { plugins: [new CleanWebpackPlugin()] };
-  config = merge(config, clean);
-} else {
-  config = merge(config, server);
-}
 
 let envConfig;
 switch(process.env.NODE_ENV) {
@@ -31,8 +22,9 @@ switch(process.env.NODE_ENV) {
   }
 }
 
-config = merge(common, envConfig);
+const addConfig = process.env.COMPILE === 'COMPILE' ? { plugins: [new CleanWebpackPlugin()] } : { devServer };
 
+const config = merge(commonConfig, envConfig, addConfig);
 
 
 module.exports = config;
