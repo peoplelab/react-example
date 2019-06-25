@@ -1,0 +1,57 @@
+// @import '~../colors.scss';
+@import '../colors.scss';
+
+
+.redux-store {
+  width: 20rem;
+  padding: 1rem;
+
+  .redux-store__button {
+    background-color: $dark-grey;
+    border: 2px $black solid;
+    color: $white;
+    font-weight: bold;
+    padding: .5rem;
+  }
+  
+  .redux-store__value-box {
+    margin-bottom: 1rem;
+  }
+  
+  .redux-store__text-input {
+    background-color: $light-grey;
+    color: $dark-grey;
+    border-bottom: 1px $dark-grey solid;
+    font-size: .8rem;
+    margin-bottom: .5rem;
+    padding: .2rem;
+  }
+  
+  .redux-store__message-box {
+    padding: .5rem;
+
+    .redux-store__message {
+      font-size: 1.2rem;
+    }
+  
+    &.redux-store__message-box--color {
+      &-1 {
+        background-color: $red;
+        color: $white;
+      }
+      &-2 {
+        background-color: $green;
+        color: $white;
+      }
+      &-3 {
+        background-color: $blue;
+        color: $white;
+      }
+      &-4 {
+        background-color: $yellow;
+        color: $black;
+      }
+    }
+  }
+}
+

@@ -1,0 +1,33 @@
+module.exports = {
+  plugins: [
+    'stylelint-scss',
+    'stylelint-selector-bem-pattern',
+  ],
+  extends: [
+    'stylelint-preset-behance',
+  ],
+  rules: {
+    'string-quotes': 'single',
+    'number-leading-zero': 'always',
+    'property-no-unknown': [true, {
+      ignoreProperties: [
+        'composes',
+        'compose-with',
+      ],
+    }],
+    'plugin/selector-bem-pattern': {
+      implicitComponents: true,
+      componentName: '(([a-z0-9]+(?!-$)-?)+)',
+      componentSelectors: {
+        initial: "\\.{componentName}(((__|--)(([a-z0-9\\[\\]'=]+(?!-$)-?)+))+)?$",
+      },
+      utilitySelectors: /^\..*$/,
+      ignoreSelectors: [
+        '.*\\.no-js.*',
+        '.*\\.js-.*',
+        '.*\\.lt-ie.*',
+      ],
+    },
+    'function-name-case': ['lower', { ignoreFunctions: ['/.*$/'] }],
+  },
+};
