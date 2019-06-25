@@ -7,8 +7,49 @@
   "author": "Andrea Bellini <andrea93bellin@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "webpack-dev-server --color",
-    "build": "webpack"
+    "build:dev": "better-npm-run build:dev",
+    "build:prod": "better-npm-run build:prod",
+    "start:mocks": "better-npm-run start:mocks",
+    "start": "better-npm-run start:dev",
+    "start:system": "better-npm-run start:system"
+  },
+  "betterScripts": {
+    "build:dev": {
+      "command": "webpack --progress --colors",
+      "env": {
+        "NODE_ENV": "DEVELOPMENT"
+      }
+    },
+    "build:prod": {
+      "command": "webpack --progress --colors --optimize-minimize",
+      "env": {
+        "NODE_ENV": "PRODUCTION"
+      }
+    },
+    "start:mocks": {
+      "command": "webpack-dev-server --colors",
+      "env": {
+        "NODE_ENV": "DEVELOPMENT",
+        "RUN_SERVER": true,
+        "API": "http://localhost:4000"
+      }
+    },
+    "start:dev": {
+      "command": "webpack-dev-server --colors",
+      "env": {
+        "NODE_ENV": "DEVELOPMENT",
+        "RUN_SERVER": true,
+        "API": "http://www.api-url.com"
+      }
+    },
+    "start:system": {
+      "command": "webpack-dev-server --colors",
+      "env": {
+        "NODE_ENV": "PRODUCTION",
+        "RUN_SERVER": true,
+        "API": "http://www.api-url.com"
+      }
+    }
   },
   "dependencies": {
     "react": "16.8.6",
