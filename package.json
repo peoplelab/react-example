@@ -17,20 +17,22 @@
     "build:dev": {
       "command": "webpack --progress --colors",
       "env": {
-        "NODE_ENV": "DEVELOPMENT"
+        "NODE_ENV": "DEVELOPMENT",
+        "COMPILE": true
       }
     },
     "build:prod": {
       "command": "webpack --progress --colors --optimize-minimize",
       "env": {
-        "NODE_ENV": "PRODUCTION"
+        "NODE_ENV": "PRODUCTION",
+        "COMPILE": true
       }
     },
     "start:mocks": {
       "command": "webpack-dev-server --colors",
       "env": {
         "NODE_ENV": "DEVELOPMENT",
-        "RUN_SERVER": true,
+        "COMPILE": false,
         "API": "http://localhost:4000"
       }
     },
@@ -38,7 +40,7 @@
       "command": "webpack-dev-server --colors",
       "env": {
         "NODE_ENV": "DEVELOPMENT",
-        "RUN_SERVER": true,
+        "COMPILE": false,
         "API": "http://www.api-url.com"
       }
     },
@@ -46,7 +48,7 @@
       "command": "webpack-dev-server --colors",
       "env": {
         "NODE_ENV": "PRODUCTION",
-        "RUN_SERVER": true,
+        "COMPILE": false,
         "API": "http://www.api-url.com"
       }
     }
