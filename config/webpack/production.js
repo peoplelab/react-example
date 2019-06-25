@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   output: {
-    path: path.resolve(__dirname, '/build/'),
+    path: path.resolve(__dirname, '../../dist'),
     filename: '[hash].js',
     chunkFilename: '[chunkhash].js',
     publicPath: '/'

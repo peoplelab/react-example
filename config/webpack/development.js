@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   output: {
-    path: path.resolve(__dirname, '/build/'),
+    path: path.resolve(__dirname, '../../build'),
     filename: 'bundle.js',
     chunkFilename: '[name].bundle.js',
     devtoolLineToLine: true,
@@ -13,7 +13,7 @@ module.exports = {
     publicPath: '/'
   },
   mode: 'development',
-  devtool: 'cheap-module-eval-source-map',
+  devtool: 'cheap-module-source-map',
   module: {
     rules: [
       {
