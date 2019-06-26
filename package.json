@@ -9,6 +9,8 @@
   "scripts": {
     "build:dev": "better-npm-run build:dev",
     "build:prod": "better-npm-run build:prod",
+    "lint": "eslint **/*.js?(x)",
+    "lint:fix": "eslint --fix **/*.js?(x)",
     "start:mocks": "better-npm-run start:mocks",
     "start": "better-npm-run start:dev",
     "start:system": "better-npm-run start:system"
@@ -29,21 +31,21 @@
       }
     },
     "start:mocks": {
-      "command": "webpack-dev-server --colors",
+      "command": "webpack-dev-server --progress --colors",
       "env": {
         "NODE_ENV": "DEVELOPMENT",
         "API": "http://localhost:4000"
       }
     },
     "start:dev": {
-      "command": "webpack-dev-server --colors",
+      "command": "webpack-dev-server --progress --colors",
       "env": {
         "NODE_ENV": "DEVELOPMENT",
         "API": "http://www.api-url.com"
       }
     },
     "start:system": {
-      "command": "webpack-dev-server --colors",
+      "command": "webpack-dev-server --progress --colors",
       "env": {
         "NODE_ENV": "PRODUCTION",
         "API": "http://www.api-url.com"
