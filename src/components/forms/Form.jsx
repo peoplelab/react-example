@@ -21,7 +21,7 @@ class Form extends PureComponent {
     let stateClass = '';
     if (error) {
       stateClass = 'form--error';
-    } else if (valied) {
+    } else if (valid) {
       stateClass = 'form--valid';
     }
 

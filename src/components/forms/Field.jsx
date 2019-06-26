@@ -49,7 +49,7 @@ class Field extends PureComponent {
       errorMessage,
       label,
       type,
-      htmlFor: _htmlFor,
+      htmlFor: _htmlFor, // eslint-disable-line no-unused-vars
       ...rest
     } = this.props;
 

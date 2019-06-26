@@ -3,10 +3,12 @@ import reducers from './reducers';
 
 
 const store = (initialState = {}) => {
+  let composeEnhancers = compose;
+
   // Redux Dev-Tools
   const enhancers = [];
-  let composeEnhancers = compose;
-  if (typeof window !== 'undefined') { // && DEPLOY_ENV_NAME === 'DEVELOPMENT') { // eslint-disable-line no-underscore-dangle
+  // eslint-disable-next-line no-undef
+  if (typeof window !== 'undefined' && process.env.NODE_ENV !== 'PRODUCTION') {
     const composeWithDevToolsExtension = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__; // eslint-disable-line no-underscore-dangle
 
     if (typeof composeWithDevToolsExtension === 'function') {

@@ -19,7 +19,7 @@ class Button extends PureComponent {
     const {
       children,
       className,
-      onClick: _onClick,
+      onClick: _onClick, // eslint-disable-line no-unused-vars
       ...rest
     } = this.props;
 

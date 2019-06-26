@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { Route, Switch } from 'react-router-dom';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import createRoutes from '../../routes';
 
 
@@ -31,6 +31,7 @@ class MainComponent extends PureComponent {
 
 
 MainComponent.propTypes = {
+  store: PropTypes.object.isRequired,
 };
 
 MainComponent.defaultProps = {

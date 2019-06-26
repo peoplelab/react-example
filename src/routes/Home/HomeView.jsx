@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 // import PropTypes from 'prop-types';
 import Box from '../../components/layout/Box';
 import Anchor from '../../components/layout/Anchor';
@@ -10,10 +10,12 @@ const HomeComponent = () => (
       Hello world!!
     </Box>
     <Anchor className="anchor" path="/states">
-      Go to "states" route
+      {// eslint-disable-next-line react/no-unescaped-entities
+      }Go to "states" route
     </Anchor>
     <Anchor className="anchor" path="/redux">
-      Go to "redux" route
+      {// eslint-disable-next-line react/no-unescaped-entities
+      }Go to "redux" route
     </Anchor>
   </Box>
 );

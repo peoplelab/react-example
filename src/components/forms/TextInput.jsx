@@ -26,7 +26,7 @@ class TextInput extends PureComponent {
       name,
       className,
       value,
-      onChange: _onChange,
+      onChange: _onChange, // eslint-disable-line no-unused-vars
       ...rest
     } = this.props;
 
