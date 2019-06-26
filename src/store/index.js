@@ -23,13 +23,15 @@ const store = (initialState = {}) => {
   );
 
 
-  // // Hot loader
-  // if (module.hot) {
-  //   module.hot.accept('./reducers', () => {
-  //     const defaultReducers = require('./reducers').default; // eslint-disable-line global-require
-  //     store.replaceReducer(defaultReducers(store.asyncReducers));
-  //   });
-  // }
+  // Hot loader
+  if (module.hot) {
+    module.hot.accept('./reducers', () => {
+      const hotReducers = require('./reducers').default;
+      store.replaceReducer(hotReducers());
+      // const { asyncReducers } = store;
+      // store.replaceReducer(hotReducers(asyncReducers));
+    });
+  }
 
   return store;
 };

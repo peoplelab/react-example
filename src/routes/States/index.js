@@ -1,3 +1,4 @@
+import { hot } from 'react-hot-loader/root';
 import States from './StatesView';
 
-export default States;
+export default hot(States);

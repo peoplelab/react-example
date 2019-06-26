@@ -1,3 +1,4 @@
+import { hot } from 'react-hot-loader/root';
 import ReduxStore from './ReduxStoreContainer';
 
-export default ReduxStore;
+export default hot(ReduxStore);
