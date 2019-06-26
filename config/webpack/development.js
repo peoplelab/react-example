@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -13,6 +14,8 @@ module.exports = {
     publicPath: '/'
   },
   mode: 'development',
+  // devtool: 'eval-source-map',
+  // devtool: 'inline-source-map',
   devtool: 'cheap-module-source-map',
   module: {
     rules: [
