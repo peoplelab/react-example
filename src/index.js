@@ -5,7 +5,6 @@ import App from './containers/App';
 import createStore from './store';
 
 
-// eslint-disable-next-line no-undef
 if(process.env.NODE_ENV !== 'PRODUCTION') {
   setConfig({ logLevel: 'debug' });
 }

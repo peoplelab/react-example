@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 const merge = require('webpack-merge');
 
 const commonConfig = require('./config/webpack/common');

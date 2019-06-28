@@ -2,13 +2,14 @@ import { compose, createStore } from 'redux';
 import reducers from './reducers';
 
 
+const { NODE_ENV } = process.env;
+
 const store = (initialState = {}) => {
   let composeEnhancers = compose;
 
   // Redux Dev-Tools
   const enhancers = [];
-  // eslint-disable-next-line no-undef
-  if (typeof window !== 'undefined' && process.env.NODE_ENV !== 'PRODUCTION') {
+  if (typeof window !== 'undefined' && (NODE_ENV === 'MOCKS' || NODE_ENV === 'DEVELOPMENT')) {
     const composeWithDevToolsExtension = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__; // eslint-disable-line no-underscore-dangle
 
     if (typeof composeWithDevToolsExtension === 'function') {
