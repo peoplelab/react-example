@@ -8,7 +8,11 @@ module.exports = {
       {
         test: /\.jsx?$/i,
         exclude: /node_modules/,
-        loader: 'babel-loader'
+        loader: 'babel-loader',
+        options: {
+          cacheDirectory: true,
+          cacheCompression: true,
+        }
       },
       {
         test: /\.jsx?$/i,
