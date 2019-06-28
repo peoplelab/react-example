@@ -1,19 +1,21 @@
-/* eslint-disable no-undef */
 const merge = require('webpack-merge');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const commonConfig = require('./config/webpack/common');
 const development = require('./config/webpack/development');
 const production = require('./config/webpack/production');
-const server = require('./config/webpack/server');
 
+
+const { NODE_ENV } = process.env;
 
 let envConfig;
-switch(process.env.NODE_ENV) {
+switch(NODE_ENV) {
+case 'MOCKS':
 case 'DEVELOPMENT': {
   envConfig = development;
   break;
 }
+case 'STAGING':
+case 'SYSTEM':
 case 'PRODUCTION': {
   envConfig = production;
   break;
@@ -23,9 +25,7 @@ default: {
 }
 }
 
-const addConfig = process.env.COMPILE === 'COMPILE' ? { plugins: [new CleanWebpackPlugin()] } : server;
-
-const config = merge(commonConfig, envConfig, addConfig);
+const config = merge(commonConfig, envConfig);
 
 
 module.exports = config;

@@ -1,6 +1,6 @@
 {
   "name": "react-example",
-  "version": "0.01.00",
+  "version": "0.02.00",
   "description": "React implementation example",
   "main": "./src/index.js",
   "repository": "git@gitlab.com:andrea93bellini/react-example.git",
@@ -13,12 +13,13 @@
     "lint:fix": "eslint --fix **/*.js?(x)",
     "start:mocks": "better-npm-run start:mocks",
     "start": "better-npm-run start:dev",
-    "start:system": "better-npm-run start:system"
+    "start:staging": "better-npm-run start:staging"
   },
   "betterScripts": {
     "build:dev": {
       "command": "webpack --progress --colors",
       "env": {
+        "BABEL_ENV": "dev",
         "NODE_ENV": "DEVELOPMENT",
         "COMPILE": "COMPILE"
       }
@@ -26,6 +27,7 @@
     "build:prod": {
       "command": "webpack --progress --colors --optimize-minimize",
       "env": {
+        "BABEL_ENV": "prod",
         "NODE_ENV": "PRODUCTION",
         "COMPILE": "COMPILE"
       }
@@ -33,24 +35,31 @@
     "start:mocks": {
       "command": "webpack-dev-server --progress --colors",
       "env": {
-        "NODE_ENV": "DEVELOPMENT",
-        "API": "http://localhost:4000"
+        "BABEL_ENV": "dev",
+        "NODE_ENV": "MOCKS"
       }
     },
     "start:dev": {
-      "command": "webpack-dev-server --progress --colors",
+      "command": "node ./server/main.js",
       "env": {
-        "NODE_ENV": "DEVELOPMENT",
-        "API": "http://www.api-url.com"
+        "BABEL_ENV": "dev",
+        "NODE_ENV": "DEVELOPMENT"
       }
     },
-    "start:system": {
-      "command": "webpack-dev-server --progress --colors",
+    "start:staging": {
+      "command": "node ./server/main.js",
       "env": {
-        "NODE_ENV": "PRODUCTION",
-        "API": "http://www.api-url.com"
+        "BABEL_ENV": "dev",
+        "NODE_ENV": "STAGING"
       }
-    }
+    },
+    "build:system": {
+      "command": "node ./server/main.js",
+      "env": {
+        "BABEL_ENV": "prod",
+        "NODE_ENV": "SYSTEM"
+      }
+    },
   },
   "dependencies": {
     "@hot-loader/react-dom": "16.8.6",
@@ -78,12 +87,15 @@
     "babel-loader": "8.0.6",
     "better-npm-run": "0.1.1",
     "clean-webpack-plugin": "3.0.0",
+    "compression": "1.7.4",
     "css-loader": "3.0.0",
     "eslint": "5.16.0",
     "eslint-loader": "2.1.2",
     "eslint-plugin-react": "7.14.2",
+    "express": "4.17.1",
     "file-loader": "4.0.0",
     "html-webpack-plugin": "3.2.0",
+    "http-proxy-middleware": "0.19.1",
     "node-sass": "4.12.0",
     "postcss": "7.0.17",
     "postcss-loader": "3.0.0",
@@ -92,7 +104,8 @@
     "url-loader": "2.0.0",
     "webpack": "4.35.0",
     "webpack-cli": "3.3.4",
-    "webpack-dev-server": "3.7.2",
+    "webpack-dev-middleware": "3.7.0",
+    "webpack-hot-middleware": "2.25.0",
     "webpack-merge": "4.2.1"
   }
 }
