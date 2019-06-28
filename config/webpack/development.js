@@ -14,8 +14,6 @@ module.exports = {
   },
   cache: false,
   mode: 'development',
-  // devtool: 'eval-source-map',
-  // devtool: 'inline-source-map',
   devtool: 'cheap-module-source-map',
   module: {
     rules: [
