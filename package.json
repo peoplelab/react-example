@@ -40,14 +40,14 @@
       }
     },
     "start:dev": {
-      "command": "node ./server",
+      "command": "node ./server/main.js",
       "env": {
         "BABEL_ENV": "dev",
         "NODE_ENV": "DEVELOPMENT"
       }
     },
     "start:system": {
-      "command": "node ./server",
+      "command": "node ./server/main.js",
       "env": {
         "BABEL_ENV": "dev",
         "NODE_ENV": "SYSTEMTEST"
