@@ -41,5 +41,8 @@ module.exports = {
       template: './src/index.html',
       title: 'React example',
     }),
-  ]
+  ],
+  resolve: {
+    alias: { 'react-dom': '@hot-loader/react-dom' }
+  },
 };

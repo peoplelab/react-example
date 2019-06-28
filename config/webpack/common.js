@@ -1,5 +1,8 @@
+const { HotModuleReplacementPlugin } = require('webpack');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+
 module.exports = {
-  entry: './src/index.js',
+  entry: ['./src/index.js', 'webpack-hot-middleware/client'],
   module: {
     rules: [
       {
@@ -35,8 +38,11 @@ module.exports = {
       }
     ]
   },
+  plugins: [
+    new HotModuleReplacementPlugin(),
+    new CleanWebpackPlugin()
+  ],
   resolve: {
     extensions: ['.js', '.jsx'],
-    alias: { 'react-dom': '@hot-loader/react-dom' }
   },
 };
