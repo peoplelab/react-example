@@ -11,5 +11,11 @@
     "@babel/preset-env",
     "@babel/preset-react"
   ],
-  "sourceMap": true,
+  "env": {
+    "dev": { "retainLines": true },
+    "prod": {
+      "compact": true,
+      "minified": true
+    },
+  }
 }

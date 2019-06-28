@@ -19,6 +19,7 @@
     "build:dev": {
       "command": "webpack --progress --colors",
       "env": {
+        "BABEL_ENV": "dev",
         "NODE_ENV": "DEVELOPMENT",
         "COMPILE": "COMPILE"
       }
@@ -26,6 +27,7 @@
     "build:prod": {
       "command": "webpack --progress --colors --optimize-minimize",
       "env": {
+        "BABEL_ENV": "prod",
         "NODE_ENV": "PRODUCTION",
         "COMPILE": "COMPILE"
       }
@@ -33,18 +35,21 @@
     "start:mocks": {
       "command": "webpack-dev-server --progress --colors",
       "env": {
+        "BABEL_ENV": "dev",
         "NODE_ENV": "MOCKS"
       }
     },
     "start:dev": {
       "command": "node ./server",
       "env": {
+        "BABEL_ENV": "dev",
         "NODE_ENV": "DEVELOPMENT"
       }
     },
     "start:system": {
       "command": "node ./server",
       "env": {
+        "BABEL_ENV": "dev",
         "NODE_ENV": "SYSTEMTEST"
       }
     }
