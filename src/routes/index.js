@@ -20,6 +20,12 @@ export const createRoutes = () => ({
       key: 'states',
       exact: true,
       component: AsyncComponent(() => import(/* webpackChunkName: "States" */ './States')),
+    },
+    {
+      path: '/page1',
+      key: 'page1',
+      exact: true,
+      component: AsyncComponent(() => import(/* webpackChunkName: "Page1" */ './Page1')),
     }
   ]
   // secondary
