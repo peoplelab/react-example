@@ -1,0 +1,22 @@
+{
+  "MOCKS": {
+    "target": "http://localhost:4000",
+    "secure": false,
+    "changeOrigin": true
+  },
+  "DEVELOPMENT": {
+    "target": "http://www.api-url-development.com",
+    "secure": true,
+    "changeOrigin": true
+  },
+  "SYSTEMTEST": {
+    "target": "http://www.api-url-systemtest.com",
+    "secure": true,
+    "changeOrigin": true
+  },
+  "PRODUCTION": {
+    "target": "http://www.api-url-production.com",
+    "secure": true,
+    "changeOrigin": true
+  }
+}
