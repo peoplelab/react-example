@@ -13,6 +13,7 @@ module.exports = {
     pathinfo: true,
     publicPath: '/'
   },
+  cache: false,
   mode: 'development',
   // devtool: 'eval-source-map',
   // devtool: 'inline-source-map',
