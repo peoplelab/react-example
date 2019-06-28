@@ -28,6 +28,8 @@ const ssl = {
   cert: fs.readFileSync(PATH_FILES.CERT),
 };
 
+const contentBase = (NODE_ENV === 'STAGING' || NODE_ENV === 'SYSTEM') ? './dist' : './build';
+
 const compiler = webpack(config);
 
 const app = express();
@@ -40,10 +42,9 @@ app.use(compression());
 const proxyInst = proxy(['/api'], proxyConfig[NODE_ENV] || {}); // dev dsi
 app.use(proxyInst);
 
-
 app.use(webpackDevMiddleware(compiler, {
   publicPath: config.output.publicPath,
-  contentBase: './build',
+  contentBase,
   hot: true,
   noInfo: true,
   lazy: false,

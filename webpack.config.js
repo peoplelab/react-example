@@ -15,6 +15,7 @@ case 'DEVELOPMENT': {
   break;
 }
 case 'STAGING':
+case 'SYSTEM':
 case 'PRODUCTION': {
   envConfig = production;
   break;

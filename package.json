@@ -13,7 +13,7 @@
     "lint:fix": "eslint --fix **/*.js?(x)",
     "start:mocks": "better-npm-run start:mocks",
     "start": "better-npm-run start:dev",
-    "start:system": "better-npm-run start:system"
+    "start:staging": "better-npm-run start:staging"
   },
   "betterScripts": {
     "build:dev": {
@@ -46,13 +46,20 @@
         "NODE_ENV": "DEVELOPMENT"
       }
     },
-    "start:system": {
+    "start:staging": {
       "command": "node ./server/main.js",
       "env": {
         "BABEL_ENV": "dev",
-        "NODE_ENV": "SYSTEMTEST"
+        "NODE_ENV": "STAGING"
       }
-    }
+    },
+    "build:system": {
+      "command": "node ./server/main.js",
+      "env": {
+        "BABEL_ENV": "prod",
+        "NODE_ENV": "SYSTEM"
+      }
+    },
   },
   "dependencies": {
     "@hot-loader/react-dom": "16.8.6",
