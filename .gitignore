@@ -1,7 +1,9 @@
-build
-dist
-node_modules
-batch
+/build/
+/dist/
+/node_modules/
+/batch/
+/.vs/
+/.*/
+
 *.suo
-.vs
 *.log
