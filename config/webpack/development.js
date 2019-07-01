@@ -14,7 +14,7 @@ module.exports = {
   },
   cache: false,
   mode: 'development',
-  devtool: 'cheap-module-source-map',
+  devtool: 'inline-source-map',
   module: {
     rules: [
       {
