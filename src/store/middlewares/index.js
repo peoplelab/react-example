@@ -1,9 +1,9 @@
-import reporters from './reporters';
+// import reporters from './reporters';
 import MiddlewareRoute from './MiddlewareRoute';
 
 
 export const middlewaresList = [
-  ...reporters,
+  // ...reporters,
   MiddlewareRoute
 ];
 

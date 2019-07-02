@@ -1,21 +1,23 @@
 import { put, takeEvery, fork, call } from 'redux-saga/effects';
-import { types, doneJqueryApi } from '../actions/MiddlewareRoute';
+import { types, doneApi } from '../actions/MiddlewareRoute';
 import { axiosApi_saga } from '../../api/test';
 
 
-export function* doCalljQueryApi(action) {
+export function* doAxiosApiSaga(action) {
   const { payload } = action;
+  const result = yield call(axiosApi_saga);
+  const { error } = result;
 
-  const response = yield call(axiosApi_saga);
+  const key = !error ? 'success' : 'failure';
 
-  yield put(doneJqueryApi(response, payload));
+  yield put(doneApi({ [key]: result }, payload));
 }
 
-export function* watchCalljQueryApi() {
-  yield takeEvery(types.CALL_JQUERY_API, doCalljQueryApi);
+export function* watchAxiosApiSaga() {
+  yield takeEvery(types.CALL_AXIOS_API_SAGA, doAxiosApiSaga);
 }
 
 
 export default [
-  fork(watchCalljQueryApi),
+  fork(watchAxiosApiSaga),
 ];

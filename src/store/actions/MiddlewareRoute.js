@@ -3,17 +3,23 @@ import Enum from '../../tools/Enum';
 
 export const types = Enum.from(
   'CALL_JQUERY_API',
-  'DONE_JQUERY_API',
+  'CALL_AXIOS_API_PROMISE',
+  'CALL_AXIOS_API_ASYNC',
+  'CALL_AXIOS_API_SAGA',
+  'DONE_API',
   'SAVE_API_RESPONSE',
 );
 
 
 export const calljQueryApi = () => ({ type: types.CALL_JQUERY_API });
+export const callAxiosApi_promise = () => ({ type: types.CALL_AXIOS_API_PROMISE });
+export const callAxiosApi_async = () => ({ type: types.CALL_AXIOS_API_ASYNC });
+export const callAxiosApi_saga = () => ({ type: types.CALL_AXIOS_API_SAGA });
 
-export const doneJqueryApi = (response, payload) => ({
-  type: types.DONE_JQUERY_API,
-  response,
-  ...payload,
+export const doneApi = (response, request = {}) => ({
+  type: types.DONE_API,
+  request,
+  ...response,
 });
 
 export const saveApiResponse = response => ({
