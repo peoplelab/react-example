@@ -42,15 +42,19 @@ app.use(compression());
 const proxyInst = proxy(['/api'], proxyConfig[NODE_ENV] || {}); // dev dsi
 app.use(proxyInst);
 
-app.use(webpackDevMiddleware(compiler, {
+const devMiddleware = webpackDevMiddleware(compiler, {
   publicPath: config.output.publicPath,
   contentBase,
   hot: true,
   noInfo: true,
   lazy: false,
-}));
+});
+app.use(devMiddleware);
 
 app.use(webpackHotMiddleware(compiler));
 
+app.use((req, res) => {
+  res.end(devMiddleware.fileSystem.readFileSync(path.join(config.output.path, 'index.html')));
+});
 
 https.createServer(ssl, app).listen(PORT);
