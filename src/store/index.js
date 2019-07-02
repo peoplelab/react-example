@@ -3,8 +3,10 @@ import {
   compose,
   createStore
 } from 'redux';
+import createSagaMiddleware from 'redux-saga';
 import middlewares from './middlewares';
 import reducers from './reducers';
+import sagas from './sagas';
 
 
 const { NODE_ENV } = process.env;
@@ -22,16 +24,22 @@ const store = (initialState = {}) => {
     }
   }
 
+  // Saga middleware
+  const saga = createSagaMiddleware();
+
   // Create store
   const store = createStore(
     reducers,
     initialState,
     composeEnhancers(
-      applyMiddleware(...middlewares),
+      applyMiddleware(saga, ...middlewares),
       ...enhancers
     ),
   );
 
+  // Run sagas
+  store.runSaga = saga.run;
+  store.runSaga(sagas);
 
   // Hot loader
   if (module.hot) {

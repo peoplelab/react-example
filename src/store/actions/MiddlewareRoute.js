@@ -10,6 +10,12 @@ export const types = Enum.from(
 
 export const calljQueryApi = () => ({ type: types.CALL_JQUERY_API });
 
+export const doneJqueryApi = (response, payload) => ({
+  type: types.DONE_JQUERY_API,
+  response,
+  ...payload,
+});
+
 export const saveApiResponse = response => ({
   type: types.SAVE_API_RESPONSE,
   payload: { response },
