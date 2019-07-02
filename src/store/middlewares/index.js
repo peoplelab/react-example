@@ -1,8 +1,10 @@
 import reporters from './reporters';
+import { jQueryApiMW } from './MiddlewareRoute';
 
 
 export const middlewaresList = [
-  ...reporters
+  ...reporters,
+  jQueryApiMW
 ];
 
 

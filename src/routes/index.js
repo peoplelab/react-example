@@ -26,6 +26,12 @@ export const createRoutes = () => ({
       key: 'page1',
       exact: true,
       component: AsyncComponent(() => import(/* webpackChunkName: "Page1" */ './Page1')),
+    },
+    {
+      path: '/middleware',
+      key: 'middleware-route',
+      exact: true,
+      component: AsyncComponent(() => import(/* webpackChunkName: "MiddlewareRoute" */ './MiddlewareRoute')),
     }
   ]
   // secondary
