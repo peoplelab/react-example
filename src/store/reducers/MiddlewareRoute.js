@@ -1,5 +1,5 @@
 import { createReducer } from '../../generators/reducers';
-import { types } from '../actions/ReduxStore';
+import { types } from '../actions/MiddlewareRoute';
 
 
 const actionHandlers = {

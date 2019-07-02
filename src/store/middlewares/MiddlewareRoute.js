@@ -8,8 +8,9 @@ const actionHandlers = {
     jQueryApi(store, types.DONE_JQUERY_API);
   },
   [types.DONE_JQUERY_API]: (action, store) => {
-    const response = action.success.response || action.failure.response;
-    const newAction = saveApiResponse(response);
+    const response = action.success.response || action.failure.response || {};
+    const str = JSON.stringify(response);
+    const newAction = saveApiResponse(str);
 
     store.dispatch(newAction);
   },
