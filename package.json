@@ -59,10 +59,11 @@
         "BABEL_ENV": "prod",
         "NODE_ENV": "SYSTEM"
       }
-    },
+    }
   },
   "dependencies": {
     "@hot-loader/react-dom": "16.8.6",
+    "jquery": "3.4.1",
     "react": "16.8.6",
     "react-dom": "16.8.6",
     "react-hot-loader": "4.11.1",
