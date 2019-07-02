@@ -11,11 +11,15 @@ const HomeComponent = () => (
     </Box>
     <Anchor className="anchor" path="/states">
       {// eslint-disable-next-line react/no-unescaped-entities
-      }Go to "states" route
+      }Go to "/states" route
     </Anchor>
     <Anchor className="anchor" path="/redux">
       {// eslint-disable-next-line react/no-unescaped-entities
-      }Go to "redux" route
+      }Go to "/redux" route
+    </Anchor>
+    <Anchor className="anchor" path="/middleware">
+      {// eslint-disable-next-line react/no-unescaped-entities
+      }Go to "/middleware" route
     </Anchor>
   </Box>
 );
