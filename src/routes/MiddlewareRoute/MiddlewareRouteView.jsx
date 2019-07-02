@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import Box from '../../components/layout/Box';
 import Buttons from '../../components/forms/Button';
 
-import '../../style/routes/MiddlewareRoute.scss';
-
 
 class MiddlewareRouteComponent extends Component {
   constructor(props) {
