@@ -25,6 +25,21 @@ export const jQueryCreateApi = config => (store, type, request = {}) => {
     });
 };
 
+export const jQueryCreateApi_saga = config => (store, type, request = {}) => new Promise((receive, reiject) => {
+  jQuery
+    .ajax(config)
+    .done((data, textStatus, response) => {
+      const result = { success: { data, textStatus, response } };
+
+      receive(result);
+    })
+    .fail((response, textStatus, err) => {
+      const result = { failure: { response, textStatus, error: err } };
+
+      reiject(result);
+    });
+});
+
 
 export const axiosCreateApi_promise = (config) => (store, type, request = {}) => {
   axios(config)

@@ -1,5 +1,6 @@
 import {
   jQueryCreateApi,
+  jQueryCreateApi_saga,
   axiosCreateApi_promise,
   axiosCreateApi_async,
   axiosCreateApi_saga,
@@ -20,6 +21,15 @@ const jQueryApi = jQueryCreateApi({
   }
 });
 
+const jQueryApi_saga = jQueryCreateApi_saga({
+  url: `https://wwws.dev-yeap.it/wp-json/wp/v2/business-plan/${ID}`,
+  method: 'GET',
+  contentType: 'application/json',
+  processData: false,
+  beforeSend: function (xhr) {
+    xhr.setRequestHeader('Authorization', `Bearer ${BEARER}`);
+  }
+});
 
 const axiosApi_promise = axiosCreateApi_promise({
   url: `https://wwws.dev-yeap.it/wp-json/wp/v2/business-plan/${ID}`,
@@ -54,6 +64,7 @@ const axiosApi_saga = axiosCreateApi_saga({
 
 export {
   jQueryApi,
+  jQueryApi_saga,
   axiosApi_promise,
   axiosApi_async,
   axiosApi_saga,

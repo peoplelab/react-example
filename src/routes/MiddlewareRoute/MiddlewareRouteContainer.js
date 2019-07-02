@@ -3,6 +3,7 @@ import MiddlewareRoute from './MiddlewareRouteView';
 import { withRouter } from 'react-router-dom';
 import {
   calljQueryApi,
+  calljQueryApi_saga,
   callAxiosApi_promise,
   callAxiosApi_async,
   callAxiosApi_saga
@@ -11,6 +12,7 @@ import {
 
 const mapDispatchToProps = {
   calljQueryApi,
+  calljQueryApi_saga,
   callAxiosApi_promise,
   callAxiosApi_async,
   callAxiosApi_saga,

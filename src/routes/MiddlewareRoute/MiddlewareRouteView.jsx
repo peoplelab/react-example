@@ -13,6 +13,7 @@ class MiddlewareRouteComponent extends Component {
     this.state = { title: 'Hello world!' };
 
     this.onClick_jQuery = this.onClick_jQuery.bind(this);
+    this.onClick_jQuerySaga = this.onClick_jQuerySaga.bind(this);
     this.onClick_AxiosPromise = this.onClick_AxiosPromise.bind(this);
     this.onClick_AxiosAsync = this.onClick_AxiosAsync.bind(this);
     this.onClick_AxiosSaga = this.onClick_AxiosSaga.bind(this);
@@ -25,6 +26,14 @@ class MiddlewareRouteComponent extends Component {
     this.setState({ title: 'jQuery' });
 
     calljQueryApi(value);
+  }
+  onClick_jQuerySaga(event) {
+    const { value } = event.target;
+    const { calljQueryApi_saga } = this.props;
+
+    this.setState({ title: 'jQuery Saga' });
+
+    calljQueryApi_saga(value);
   }
   onClick_AxiosPromise(event) {
     const { value } = event.target;
@@ -60,6 +69,10 @@ class MiddlewareRouteComponent extends Component {
           test jQuery api
         </Buttons>
         <br/>
+        <Buttons className="middleware-route__button" onClick={this.onClick_jQuerySaga} >
+          test jQuery Saga api
+        </Buttons>
+        <br/>
         <Buttons className="middleware-route__button" onClick={this.onClick_AxiosPromise} >
           test Axios Promise api
         </Buttons>
@@ -86,6 +99,7 @@ class MiddlewareRouteComponent extends Component {
 MiddlewareRouteComponent.propTypes = {
   response: PropTypes.string,
   calljQueryApi: PropTypes.func.isRequired,
+  calljQueryApi_saga: PropTypes.func.isRequired,
   callAxiosApi_promise: PropTypes.func.isRequired,
   callAxiosApi_async: PropTypes.func.isRequired,
   callAxiosApi_saga: PropTypes.func.isRequired,
