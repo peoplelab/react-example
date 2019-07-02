@@ -1,4 +1,9 @@
-import { compose, createStore } from 'redux';
+import {
+  applyMiddleware,
+  compose,
+  createStore
+} from 'redux';
+import middlewares from './middlewares';
 import reducers from './reducers';
 
 
@@ -17,12 +22,14 @@ const store = (initialState = {}) => {
     }
   }
 
-
   // Create store
   const store = createStore(
     reducers,
     initialState,
-    composeEnhancers(...enhancers),
+    composeEnhancers(
+      applyMiddleware(...middlewares),
+      ...enhancers
+    ),
   );
 
 
