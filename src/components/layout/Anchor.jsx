@@ -2,6 +2,8 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
+import '../../style/components/layout/Anchor.scss';
+
 
 class Anchor extends PureComponent {
   render() {
