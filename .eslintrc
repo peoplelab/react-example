@@ -1,7 +1,7 @@
 {
   "globals": {
-    "__dirname": true,
-    "process": true
+    "__dirname": "readonly",
+    "process": "readonly"
   },
   "env": {
     "browser": true,
@@ -10,7 +10,8 @@
   },
   "extends": [
     "eslint:recommended",
-    "plugin:react/recommended"
+    "plugin:react/recommended",
+    "airbnb"
   ],
   "parser": "babel-eslint",
   "parserOptions": {
@@ -33,6 +34,8 @@
       "error",
       "windows"
     ],
+    "eqeqeq": "warn",
+    "curly": "error",
     "quotes": [
       "error",
       "single"
