@@ -22,6 +22,10 @@ const LINKS = [
     path: '/middleware',
     message: 'Go to "/middleware" route',
   },
+  {
+    path: '/purejs',
+    message: 'Use api with pure JS',
+  },
 ];
 
 

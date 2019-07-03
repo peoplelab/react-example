@@ -34,6 +34,12 @@ const createRoutes = () => ({
       exact: true,
       component: AsyncComponent(() => import(/* webpackChunkName: "MiddlewareRoute" */ './MiddlewareRoute')),
     },
+    {
+      path: '/purejs',
+      key: 'pure-js',
+      exact: true,
+      component: AsyncComponent(() => import(/* webpackChunkName: "PureJS" */ './PureJS')),
+    },
   ],
   // secondary
   // logged

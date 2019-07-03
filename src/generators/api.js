@@ -109,3 +109,26 @@ export const axiosCreateApi_saga = config => async () => {
     return { response: err, status, error };
   }
 };
+
+
+//---------------------------------------------
+
+
+export const jqueryApiPureJS = async config => async (actionCreator, request) => {
+  jQuery
+    .ajax({
+      ...config,
+      beforeSend: () => {
+        actionCreator.request(request);
+      },
+    })
+    .done((response, textStatus, jqXHR) => {
+      const action = actionCreator.success(response, textStatus, jqXHR);
+      _STORE.dispatch(action);
+    })
+    .fail((jqXHR, textStatus, error) => {
+      const action = actionCreator.failure(jqXHR, textStatus, error);
+      _STORE.dispatch(action);
+    });
+};
+
