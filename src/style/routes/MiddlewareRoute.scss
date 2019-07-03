@@ -1,15 +1,17 @@
 /** @define middleware-route */
 
+@import '../colors.scss';
+
 .middleware-route {
   margin: 1rem;
   .middleware-route__button {
-    border: 1px solid #323232;
+    border: 1px solid $dark-grey;
     padding: 0.5rem;
   }
 
   .middleware-route__paragraph {
     margin-top: 0.5rem;
-    border: 1px solid #323232;
+    border: 1px solid $dark-grey;
     padding: 0.5rem;
   }
 }
