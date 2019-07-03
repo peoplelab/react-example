@@ -3,9 +3,6 @@ module.exports = {
     'stylelint-scss',
     'stylelint-selector-bem-pattern',
   ],
-  extends: [
-    'stylelint-preset-behance',
-  ],
   rules: {
     'string-quotes': 'single',
     'number-leading-zero': 'always',
