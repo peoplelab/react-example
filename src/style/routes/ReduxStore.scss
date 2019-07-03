@@ -1,4 +1,5 @@
-// @import '~../colors.scss';
+/** @define redux-store */
+
 @import '../colors.scss';
 
 
@@ -11,29 +12,29 @@
     border: 2px $black solid;
     color: $white;
     font-weight: bold;
-    padding: .5rem;
+    padding: 0.5rem;
   }
-  
+
   .redux-store__value-box {
     margin-bottom: 1rem;
   }
-  
+
   .redux-store__text-input {
     background-color: $light-grey;
     color: $dark-grey;
     border-bottom: 1px $dark-grey solid;
-    font-size: .8rem;
-    margin-bottom: .5rem;
-    padding: .2rem;
+    font-size: 0.8rem;
+    margin-bottom: 0.5rem;
+    padding: 0.2rem;
   }
-  
+
   .redux-store__message-box {
-    padding: .5rem;
+    padding: 0.5rem;
 
     .redux-store__message {
       font-size: 1.2rem;
     }
-  
+
     &.redux-store__message-box--color {
       &-1 {
         background-color: $red;
@@ -54,4 +55,3 @@
     }
   }
 }
-
