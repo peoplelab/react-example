@@ -8,7 +8,7 @@ const actionHandlers = {
 
 
 const initialState = {
-  response: ''
+  response: '',
 };
 
 

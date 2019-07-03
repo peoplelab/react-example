@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import {
   jQueryCreateApi,
   jQueryCreateApi_saga,
@@ -8,7 +9,7 @@ import {
 
 
 const ID = '50000157910000508014507496221648';
-const BEARER= 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvd3d3cy5kZXYteWVhcC5pdCIsImlhdCI6MTU2MTk4NDI3OSwibmJmIjoxNTYxOTg0Mjc5LCJleHAiOjE1NjI1ODkwNzksImRhdGEiOnsidXNlciI6eyJpZCI6IjQ1In19fQ.2BhSvlXpO0PNH1iL2xYOFXtuVtUD7S5dWy7fs8Z0Hio';
+const BEARER = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvd3d3cy5kZXYteWVhcC5pdCIsImlhdCI6MTU2MTk4NDI3OSwibmJmIjoxNTYxOTg0Mjc5LCJleHAiOjE1NjI1ODkwNzksImRhdGEiOnsidXNlciI6eyJpZCI6IjQ1In19fQ.2BhSvlXpO0PNH1iL2xYOFXtuVtUD7S5dWy7fs8Z0Hio';
 
 
 const jQueryApi = jQueryCreateApi({
@@ -16,9 +17,9 @@ const jQueryApi = jQueryCreateApi({
   method: 'GET',
   contentType: 'application/json',
   processData: false,
-  beforeSend: function (xhr) {
+  beforeSend: (xhr) => {
     xhr.setRequestHeader('Authorization', `Bearer ${BEARER}`);
-  }
+  },
 });
 
 const jQueryApi_saga = jQueryCreateApi_saga({
@@ -26,9 +27,9 @@ const jQueryApi_saga = jQueryCreateApi_saga({
   method: 'GET',
   contentType: 'application/json',
   processData: false,
-  beforeSend: function (xhr) {
+  beforeSend: (xhr) => {
     xhr.setRequestHeader('Authorization', `Bearer ${BEARER}`);
-  }
+  },
 });
 
 const axiosApi_promise = axiosCreateApi_promise({
@@ -36,7 +37,7 @@ const axiosApi_promise = axiosCreateApi_promise({
   method: 'get',
   headers: {
     'content-type': 'application/json',
-    'Authorization': `Bearer ${BEARER}`,
+    Authorization: `Bearer ${BEARER}`,
   },
   data: {},
 });
@@ -46,7 +47,7 @@ const axiosApi_async = axiosCreateApi_async({
   method: 'get',
   headers: {
     'content-type': 'application/json',
-    'Authorization': `Bearer ${BEARER}`,
+    Authorization: `Bearer ${BEARER}`,
   },
   data: {},
 });
@@ -56,7 +57,7 @@ const axiosApi_saga = axiosCreateApi_saga({
   method: 'get',
   headers: {
     'content-type': 'application/json',
-    'Authorization': `Bearer ${BEARER}`,
+    Authorization: `Bearer ${BEARER}`,
   },
   data: {},
 });

@@ -1,19 +1,20 @@
 import AsyncComponent from '../generators/AsyncComponent';
 import Home from './Home';
 
-export const createRoutes = () => ({
+
+const createRoutes = () => ({
   primary: [
     {
       path: '/',
       key: 'home',
       exact: true,
-      component: Home
+      component: Home,
     },
     {
       path: '/redux',
       key: 'redux-store',
       exact: true,
-      component: AsyncComponent(() => import(/* webpackChunkName: "ReduxStore" */ './ReduxStore'))
+      component: AsyncComponent(() => import(/* webpackChunkName: "ReduxStore" */ './ReduxStore')),
     },
     {
       path: '/states',
@@ -32,10 +33,12 @@ export const createRoutes = () => ({
       key: 'middleware-route',
       exact: true,
       component: AsyncComponent(() => import(/* webpackChunkName: "MiddlewareRoute" */ './MiddlewareRoute')),
-    }
-  ]
+    },
+  ],
   // secondary
   // logged
   // external
 });
+
+
 export default createRoutes;

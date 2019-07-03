@@ -5,6 +5,6 @@ import MiddlewareRoute from './MiddlewareRoute';
 
 export default function* root() {
   yield all([
-    ...MiddlewareRoute
+    ...MiddlewareRoute,
   ]);
 }

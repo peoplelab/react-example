@@ -5,7 +5,7 @@ import App from './containers/App';
 import createStore from './store';
 
 
-if(process.env.NODE_ENV !== 'PRODUCTION') {
+if (process.env.NODE_ENV !== 'PRODUCTION') {
   setConfig({ logLevel: 'debug' });
 }
 
@@ -15,5 +15,5 @@ const store = createStore();
 ReactDOM.render(
   React.createElement(App, { store }, null),
   // <App store={store()} />,
-  document.getElementById('root')
+  document.getElementById('root'),
 );

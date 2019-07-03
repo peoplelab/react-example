@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Enum from '../../tools/Enum';
-import { isNil } from '../../tools/checks';
+import { isNil } from '../../utils/checks';
 
 
 const FORMATS = Enum.from(

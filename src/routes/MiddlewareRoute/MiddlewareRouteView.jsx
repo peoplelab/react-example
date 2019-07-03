@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Box from '../../components/layout/Box';
@@ -27,6 +28,7 @@ class MiddlewareRouteComponent extends Component {
 
     calljQueryApi(value);
   }
+
   onClick_jQuerySaga(event) {
     const { value } = event.target;
     const { calljQueryApi_saga } = this.props;
@@ -35,6 +37,7 @@ class MiddlewareRouteComponent extends Component {
 
     calljQueryApi_saga(value);
   }
+
   onClick_AxiosPromise(event) {
     const { value } = event.target;
     const { callAxiosApi_promise } = this.props;
@@ -43,6 +46,7 @@ class MiddlewareRouteComponent extends Component {
 
     callAxiosApi_promise(value);
   }
+
   onClick_AxiosAsync(event) {
     const { value } = event.target;
     const { callAxiosApi_async } = this.props;
@@ -51,6 +55,7 @@ class MiddlewareRouteComponent extends Component {
 
     callAxiosApi_async(value);
   }
+
   onClick_AxiosSaga(event) {
     const { value } = event.target;
     const { callAxiosApi_saga } = this.props;
@@ -62,32 +67,33 @@ class MiddlewareRouteComponent extends Component {
 
   render() {
     const { response } = this.props;
+    const { title } = this.state;
 
     return (
       <Box className="middleware-route">
-        <Buttons className="middleware-route__button" onClick={this.onClick_jQuery} >
+        <Buttons className="middleware-route__button" onClick={this.onClick_jQuery}>
           test jQuery api
         </Buttons>
-        <br/>
-        <Buttons className="middleware-route__button" onClick={this.onClick_jQuerySaga} >
+        <br />
+        <Buttons className="middleware-route__button" onClick={this.onClick_jQuerySaga}>
           test jQuery Saga api
         </Buttons>
-        <br/>
-        <Buttons className="middleware-route__button" onClick={this.onClick_AxiosPromise} >
+        <br />
+        <Buttons className="middleware-route__button" onClick={this.onClick_AxiosPromise}>
           test Axios Promise api
         </Buttons>
-        <br/>
-        <Buttons className="middleware-route__button" onClick={this.onClick_AxiosAsync} >
+        <br />
+        <Buttons className="middleware-route__button" onClick={this.onClick_AxiosAsync}>
           test Axios Async api
         </Buttons>
-        <br/>
-        <Buttons className="middleware-route__button" onClick={this.onClick_AxiosSaga} >
+        <br />
+        <Buttons className="middleware-route__button" onClick={this.onClick_AxiosSaga}>
           test Axios Saga api
         </Buttons>
-        <br/>
-        <br/>
-        <h3>{this.state.title}</h3>
-        <p className="middleware-route__paragraph" >
+        <br />
+        <br />
+        <h3>{title}</h3>
+        <p className="middleware-route__paragraph">
           {response}
         </p>
       </Box>

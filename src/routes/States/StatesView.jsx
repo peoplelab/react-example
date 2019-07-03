@@ -38,10 +38,12 @@ class StatesComponent extends Component {
   }
 
   onCountdown() {
-    if (this.state.visible) {
+    const { visible } = this.state;
+
+    if (visible) {
       let color = Math.random() * 4 + 1;
       color = Math.floor(color);
-  
+
       this.setState({ color });
     }
   }
@@ -56,8 +58,8 @@ class StatesComponent extends Component {
     const mergedClass = `states__message-box states__message-box--color-${color}`;
 
     return (
-      <Box className="states" >
-        <Buttons className="states__button" onClick={this.onToggle} >
+      <Box className="states">
+        <Buttons className="states__button" onClick={this.onToggle}>
           Hide input value box
         </Buttons>
         {visible && (

@@ -12,7 +12,7 @@ const actionHandlers = {
 const initialState = {
   color: 1,
   // value: '',
-  visible: false
+  visible: false,
 };
 
 

@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { Component } from 'react';
 
 // import PropTypes from 'prop-types';
@@ -9,10 +10,10 @@ import TextInput from '../../components/forms/TextInput';
 //  <Box>
 //    <Box>
 //          Hello page11!!
-//    </Box> 
+//    </Box>
 //    <Box>
 //            Hello page22!!
-//    </Box> 
+//    </Box>
 //  </Box>
 //);
 
@@ -26,13 +27,13 @@ import TextInput from '../../components/forms/TextInput';
 class Page1Component extends Component {
   constructor(props) {
     super(props);
-    
+
     this.state = {
       value1: '1',
       value2: '2'
     };
-  
-    this.onChange = this.onChange.bind(this);      
+
+    this.onChange = this.onChange.bind(this);
   }
   onChange(event) {
     var { value } = event.target;
@@ -57,19 +58,19 @@ class Page1Component extends Component {
       value2
     } = this.state;
 
-    //eslint-disable-next-line 
+    //eslint-disable-next-line
     console.log('sum=' + (eval(this.state.value1) + eval(this.state.value2)));
 
     return (
       <Box>
         <Box style={({ color:'red'})}>
               Hello page11!!
-        </Box> 
+        </Box>
         <Box>
           <TextInput style={({ border: '1px solid black' })}
-            name="txt01"  
+            name="txt01"
             value={value1}
-            onChange={this.onChange}            
+            onChange={this.onChange}
           />
           <TextInput style={({ border: '1px solid black' })}
             name="txt02"
@@ -77,7 +78,7 @@ class Page1Component extends Component {
             onChange={this.onChange}
           />
         </Box>
-      </Box>    
+      </Box>
     );
   }
 }

@@ -18,13 +18,12 @@ class ReduxStoreComponent extends Component {
   componentDidMount() {
     setInterval(this.onCountdown, 1200);
   }
-  
-  updateValue
-  
+
   onChange(event) {
     const { value } = event.target;
+    const { updateValue } = this.props;
 
-    this.props.updateValue(value);
+    updateValue(value);
   }
 
   onToggle() {
@@ -34,11 +33,13 @@ class ReduxStoreComponent extends Component {
   }
 
   onCountdown() {
-    if (this.props.visible) {
+    const { visible, changeColor } = this.props;
+
+    if (visible) {
       let color = Math.random() * 4 + 1;
       color = Math.floor(color);
-  
-      this.props.changeColor(color);
+
+      changeColor(color);
     }
   }
 
@@ -52,7 +53,7 @@ class ReduxStoreComponent extends Component {
     const mergedClass = `redux-store__message-box redux-store__message-box--color-${color}`;
 
     return (
-      <Box className="redux-store" >
+      <Box className="redux-store">
         {visible && (
           <Box className="redux-store__value-box">
             <TextInput
@@ -68,7 +69,7 @@ class ReduxStoreComponent extends Component {
             </Box>
           </Box>
         )}
-        <Buttons className="redux-store__button" onClick={this.onToggle} >
+        <Buttons className="redux-store__button" onClick={this.onToggle}>
           Hide input value box
         </Buttons>
       </Box>

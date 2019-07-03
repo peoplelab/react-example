@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -7,7 +8,7 @@ module.exports = {
     path: path.resolve(__dirname, '../../dist'),
     filename: '[hash].js',
     chunkFilename: '[chunkhash].js',
-    publicPath: '/'
+    publicPath: '/',
   },
   mode: 'production',
   devtool: 'source-map',
@@ -24,7 +25,7 @@ module.exports = {
           },
         ],
       },
-    ]
+    ],
   },
   plugins: [
     new HtmlWebpackPlugin({

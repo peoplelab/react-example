@@ -10,15 +10,15 @@ const HomeComponent = () => (
       Hello world!!
     </Box>
     <Anchor className="anchor" path="/states">
-      {// eslint-disable-next-line react/no-unescaped-entities
+      {// eslint-disable-next-line react/no-unescaped-entities, react/jsx-one-expression-per-line
       }Go to "/states" route
     </Anchor>
     <Anchor className="anchor" path="/redux">
-      {// eslint-disable-next-line react/no-unescaped-entities
+      {// eslint-disable-next-line react/no-unescaped-entities, react/jsx-one-expression-per-line
       }Go to "/redux" route
     </Anchor>
     <Anchor className="anchor" path="/middleware">
-      {// eslint-disable-next-line react/no-unescaped-entities
+      {// eslint-disable-next-line react/no-unescaped-entities, react/jsx-one-expression-per-line
       }Go to "/middleware" route
     </Anchor>
   </Box>

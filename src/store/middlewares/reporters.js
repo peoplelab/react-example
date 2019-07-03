@@ -1,12 +1,12 @@
 /* eslint-disable no-console */
 
 
-const logger = store => next => action => {
+const logger = store => next => (action) => {
   console.group(action.type);
   console.log('dispatching', action);
   console.log('previous state', store.getState());
 
-  let result = next(action);
+  const result = next(action);
 
   console.log('next state', store.getState());
   console.groupEnd(action.type);
@@ -14,7 +14,7 @@ const logger = store => next => action => {
   return result;
 };
 
-const crashReporter = store => next => action => {
+const crashReporter = store => next => (action) => {
   try {
     return next(action);
   } catch (err) {

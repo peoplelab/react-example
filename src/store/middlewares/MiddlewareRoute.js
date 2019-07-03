@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import { pathOr } from 'ramda';
 import { createMiddleware } from '../../generators/middleware';
 import { types, saveApiResponse } from '../actions/MiddlewareRoute';

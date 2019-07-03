@@ -1,6 +1,6 @@
 import {
   isKey,
-  isObject
+  isObject,
 } from '../utils/checks';
 
 

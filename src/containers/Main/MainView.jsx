@@ -3,23 +3,26 @@ import { Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import createRoutes from '../../routes';
 
+const mapRoutes = (routeProps) => {
+  const {
+    component,
+    path,
+    key,
+    ...rest
+  } = routeProps;
+
+  return (
+    <Route {...rest} path={path} key={`route-${key}`} component={component} />
+  );
+};
 
 class MainComponent extends PureComponent {
-  mapRoutes(props) {
-    const { component, ...otherProps } = props;
-    const { path, key, ...rest } = otherProps;
-
-    return (
-      <Route {...rest} path={path} key={`route-${key}`} component={component} />
-    );
-  }
-
   render() {
     const { store } = this.props;
 
     const routes = createRoutes(store);
 
-    const Primary = routes.primary.map(this.mapRoutes);
+    const Primary = routes.primary.map(mapRoutes);
 
     return (
       <Switch>
@@ -31,6 +34,7 @@ class MainComponent extends PureComponent {
 
 
 MainComponent.propTypes = {
+  // eslint-disable-next-line react/forbid-prop-types
   store: PropTypes.object.isRequired,
 };
 

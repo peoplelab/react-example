@@ -1,4 +1,7 @@
-import { put, takeEvery, fork, call } from 'redux-saga/effects';
+/* eslint-disable camelcase */
+import {
+  put, takeEvery, fork, call,
+} from 'redux-saga/effects';
 import { types, doneApi } from '../actions/MiddlewareRoute';
 import { axiosApi_saga, jQueryApi_saga } from '../../api/test';
 

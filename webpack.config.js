@@ -8,7 +8,7 @@ const production = require('./config/webpack/production');
 const { NODE_ENV } = process.env;
 
 let envConfig;
-switch(NODE_ENV) {
+switch (NODE_ENV) {
 case 'MOCKS':
 case 'DEVELOPMENT': {
   envConfig = development;

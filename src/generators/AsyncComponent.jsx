@@ -1,6 +1,6 @@
 import React, { Component as ReactComponent } from 'react';
 
-const AsyncComponent = (importComponent) => (
+const AsyncComponent = importComponent => (
   class extends ReactComponent {
     constructor(props) {
       super(props);

@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 const { HotModuleReplacementPlugin } = require('webpack');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
@@ -12,12 +13,12 @@ module.exports = {
         options: {
           cacheDirectory: true,
           cacheCompression: true,
-        }
+        },
       },
       {
         test: /\.jsx?$/i,
         exclude: /node_modules/,
-        loader: 'eslint-loader'
+        loader: 'eslint-loader',
       },
       {
         test: /\.s?css$/,
@@ -27,7 +28,7 @@ module.exports = {
           'css-loader',
           'postcss-loader',
           'sass-loader',
-        ]
+        ],
       },
       {
         test: /\.(png|jpe?g|gif)$/i,
@@ -39,12 +40,12 @@ module.exports = {
             },
           },
         ],
-      }
-    ]
+      },
+    ],
   },
   plugins: [
     new HotModuleReplacementPlugin(),
-    new CleanWebpackPlugin()
+    new CleanWebpackPlugin(),
   ],
   resolve: {
     extensions: ['.js', '.jsx'],

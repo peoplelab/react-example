@@ -1,10 +1,10 @@
 import { connect } from 'react-redux';
-import ReduxStore from './ReduxStoreView';
 import { withRouter } from 'react-router-dom';
+import ReduxStore from './ReduxStoreView';
 import {
   changeColor,
   updateValue,
-  setVisibility
+  setVisibility,
 } from '../../store/actions/ReduxStore';
 
 
@@ -14,7 +14,7 @@ const mapDispatchToProps = {
   setVisibility,
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   color: state.ReduxStore.color,
   value: state.ReduxStore.value,
   visible: state.ReduxStore.visible,

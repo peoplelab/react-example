@@ -4,7 +4,7 @@ import MiddlewareRoute from './MiddlewareRoute';
 
 export const middlewaresList = [
   // ...reporters,
-  MiddlewareRoute
+  MiddlewareRoute,
 ];
 
 

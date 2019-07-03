@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -10,7 +11,7 @@ module.exports = {
     devtoolLineToLine: true,
     sourceMapFilename: '[name].js.map',
     pathinfo: true,
-    publicPath: '/'
+    publicPath: '/',
   },
   cache: false,
   mode: 'development',
@@ -28,7 +29,7 @@ module.exports = {
           },
         ],
       },
-    ]
+    ],
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -40,6 +41,6 @@ module.exports = {
     }),
   ],
   resolve: {
-    alias: { 'react-dom': '@hot-loader/react-dom' }
+    alias: { 'react-dom': '@hot-loader/react-dom' },
   },
 };
