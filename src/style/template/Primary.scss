@@ -1,0 +1,61 @@
+/** @define primary */
+
+@import '../colors.scss';
+
+.primary {
+  display: block;
+  height: 100%;
+  width: 100%;
+
+  .primary__header {
+    background-color: $dark-grey;
+    color: $white;
+    display: block;
+    padding: 1rem;
+    width: 100%;
+  }
+
+  .primary__container {
+    display: flex;
+    width: 100%;
+
+    .primary__navigation {
+      background-color: $light-grey;
+      width: 10rem;
+
+      ul {
+        // stylelint-disable-next-line plugin/selector-bem-pattern
+        li {
+          border-bottom: 1px solid $dark-grey;
+          border-top: 1px solid $dark-grey;
+          color: $dark-grey;
+          font-weight: bold;
+        }
+      }
+    }
+
+    .primary__route {
+      padding: 3rem;
+
+      .primary__route-title {
+        border: 1px solid $dark-grey;
+        display: block;
+        width: 100%;
+      }
+
+      .primary__route-section {
+        display: block;
+        margin-top: 3rem;
+        width: 100%;
+      }
+    }
+  }
+
+  .primary__footer {
+    background-color: $dark-grey;
+    color: $white;
+    display: block;
+    padding: 1rem;
+    width: 100%;
+  }
+}
