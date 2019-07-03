@@ -12,7 +12,7 @@ class MiddlewareRouteComponent extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { title: 'Hello world!' };
+    this.state = { title: 'Choice an api method call' };
 
     this.onClick_jQuery = this.onClick_jQuery.bind(this);
     this.onClick_jQuerySaga = this.onClick_jQuerySaga.bind(this);
@@ -73,7 +73,7 @@ class MiddlewareRouteComponent extends Component {
     return (
       <Primary>
         <h2 className="primary__route-title">
-          Welcome!
+          Api with Middleware
         </h2>
         <Box className="primary__route-section middleware-route">
           <Buttons className="middleware-route__button" onClick={this.onClick_jQuery}>
@@ -97,7 +97,9 @@ class MiddlewareRouteComponent extends Component {
           </Buttons>
           <br />
           <br />
-          <h3>{title}</h3>
+          <h3 className="middleware-route__title">
+            {title}
+          </h3>
           <p className="middleware-route__paragraph">
             {response}
           </p>

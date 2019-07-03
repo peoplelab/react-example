@@ -12,15 +12,15 @@ const LINKS = [
   },
   {
     path: '/states',
-    message: 'Go to "/states" route',
+    message: 'Test React states',
   },
   {
     path: '/redux',
-    message: 'Go to "/redux" route',
+    message: 'Test redux store',
   },
   {
     path: '/middleware',
-    message: 'Go to "/middleware" route',
+    message: 'Use api with redux middleware',
   },
   {
     path: '/sagas',
