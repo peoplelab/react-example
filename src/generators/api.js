@@ -132,3 +132,15 @@ export const jqueryApiPureJS = async config => async (actionCreator, request) =>
     });
 };
 
+export const axiosApiSagas = async (config) => {
+  try {
+    const result = await axios(config);
+    const { data, ...rest } = result;
+
+    return { response: data, ...rest };
+  } catch (err) {
+    const response = err.response.data;
+
+    return { response, error: err };
+  }
+};

@@ -35,6 +35,12 @@ const createRoutes = () => ({
       component: AsyncComponent(() => import(/* webpackChunkName: "MiddlewareRoute" */ './MiddlewareRoute')),
     },
     {
+      path: '/sagas',
+      key: 'sagas-route',
+      exact: true,
+      component: AsyncComponent(() => import(/* webpackChunkName: "SagasRoute" */ './SagasRoute')),
+    },
+    {
       path: '/purejs',
       key: 'pure-js',
       exact: true,

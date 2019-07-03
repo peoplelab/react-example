@@ -23,6 +23,10 @@ const LINKS = [
     message: 'Go to "/middleware" route',
   },
   {
+    path: '/sagas',
+    message: 'Use api with sagas',
+  },
+  {
     path: '/purejs',
     message: 'Use api with pure JS',
   },
