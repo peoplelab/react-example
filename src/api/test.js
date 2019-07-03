@@ -13,7 +13,7 @@ const BEARER = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvd3d
 
 
 const jQueryApi = jQueryCreateApi({
-  url: `https://wwws.dev-yeap.it/wp-json/wp/v2/business-plan/${ID}`,
+  url: `/wp-json/wp/v2/business-plan/${ID}`,
   method: 'GET',
   contentType: 'application/json',
   processData: false,
@@ -23,7 +23,7 @@ const jQueryApi = jQueryCreateApi({
 });
 
 const jQueryApi_saga = jQueryCreateApi_saga({
-  url: `https://wwws.dev-yeap.it/wp-json/wp/v2/business-plan/${ID}`,
+  url: `/wp-json/wp/v2/business-plan/${ID}`,
   method: 'GET',
   contentType: 'application/json',
   processData: false,
@@ -33,7 +33,7 @@ const jQueryApi_saga = jQueryCreateApi_saga({
 });
 
 const axiosApi_promise = axiosCreateApi_promise({
-  url: `https://wwws.dev-yeap.it/wp-json/wp/v2/business-plan/${ID}`,
+  url: `/wp-json/wp/v2/business-plan/${ID}`,
   method: 'get',
   headers: {
     'content-type': 'application/json',
@@ -43,7 +43,7 @@ const axiosApi_promise = axiosCreateApi_promise({
 });
 
 const axiosApi_async = axiosCreateApi_async({
-  url: `https://wwws.dev-yeap.it/wp-json/wp/v2/business-plan/${ID}`,
+  url: `/wp-json/wp/v2/business-plan/${ID}`,
   method: 'get',
   headers: {
     'content-type': 'application/json',
@@ -53,7 +53,7 @@ const axiosApi_async = axiosCreateApi_async({
 });
 
 const axiosApi_saga = axiosCreateApi_saga({
-  url: `https://wwws.dev-yeap.it/wp-json/wp/v2/business-plan/${ID}`,
+  url: `/wp-json/wp/v2/business-plan/${ID}`,
   method: 'get',
   headers: {
     'content-type': 'application/json',

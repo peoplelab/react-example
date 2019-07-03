@@ -39,7 +39,7 @@ const app = express();
 app.use(compression());
 
 // services proxy
-const proxyInst = proxy(['/api'], proxyConfig[NODE_ENV] || {}); // dev dsi
+const proxyInst = proxy(['/wp-json'], proxyConfig[NODE_ENV] || proxyConfig.MOCKS); // dev dsi
 app.use(proxyInst);
 
 const devMiddleware = webpackDevMiddleware(compiler, {
