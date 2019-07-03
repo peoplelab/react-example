@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import Box from '../../components/layout/Box';
 import Buttons from '../../components/forms/Button';
 import TextInput from '../../components/forms/TextInput';
+import Primary from '../../template/Primary';
 
 import '../../style/routes/States.scss';
 
@@ -58,26 +59,31 @@ class StatesComponent extends Component {
     const mergedClass = `states__message-box states__message-box--color-${color}`;
 
     return (
-      <Box className="states">
-        <Buttons className="states__button" onClick={this.onToggle}>
-          Hide input value box
-        </Buttons>
-        {visible && (
-          <Box className="states__value-box">
-            <TextInput
-              className="states__text-input"
-              name="example"
-              value={value}
-              onChange={this.onChange}
-            />
-            <Box className={mergedClass}>
-              <p className="states__message">
-                {`The current value is: ${value}`}
-              </p>
+      <Primary>
+        <h2 className="primary__route-title">
+          States
+        </h2>
+        <Box className="primary__route-section states">
+          <Buttons className="states__button" onClick={this.onToggle}>
+            Hide input value box
+          </Buttons>
+          {visible && (
+            <Box className="states__value-box">
+              <TextInput
+                className="states__text-input"
+                name="example"
+                value={value}
+                onChange={this.onChange}
+              />
+              <Box className={mergedClass}>
+                <p className="states__message">
+                  {`The current value is: ${value}`}
+                </p>
+              </Box>
             </Box>
-          </Box>
-        )}
-      </Box>
+          )}
+        </Box>
+      </Primary>
     );
   }
 }

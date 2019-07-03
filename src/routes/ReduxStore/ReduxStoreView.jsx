@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Box from '../../components/layout/Box';
 import Buttons from '../../components/forms/Button';
 import TextInput from '../../components/forms/TextInput';
+import Primary from '../../template/Primary';
 
 import '../../style/routes/ReduxStore.scss';
 
@@ -53,26 +54,31 @@ class ReduxStoreComponent extends Component {
     const mergedClass = `redux-store__message-box redux-store__message-box--color-${color}`;
 
     return (
-      <Box className="redux-store">
-        {visible && (
-          <Box className="redux-store__value-box">
-            <TextInput
-              className="redux-store__text-input"
-              name="example"
-              value={value}
-              onChange={this.onChange}
-            />
-            <Box className={mergedClass}>
-              <p className="redux-store__message">
-                {`The current value is: ${value}`}
-              </p>
+      <Primary className="">
+        <h2 className="primary__route-title">
+          Redux store
+        </h2>
+        <Box className="primary__route-section redux-store">
+          {visible && (
+            <Box className="redux-store__value-box">
+              <TextInput
+                className="redux-store__text-input"
+                name="example"
+                value={value}
+                onChange={this.onChange}
+              />
+              <Box className={mergedClass}>
+                <p className="redux-store__message">
+                  {`The current value is: ${value}`}
+                </p>
+              </Box>
             </Box>
-          </Box>
-        )}
-        <Buttons className="redux-store__button" onClick={this.onToggle}>
-          Hide input value box
-        </Buttons>
-      </Box>
+          )}
+          <Buttons className="redux-store__button" onClick={this.onToggle}>
+            Hide input value box
+          </Buttons>
+        </Box>
+      </Primary>
     );
   }
 }

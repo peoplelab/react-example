@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Box from '../../components/layout/Box';
 import Buttons from '../../components/forms/Button';
+import Primary from '../../template/Primary';
 
 import '../../style/routes/MiddlewareRoute.scss';
 
@@ -70,33 +71,38 @@ class MiddlewareRouteComponent extends Component {
     const { title } = this.state;
 
     return (
-      <Box className="middleware-route">
-        <Buttons className="middleware-route__button" onClick={this.onClick_jQuery}>
-          test jQuery api
-        </Buttons>
-        <br />
-        <Buttons className="middleware-route__button" onClick={this.onClick_jQuerySaga}>
-          test jQuery Saga api
-        </Buttons>
-        <br />
-        <Buttons className="middleware-route__button" onClick={this.onClick_AxiosPromise}>
-          test Axios Promise api
-        </Buttons>
-        <br />
-        <Buttons className="middleware-route__button" onClick={this.onClick_AxiosAsync}>
-          test Axios Async api
-        </Buttons>
-        <br />
-        <Buttons className="middleware-route__button" onClick={this.onClick_AxiosSaga}>
-          test Axios Saga api
-        </Buttons>
-        <br />
-        <br />
-        <h3>{title}</h3>
-        <p className="middleware-route__paragraph">
-          {response}
-        </p>
-      </Box>
+      <Primary>
+        <h2 className="primary__route-title">
+          Welcome!
+        </h2>
+        <Box className="primary__route-section middleware-route">
+          <Buttons className="middleware-route__button" onClick={this.onClick_jQuery}>
+            test jQuery api
+          </Buttons>
+          <br />
+          <Buttons className="middleware-route__button" onClick={this.onClick_jQuerySaga}>
+            test jQuery Saga api
+          </Buttons>
+          <br />
+          <Buttons className="middleware-route__button" onClick={this.onClick_AxiosPromise}>
+            test Axios Promise api
+          </Buttons>
+          <br />
+          <Buttons className="middleware-route__button" onClick={this.onClick_AxiosAsync}>
+            test Axios Async api
+          </Buttons>
+          <br />
+          <Buttons className="middleware-route__button" onClick={this.onClick_AxiosSaga}>
+            test Axios Saga api
+          </Buttons>
+          <br />
+          <br />
+          <h3>{title}</h3>
+          <p className="middleware-route__paragraph">
+            {response}
+          </p>
+        </Box>
+      </Primary>
     );
   }
 }

@@ -1,35 +1,28 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
 import Box from '../../components/layout/Box';
-import Anchor from '../../components/layout/Anchor';
+import Primary from '../../template/Primary';
 
 
 const HomeComponent = () => (
-  <Box>
-    <Box>
-      Hello world!!
+  <Primary>
+    <h2 className="primary__route-title">
+      Welcome!
+    </h2>
+    <Box className="primary__route-section home">
+      <p className="home__paragraph">
+        Hello world!!
+      </p>
     </Box>
-    <Anchor className="anchor" path="/states">
-      {// eslint-disable-next-line react/no-unescaped-entities, react/jsx-one-expression-per-line
-      }Go to "/states" route
-    </Anchor>
-    <Anchor className="anchor" path="/redux">
-      {// eslint-disable-next-line react/no-unescaped-entities, react/jsx-one-expression-per-line
-      }Go to "/redux" route
-    </Anchor>
-    <Anchor className="anchor" path="/middleware">
-      {// eslint-disable-next-line react/no-unescaped-entities, react/jsx-one-expression-per-line
-      }Go to "/middleware" route
-    </Anchor>
-  </Box>
+  </Primary>
 );
 
 
-// HomeComponent.propTypes = {
-// };
+HomeComponent.propTypes = {
+};
 
-// HomeComponent.defaultProps = {
-// };
+HomeComponent.defaultProps = {
+};
 
 
 export default HomeComponent;
