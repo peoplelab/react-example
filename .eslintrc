@@ -1,7 +1,8 @@
 {
   "globals": {
     "__dirname": "readonly",
-    "process": "readonly"
+    "process": "readonly",
+    "_STORE": "writable"
   },
   "env": {
     "browser": true,

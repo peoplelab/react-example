@@ -9,11 +9,12 @@ if (process.env.NODE_ENV !== 'PRODUCTION') {
   setConfig({ logLevel: 'debug' });
 }
 
-const store = createStore();
+// eslint-disable-next-line no-underscore-dangle
+window._STORE = createStore();
 
 
 ReactDOM.render(
-  React.createElement(App, { store }, null),
+  React.createElement(App, {}, null),
   // <App store={store()} />,
   document.getElementById('root'),
 );
