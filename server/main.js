@@ -57,4 +57,8 @@ app.use((req, res) => {
   res.end(devMiddleware.fileSystem.readFileSync(path.join(config.output.path, 'index.html')));
 });
 
-https.createServer(ssl, app).listen(PORT);
+if (NODE_ENV === 'MOCKS') {
+  app.listen(PORT);
+} else {
+  https.createServer(ssl, app).listen(PORT);
+}
