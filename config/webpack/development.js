@@ -4,10 +4,11 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 
 module.exports = {
+  entry: ['./src/index.js', 'webpack-hot-middleware/client'],
   output: {
     path: path.resolve(__dirname, '../../build'),
     filename: 'bundle.js',
-    chunkFilename: '[name].bundle.js',
+    chunkFilename: '[name].js',
     devtoolLineToLine: true,
     sourceMapFilename: '[name].js.map',
     pathinfo: true,
