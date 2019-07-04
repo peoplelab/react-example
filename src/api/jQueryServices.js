@@ -13,8 +13,9 @@ const jQueryCall = async () => jqueryApiPureJS({
   processData: false,
   beforeSend: (xhr) => {
     xhr.setRequestHeader('Authorization', `Bearer ${BEARER}`);
+    jQueryApiPureJS.request();
   },
-})(jQueryApiPureJS);
+}, jQueryApiPureJS);
 
 
 export {

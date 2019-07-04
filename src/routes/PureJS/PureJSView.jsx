@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Box from '../../components/layout/Box';
 import Buttons from '../../components/forms/Button';
 import Primary from '../../template/Primary';
+import { jQueryCall } from '../../api/jQueryServices';
 
 import '../../style/routes/PureJS.scss';
 
@@ -18,13 +19,10 @@ class PureJSComponent extends Component {
     // this.onAxios = this.onAxios.bind(this);
   }
 
-  onjQuery(event) {
-    const { value } = event.target;
-    const { calljQueryApiPureJS } = this.props;
-
+  onjQuery() {
     this.setState({ title: 'jQuery' });
 
-    calljQueryApiPureJS(value);
+    jQueryCall();
   }
 
   // onAxios(event) {
@@ -70,7 +68,6 @@ class PureJSComponent extends Component {
 
 PureJSComponent.propTypes = {
   response: PropTypes.string,
-  calljQueryApiPureJS: PropTypes.func.isRequired,
   // callAxiosApi: PropTypes.func.isRequired,
 };
 

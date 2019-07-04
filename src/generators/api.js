@@ -114,14 +114,9 @@ export const axiosCreateApi_saga = config => async () => {
 //---------------------------------------------
 
 
-export const jqueryApiPureJS = async config => async (actionCreator, request) => {
+export const jqueryApiPureJS = async (config, actionCreator) => {
   jQuery
-    .ajax({
-      ...config,
-      beforeSend: () => {
-        actionCreator.request(request);
-      },
-    })
+    .ajax(config)
     .done((response, textStatus, jqXHR) => {
       const action = actionCreator.success(response, textStatus, jqXHR);
       _STORE.dispatch(action);

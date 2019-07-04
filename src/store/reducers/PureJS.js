@@ -1,10 +1,11 @@
 import { createReducer } from '../../generators/reducers';
-import { types } from '../actions/MiddlewareRoute';
+import { types } from '../actions/PureJS';
 
 
 const actionHandlers = {
-  [types.AXIOS_API_PUREJS_SUCESS]: (state, { response }) => ({ ...state, response, error: null }),
-  [types.AXIOS_API_PUREJS_FAILURE]: (state, { response, error }) => ({ ...state, response, error }),
+  [types.JQUERY_API_PUREJS_SUCCESS]: (state, { response }) => ({ ...state, response, error: null }),
+  // eslint-disable-next-line max-len
+  [types.JQUERY_API_PUREJS_FAILURE]: (state, { response, error }) => ({ ...state, response, error }),
 };
 
 
