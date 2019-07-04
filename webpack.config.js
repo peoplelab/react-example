@@ -3,6 +3,7 @@ const merge = require('webpack-merge');
 const commonConfig = require('./config/webpack/common');
 const development = require('./config/webpack/development');
 const production = require('./config/webpack/production');
+const system = require('./config/webpack/system');
 
 
 const { NODE_ENV } = process.env;
@@ -15,7 +16,10 @@ case 'DEVELOPMENT': {
   break;
 }
 case 'STAGING':
-case 'SYSTEM':
+case 'SYSTEM': {
+  envConfig = system;
+  break;
+}
 case 'PRODUCTION': {
   envConfig = production;
   break;
