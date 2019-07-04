@@ -10,7 +10,7 @@ if (process.env.NODE_ENV !== 'PRODUCTION') {
 }
 
 // eslint-disable-next-line no-underscore-dangle
-window._STORE = createStore();
+window.__STORE = createStore();
 
 
 ReactDOM.render(

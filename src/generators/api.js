@@ -119,11 +119,11 @@ export const jqueryApiPureJS = async (config, actionCreator) => {
     .ajax(config)
     .done((response, textStatus, jqXHR) => {
       const action = actionCreator.success(response, textStatus, jqXHR);
-      _STORE.dispatch(action);
+      __STORE.dispatch(action);
     })
     .fail((jqXHR, textStatus, error) => {
       const action = actionCreator.failure(jqXHR, textStatus, error);
-      _STORE.dispatch(action);
+      __STORE.dispatch(action);
     });
 };
 
