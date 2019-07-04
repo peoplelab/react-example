@@ -30,6 +30,10 @@ const LINKS = [
     path: '/purejs',
     message: 'Use api with pure JS',
   },
+  {
+    path: '/asyncroute',
+    message: 'Test a full async route',
+  },
 ];
 
 
