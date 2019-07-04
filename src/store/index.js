@@ -5,6 +5,8 @@ import createSagaMiddleware from 'redux-saga';
 import middlewares from './middlewares';
 import reducers from './reducers';
 import sagas from './sagas';
+import { injectAsyncReducers, reducerConstructor } from '../generators/reducers';
+import SagaHandler from '../generators/sagas';
 
 
 const { NODE_ENV } = process.env;
@@ -26,21 +28,26 @@ const storeConstructor = (initialState = {}) => {
   // Enhancer
   const enhancer = composeEnhancers(applyMiddleware(saga, ...middlewares));
 
-  // Create store
-  const store = createStore(reducers, initialState, enhancer);
+  const combinedReducers = reducerConstructor(reducers);
 
-  // Run sagas
-  store.runSaga = saga.run;
-  store.runSaga(sagas);
+  // Create store
+  const store = createStore(combinedReducers, initialState, enhancer);
+  store.asyncReducers = {};
+
+  // Inject async reducers
+  store.injectReducers = injectAsyncReducers(store, reducers);
+
+  // Handle sagas
+  store.saga = new SagaHandler(saga);
+  store.saga.run('global', sagas);
 
   // Hot loader
   if (module.hot) {
     module.hot.accept('./reducers', () => {
       // eslint-disable-next-line global-require
       const hotReducers = require('./reducers').default;
-      store.replaceReducer(hotReducers());
-      // const { asyncReducers } = store;
-      // store.replaceReducer(hotReducers(asyncReducers));
+      const { asyncReducers } = store;
+      store.replaceReducer(reducerConstructor(hotReducers, asyncReducers));
     });
   }
 
