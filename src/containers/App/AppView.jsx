@@ -13,7 +13,7 @@ class AppComponent extends PureComponent {
     // const { store } = this.props;
 
     return (
-      <Provider store={_STORE}>
+      <Provider store={__STORE}>
         {/* <IntlProvider locale={lang} messages={msg}> */}
         <BrowserRouter>
           <Main />

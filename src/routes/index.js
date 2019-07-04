@@ -46,6 +46,12 @@ const createRoutes = () => ({
       exact: true,
       component: AsyncComponent(() => import(/* webpackChunkName: "PureJS" */ './PureJS')),
     },
+    {
+      path: '/asyncroute',
+      key: 'async-route',
+      exact: true,
+      component: AsyncComponent(() => import(/* webpackChunkName: "AsyncRoute" */ './AsyncRoute')),
+    },
   ],
   // secondary
   // logged

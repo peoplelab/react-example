@@ -20,7 +20,7 @@ class MainComponent extends PureComponent {
   render() {
     // const { store } = this.props;
 
-    const routes = createRoutes(_STORE);
+    const routes = createRoutes(__STORE);
 
     const Primary = routes.primary.map(mapRoutes);
 
