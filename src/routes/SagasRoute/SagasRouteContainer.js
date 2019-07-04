@@ -9,7 +9,7 @@ import {
 
 
 const responseSelector = createSelector(
-  state => state.PureJS.response,
+  state => state.SagasRoute.response,
   response => JSON.stringify(response),
 );
 

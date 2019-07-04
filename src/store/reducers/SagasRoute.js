@@ -1,5 +1,5 @@
 import { createReducer } from '../../generators/reducers';
-import { types } from '../actions/MiddlewareRoute';
+import { types } from '../actions/SagasRoute';
 
 
 const actionHandlers = {
