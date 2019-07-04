@@ -8,6 +8,7 @@
   "license": "MIT",
   "scripts": {
     "build:dev": "better-npm-run build:dev",
+    "build:system": "better-npm-run build:system",
     "build:prod": "better-npm-run build:prod",
     "lint": "eslint **/*.js?(x)",
     "lint:fix": "eslint --fix **/*.js?(x)",
@@ -29,7 +30,7 @@
       }
     },
     "build:system": {
-      "command": "node ./server/main.js",
+      "command": "webpack --progress --colors",
       "env": {
         "BABEL_ENV": "prod",
         "NODE_ENV": "SYSTEM"
