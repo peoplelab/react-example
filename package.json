@@ -1,6 +1,6 @@
 {
   "name": "react-example",
-  "version": "0.06.00",
+  "version": "0.06.01",
   "description": "React implementation example",
   "main": "./src/index.js",
   "repository": "git@gitlab.com:andrea93bellini/react-example.git",
