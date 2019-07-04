@@ -12,7 +12,7 @@
     "changeOrigin": true
   },
   "SYSTEM": {
-    "target": "http://www.api-url-system.com",
+    "target": "https://wwws.dev-yeap.it",
     "changeOrigin": true
   }
 }
