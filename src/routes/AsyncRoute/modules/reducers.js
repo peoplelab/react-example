@@ -1,12 +1,15 @@
 import { createReducer } from '../../../generators/reducers';
+import { types } from './actions';
 
 
 const actionHandlers = {
-  // hello: (state, action) => state,
+  [types.SET_GEOLOCATION]: (state, { payload }) => ({ ...state, ...payload }),
 };
 
 
 const initialState = {
+  latitude: 0,
+  longitude: 0,
 };
 
 

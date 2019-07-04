@@ -1,3 +1,3 @@
-import AsyncRoute from './AsyncRouteView';
+import AsyncRoute from './AsyncRouteContainer';
 
 export default AsyncRoute;
