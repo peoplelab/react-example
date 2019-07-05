@@ -12,7 +12,6 @@
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
-    "airbnb"
   ],
   "parser": "babel-eslint",
   "parserOptions": {
@@ -27,20 +26,8 @@
     "react"
   ],
   "rules": {
-    "no-tabs": "off",
-    "indent": "off",
-    "linebreak-style": [
-      "error",
-      "windows"
-    ],
-    "eqeqeq": "warn",
-    "curly": "error",
-    "quotes": [
-      "error",
-      "single"
-    ],
     "semi": [
-      "error",
+      "warn",
       "always"
     ],
     "no-unused-vars": [
@@ -51,6 +38,20 @@
         "ignoreRestSiblings": false
       }
     ],
-    "strict": 0
+    "comma-dangle": "off",
+    "curly": "off",
+    "eqeqeq": "off",
+    "indent": "off",
+    "linebreak-style": "off",
+    "no-tabs": "off",
+    "no-var": "off",
+    "quotes": "off",
+    "strict": "off",
+    "react/jsx-indent": "off",
+    "react/jsx-closing-bracket-location": "off",
+    "react/jsx-closing-tag-location": "off",
+    "react/jsx-indent-props": "off",
+    "react/jsx-space-before-closing": "off",
+    "react/style-prop-object:": "off",
   }
 }
