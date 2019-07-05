@@ -53,5 +53,6 @@
     "react/jsx-indent-props": "off",
     "react/jsx-space-before-closing": "off",
     "react/style-prop-object:": "off",
+	"no-mixed-spaces-and-tabs": "off",
   }
 }
