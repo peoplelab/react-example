@@ -27,6 +27,7 @@
     "react"
   ],
   "rules": {
+    "no-tabs": "off",
     "indent": "off",
     "linebreak-style": [
       "error",
