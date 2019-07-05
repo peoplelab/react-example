@@ -49,6 +49,9 @@ class StatesComponent extends Component {
     }
   }
 
+
+	// Commento
+
   render() {
     const {
       color,
