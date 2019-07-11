@@ -1,29 +1,33 @@
-const businessPlan = require('./wp-json/wp/v2/business-plan');
+
+const routes = require('./routes');
 
 
+/* eslint-disable no-console */
 module.exports = (app) => {
-  app
-    .route('/wp-json/wp/v2/business-plan/:id')
-    .get(businessPlan.GET);
+  routes.map((route) => {
+    const { url, path } = route;
+    const handler = require(path);
+
+    const appRoute = app.route(url);
+
+    if ('GET' in handler) {
+      appRoute.get(handler.GET);
+    }
+
+    if ('POST' in handler) {
+      appRoute.post(handler.POST);
+    }
+
+    if ('PUT' in handler) {
+      appRoute.put(handler.PUT);
+    }
+
+    if ('PATCH' in handler) {
+      appRoute.patch(handler.PATCH);
+    }
+
+    if ('DELETE' in handler) {
+      appRoute.delete(handler.DELETE);
+    }
+  });
 };
-
-
-// app.get(API_PATH, (req, res) => {
-//   return res.send('Received a GET HTTP method');
-// });
-
-// app.post(API_PATH, (req, res) => {
-//   return res.send('Received a POST HTTP method');
-// });
-
-// app.put(API_PATH, (req, res) => {
-//   return res.send('Received a PUT HTTP method');
-// });
-
-// app.patch(API_PATH, (req, res) => {
-//   return res.send('Received a PATCH HTTP method');
-// });
-
-// app.delete(API_PATH, (req, res) => {
-//   return res.send('Received a DELETE HTTP method');
-// });
