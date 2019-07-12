@@ -25,6 +25,8 @@ const storeConstructor = (initialState = {}) => {
   // Saga middleware
   const saga = createSagaMiddleware();
 
+    window.saga = saga;
+
   // Enhancer
   const enhancer = composeEnhancers(applyMiddleware(saga, ...middlewares));
 
