@@ -1,8 +1,14 @@
-/* eslint-disable import/no-extraneous-dependencies */
 const { HotModuleReplacementPlugin } = require('webpack');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const globalVars = require('../globals/client');
+
+
+const { COMPILE_ENV } = process.env;
+
+const entry = COMPILE_ENV === 'PRODUCTION' ? ['./src/index.js'] : ['./src/index.js', 'webpack-hot-middleware/client'];
+
 
 module.exports = {
+  entry,
   optimization: {
     runtimeChunk: 'single',
     splitChunks: {
@@ -65,9 +71,9 @@ module.exports = {
   },
   plugins: [
     new HotModuleReplacementPlugin(),
-    new CleanWebpackPlugin(),
+    globalVars,
   ],
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: ['.js', '.jsx', 'json', 'scss', 'css'],
   },
 };

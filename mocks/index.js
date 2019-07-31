@@ -1,12 +1,12 @@
+require('./global');
 
 const routes = require('./routes');
 
 
-/* eslint-disable no-console */
 module.exports = (app) => {
   routes.map((route) => {
-    const { url, path } = route;
-    const handler = require(path);
+    const { url, api } = route;
+    const handler = api;
 
     const appRoute = app.route(url);
 
