@@ -3,44 +3,21 @@
 //-------------------------------------------------------------------
 
 import { apiLogin } from '../../models/login/login.model';
+import { resetSession, setSession } from '../common/session';
 
 
-export const callLogin = ({ data, sucess, failure }) => {
-  const request = {
-    UserName: data.username,
-    Password: data.password,
-    Culture: data.culture,
-  };
-
-  apiLogin(request, function (response) {
+export const callLogin = ({ sucess, failure }) => {
+  apiLogin(function (response) {
     const { httpcode, rawdata, rawerror } = response;
 
     if (httpcode === 200) {
       sucess(rawdata);
-      console.log('success');
+      setSession(rawdata);
+      console.log('> login success');
     } else {
       failure(rawerror);
-      console.log('failure');
+      resetSession();
+      console.log('> login failure');
     }
   });
-};
-
-
-export const setSession = (data) => {
-  const {
-    accessToken,
-    refreshToken,
-    sessionId,
-  } = data;
-
-  sessionStorage.setItem('accessToken', accessToken);
-  sessionStorage.setItem('refreshToken', refreshToken);
-  sessionStorage.setItem('sessionId', sessionId);
-};
-
-
-export const resetSession = () => {
-  sessionStorage.removeItem('accessToken');
-  sessionStorage.removeItem('refreshToken');
-  sessionStorage.removeItem('sessionId');
 };

@@ -20,6 +20,12 @@ const createRoutes = store => ({
    */
   primary: [
     {
+      path: '/',
+      key: 'home',
+      exact: true,
+      Component: lazy(() => import(/* webpackChunkName: "Home" */ '../components/routes/home/home.view')),
+    },
+    {
       path: '/login',
       key: 'login',
       exact: true,
@@ -36,12 +42,6 @@ const createRoutes = store => ({
    * Map of routes that required login by user.
    */
   logged: [
-    {
-      path: '/',
-      key: 'home',
-      exact: true,
-      Component: lazy(() => import(/* webpackChunkName: "Home" */ '../components/routes/home/home.view')),
-    },
     // {
     //   path: '/tools',
     //   key: 'tools',
