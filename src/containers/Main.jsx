@@ -1,6 +1,6 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, Suspense  } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import createRoutes from './Router';
 import { logged } from '../controllers/common/session';
 
@@ -11,14 +11,16 @@ import { logged } from '../controllers/common/session';
  */
 const mapRoutes = (routeProps) => {
   const {
-    component,
+    Component,
     path,
     key,
     ...rest
   } = routeProps;
 
   return (
-    <Route {...rest} path={path} key={`route-${key}`} component={component} />
+    <Route {...rest} path={path} key={`route-${key}`}>
+      <Component />
+    </Route>
   );
 };
 
@@ -48,15 +50,17 @@ class MainComponent extends PureComponent {
     const External = routes.external.map(mapRoutes);
 
     return (
-      <Switch>
-        {/* <Template> */}
-          {Primary}
-        {/* </Template> */}
-        {Secondary}
-        {Logged}
-        {Messages}
-        {External}
-      </Switch>
+      <Suspense fallback={null}>
+        <Switch>
+          {/* <Template> */}
+            {Primary}
+          {/* </Template> */}
+          {Secondary}
+          {Logged}
+          {Messages}
+          {External}
+        </Switch>
+      </Suspense>
     );
   }
 }
@@ -66,15 +70,12 @@ class MainComponent extends PureComponent {
  * Define component properties types
  */
 MainComponent.propTypes = {
-  store: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
-  isUserLogged: PropTypes.bool,
 };
 
 /**
  * Define default value of component properties
  */
 MainComponent.defaultProps = {
-  isUserLogged: false,
 };
 
 

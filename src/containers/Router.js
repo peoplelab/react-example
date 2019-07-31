@@ -23,7 +23,7 @@ const createRoutes = store => ({
       path: '/login',
       key: 'login',
       exact: true,
-      component: lazy(() => import(/* webpackChunkName: "Login" */ '../components/routes/login/login.view')),
+      Component: lazy(() => import(/* webpackChunkName: "Login" */ '../components/routes/login/login.view')),
     },
   ],
   /**
@@ -40,7 +40,7 @@ const createRoutes = store => ({
       path: '/',
       key: 'home',
       exact: true,
-      component: lazy(() => import(/* webpackChunkName: "Home" */ '../components/routes/home/home.view')),
+      Component: lazy(() => import(/* webpackChunkName: "Home" */ '../components/routes/home/home.view')),
     },
     // {
     //   path: '/tools',

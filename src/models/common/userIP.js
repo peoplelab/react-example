@@ -9,7 +9,7 @@
  * lListen for candidate events
  * @param {*} ice event param on ice candidate
  */
-const onIceCandidate = (pc, params) => ice => {
+const onIceCandidate = (pc) => ice => {
   /**
    * Get ip
    */
@@ -25,15 +25,13 @@ const onIceCandidate = (pc, params) => ice => {
    * Store ip
    */
   console.log('> User IP address: ', ip);
-
-  const action = params.action({ ip });
-  params.dispatch(action);
+  sessionStorage.setItem('IP', ip);
 };
 
 /**
  * Get the user IP throught the webkitRTCPeerConnection
  */
-const getUserIP = async (params) => {
+const getUserIP = async () => {
   /**
    * onNewIp - your listener function for new IPs
    *
@@ -67,7 +65,7 @@ const getUserIP = async (params) => {
   /**
    * Listen for candidate events
    */
-  pc.onicecandidate = onIceCandidate(pc, params);
+  pc.onicecandidate = onIceCandidate(pc);
 };
 
 
