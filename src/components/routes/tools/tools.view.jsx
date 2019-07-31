@@ -70,8 +70,8 @@ class ToolsRoute extends PureComponent {
 
 
 ToolsRoute.propTypes = {
-  callToolsList: PropTypes.func.isRequired,
-  callToolDetails: PropTypes.func.isRequired,
+  callToolsList: PropTypes.func,
+  callToolDetails: PropTypes.func,
   list: PropTypes.arrayOf(PropTypes.object),
   id: PropTypes.number,
   details: PropTypes.object,
@@ -81,6 +81,8 @@ ToolsRoute.defaultProps = {
   list: [],
   id: NaN,
   details: null,
+  callToolsList: () => {},
+  callToolDetails: () => {},
 };
 
 

@@ -45,8 +45,8 @@ class MainComponent extends PureComponent {
      */
     const Primary = routes.primary.map(mapRoutes);
     const Secondary = routes.secondary.map(mapRoutes);
-    const Logged = isUserLogged ? routes.logged.map(mapRoutes) : [];
-    const Messages = isUserLogged ? routes.messages.map(mapRoutes) : [];
+    const Logged = isUserLogged && routes.logged.map(mapRoutes);
+    // const Messages = isUserLogged && routes.messages.map(mapRoutes);
     const External = routes.external.map(mapRoutes);
 
     return (
@@ -57,7 +57,7 @@ class MainComponent extends PureComponent {
           {/* </Template> */}
           {Secondary}
           {Logged}
-          {Messages}
+          {/* {Messages} */}
           {External}
         </Switch>
       </Suspense>

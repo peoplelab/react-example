@@ -1,19 +1,38 @@
-export const logged = () => true;
+export const logged = () => {
+  const accessToken = sessionStorage.getItem('accessToken');
+  const sessionId = sessionStorage.getItem('sessionId');
+  const expiredAt = sessionStorage.getItem('expiredAt');
 
+  const expired = new Date(expiredAt);
+  const now = new Date();
+
+  return expired > now && accessToken && sessionId;
+};
+
+
+//---------------------
+//  data = {
+//    username,
+//    accessToken,
+//    refreshToken,
+//    culture,
+//    groups,
+//    permissions,
+//    sessionId,
+//    expiredAt,
+//    sessionLogId,
+//    refreshExpiredAt,
+//    issuedAt,
+//    userId,
+//  }
+//---------------------
 export const setSession = (data) => {
-  const {
-    accessToken,
-    refreshToken,
-    sessionId,
-  } = data;
-
-  sessionStorage.setItem('accessToken', accessToken);
-  sessionStorage.setItem('refreshToken', refreshToken);
-  sessionStorage.setItem('sessionId', sessionId);
+  Object.keys(data).forEach(key => {
+    const value = data[key];
+    sessionStorage.setItem(key, value);
+  });
 };
 
 export const resetSession = () => {
-  sessionStorage.removeItem('accessToken');
-  sessionStorage.removeItem('refreshToken');
-  sessionStorage.removeItem('sessionId');
+  sessionStorage.clear();
 };
