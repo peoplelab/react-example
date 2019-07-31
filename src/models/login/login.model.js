@@ -2,7 +2,7 @@
 // Login model: login api interface
 //-------------------------------------------------------------------
 
-import { base } from '../../../common/model.base';
+import { base } from '../common/model.base';
 
 
 const defaultData = {

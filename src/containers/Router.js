@@ -1,12 +1,10 @@
 //----------------------------------------------------------------------------------------
-// File: routes.index.js		[main]
+// File: Router.js		[main]
 //
 // Desc: Definizione delle routes mappate dell'applicazione
-// Path: /src/routes
+// Path: /src/components/routes
 //----------------------------------------------------------------------------------------
 
-// import AsyncComponent from '../commons/AsyncComponent';
-import AsyncRoute from '../commons/AsyncRoute';
 import { lazy } from 'react';
 
 /**

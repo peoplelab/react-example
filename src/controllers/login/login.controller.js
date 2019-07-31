@@ -2,7 +2,7 @@
 // Login controller: controller for login
 //-------------------------------------------------------------------
 
-import { apiLogin } from './login.model';
+import { apiLogin } from '../../models/login/login.model';
 
 
 export const callLogin = ({ data, sucess, failure }) => {

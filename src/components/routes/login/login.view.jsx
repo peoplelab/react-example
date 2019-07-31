@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-import Box from '../../layouts/Box/Box.index';
+import Box from '../../layouts/Box';
 import TextInput from '../../forms/TextInput';
 import PasswordInput from '../../forms/PasswordInput';
 import Button from '../../forms/Button';
@@ -9,9 +9,9 @@ import Select from '../../forms/Select';
 import Field from '../../forms/Field';
 import LoginError from './Login.item.Error';
 
-import { callLogin, setSession, resetSession } from './login.controller';
+import { callLogin, setSession, resetSession } from '../../../controllers/login/login.controller';
 
-import './Login.style.scss'; // apply Login style to this route
+import '../../../styles/routes/login/Login.style.scss'; // apply Login style to this route
 
 
 class LoginRoute extends PureComponent {
