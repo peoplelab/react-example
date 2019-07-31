@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 // import PropTypes from 'prop-types';
-import { callLogout } from '../../../controllers/logout/logout.controller';
+import { callLogout } from '../../../controllers/routes/logout/logout.controller';
 import Box    from '../../layouts/Box';
 import Anchor from '../../layouts/Anchor';
 import Button from '../../forms/Button';

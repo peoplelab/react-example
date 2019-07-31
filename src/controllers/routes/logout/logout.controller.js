@@ -2,23 +2,20 @@
 // Logout controller: controller for logout
 //-------------------------------------------------------------------
 
-import { apiLogout } from '../../models/logout/logout.model';
-import { resetSession } from '../common/session';
+import { apiLogout } from '../../../models/routes/logout/logout.model';
+import history from '../../../models/common/history';
+import { resetSession } from '../../common/session';
 
 
-export const callLogout = ({ data, sucess, failure }) => {
-  const request = {
-    UserName: data.username,
-    Password: data.password,
-    Culture: data.culture,
-  };
+export const callLogout = ({ sucess, failure }) => {
 
-  apiLogout(request, function (response) {
+  apiLogout(function (response) {
     const { httpcode, rawdata, rawerror } = response;
 
     if (httpcode === 200) {
       sucess(rawdata);
       resetSession();
+      history.push('/login');
       console.log('> logout success');
     } else {
       failure(rawerror);

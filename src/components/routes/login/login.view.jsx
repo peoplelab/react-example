@@ -9,9 +9,9 @@ import Select from '../../forms/Select';
 import Field from '../../forms/Field';
 import LoginError from './Login.item.Error';
 
-import { callLogin } from '../../../controllers/login/login.controller';
+import { callLogin } from '../../../controllers/routes/login/login.controller';
 
-import '../../../styles/routes/login/Login.style.scss'; // apply Login style to this route
+import '../../../styles/routes/login.style.scss'; // apply Login style to this route
 
 
 class LoginRoute extends PureComponent {

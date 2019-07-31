@@ -42,17 +42,17 @@ const createRoutes = store => ({
    * Map of routes that required login by user.
    */
   logged: [
-    // {
-    //   path: '/tools',
-    //   key: 'tools',
-    //   exact: true,
-    //   component: AsyncRoute(store)(() => import(/* webpackChunkName: "Tools" */ './Tools/Tools.index')),
-    // },
+    {
+      path: '/tools',
+      key: 'tools',
+      exact: true,
+      component: lazy(() => import(/* webpackChunkName: "Tools" */ '../components/routes/tools/tools.view')),
+    },
     // {
     //   path: '/cultures',
     //   key: 'cultures',
     //   exact: true,
-    //   component: AsyncRoute(store)(() => import(/* webpackChunkName: "Cultures" */ './Cultures/Cultures.index')),
+    //   component: lazy(() => import(/* webpackChunkName: "Cultures" */ './Cultures/Cultures.index')),
     // },
   ],
   /**
