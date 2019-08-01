@@ -13,43 +13,42 @@
 //    rawerror: api error thrown (null if api success)
 //-------------------------------------------------------------------
 
-import $ from 'jquery';
+export const base = async (url, request) => {
+  try {
+    //eslint-disable-next-line
+    console.log('> Calling REST API:' + url);
+    console.log(request);
 
+    const response = await fetch(url, request);
 
-const defaultConfig = {
-  context: this,
-};
+    //eslint-disable-next-line
+    console.log('> REST API executed.');
+    console.log(response);
 
+    const httpcode = response.status;
+    var contentType = response.headers.get("content-type");
 
-export const base = (config, callback) => {
-  console.log('> start api: ', config.url);
-  $.ajax({
-    ...defaultConfig,
-    ...config
-  }).done((data, textStatus, jqXHR) => {
-    const { status } = jqXHR;
+    let dataraw;
+    if(contentType && contentType.includes("application/json")) {
+      dataraw = await response.json();
+    } else {
+      dataraw = await response.text();
+    }
 
-    console.log('> api done: ', status);
+    console.log('> REST API dataraw.');
+    console.log(dataraw);
 
-    const response = {
-      httpcode: status,
-      rawdata: data,
+    return {
+      httpcode,
+      dataraw,
     };
+  } catch (error) {
+    //eslint-disable-next-line
+    console.log('> REST API failed.');
+    console.log(error);
 
-    callback(response);
-  }).fail((jqXHR, textStatus, errorThrown) => {
-    const { status } = jqXHR;
-
-    console.log('> api fail: ', status);
-    console.log(errorThrown);
-
-    const response = {
-      httpcode: status,
-      rawerror: errorThrown,
+    return {
+      error,
     };
-
-    callback(response);
-  }).always(() => {
-    console.log('> end api: ', config.url);
-  });
+  }
 };
