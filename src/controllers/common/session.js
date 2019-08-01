@@ -1,4 +1,4 @@
-import { useSession, types } from '../../store/session';
+import { types } from '../../store/session';
 
 
 export const logged = (state) => {
@@ -7,7 +7,7 @@ export const logged = (state) => {
   const expired = new Date(expiredAt);
   const now = new Date();
 
-  return accessToken && sessionId & expired > now;
+  return accessToken && sessionId && expired > now;
 };
 
 
@@ -29,17 +29,35 @@ export const logged = (state) => {
 //    userId,
 //  }
 //---------------------
-export const setSession = (type, data) => {
-  const [, dispatch] = useSession;
+export const successSession = (constext, payload) => {
+  const [, dispatch] = constext;
+
   dispatch({
-    type,
-    payload: data,
+    type: types.SET_SESSION,
+    payload,
   });
 };
 
-export const resetSession = () => {
-  const [, dispatch] = useSession;
+export const failureSession = (constext, payload) => {
+  const [, dispatch] = constext;
+
   dispatch({
-    type: types.SESSION_RESET
+    type: types.SET_SESSION,
+    payload,
   });
 };
+
+// export const setSession = (type, data) => {
+//   const [, dispatch] = useSession;
+//   dispatch({
+//     type,
+//     payload: data,
+//   });
+// };
+
+export const resetSession = () => {};
+//   const [, dispatch] = useSession;
+//   dispatch({
+//     type: types.SESSION_RESET
+//   });
+// };

@@ -7,7 +7,7 @@ import { enumTypes, createStore } from './common';
 // Session Store types
 // -------------------
 
-export const types = enumTypes('SESSION_SUCCESS', 'SESSION_FAILURE', 'SESSION_RESET');
+export const types = enumTypes('SET_SESSION', 'SESSION_RESET');
 
 
 //----------------------------------
@@ -36,8 +36,7 @@ const initial = {
 };
 
 const handler = (state, payload) => ({
-  [types.SESSION_SUCCESS]: { session: payload, error: null },
-  [types.SESSION_FAILURE]: { ...initial, error: payload },
+  [types.SET_SESSION]: { ...payload },
   [types.SESSION_RESET]: { ...initial },
 });
 

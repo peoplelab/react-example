@@ -10,15 +10,20 @@ const defaultData = {
   IP: '1',
 };
 
-const config = data => ({
-  url: 'http://localhost:3500/api/v1/Token',
-  type: 'POST',
-  data: JSON.stringify({ ...defaultData, ...data }),
-  dataType: 'json',
-  contentType: 'application/json',
-});
 
+export const apiLogin = async (data) => {
+  const body = {
+    ...defaultData,
+    ...data,
+  };
 
-export const apiLogin = (data, callback) => {
-  base(config(data), callback);
+  const request = {
+    method: "post",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(body),
+  };
+
+  return base('http://localhost:3500/api/v1/Token', request);
 };

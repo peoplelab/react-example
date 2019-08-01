@@ -1,4 +1,4 @@
-import React, { PureComponent, Suspense  } from 'react';
+import React, { PureComponent, Suspense } from 'react';
 import { Route, Switch } from 'react-router-dom';
 // import PropTypes from 'prop-types';
 import createRoutes from './Router';
@@ -49,7 +49,7 @@ class MainComponent extends PureComponent {
      */
     const Primary = routes.primary.map(mapRoutes);
     const Secondary = routes.secondary.map(mapRoutes);
-    const Logged = isUserLogged && routes.logged.map(mapRoutes);
+    const Logged = isUserLogged ? routes.logged.map(mapRoutes) : null;
     // const Messages = isUserLogged && routes.messages.map(mapRoutes);
     const External = routes.external.map(mapRoutes);
 
