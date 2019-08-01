@@ -2,9 +2,9 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
 import Box from '../../layouts/Box';
+import Form from '../../forms/Form';
 import TextInput from '../../forms/TextInput';
 import PasswordInput from '../../forms/PasswordInput';
-import Button from '../../forms/Button';
 import Select from '../../forms/Select';
 import Field from '../../forms/Field';
 import LoginError from './Login.item.Error';
@@ -13,6 +13,10 @@ import { callLogin } from '../../../controllers/routes/login/login.controller';
 import { SessionContext, types } from '../../../store/session';
 
 import '../../../styles/routes/login.style.scss'; // apply Login style to this route
+
+
+const required = ['username', 'password'];
+const initial = { culture: 'it-IT' };
 
 
 class LoginRoute extends PureComponent {
@@ -29,9 +33,6 @@ class LoginRoute extends PureComponent {
 
     this.state = {
       errorOnLogin: false,
-      username: '',
-      password: '',
-      culture: 'it-IT',
     };
   }
 
@@ -83,57 +84,44 @@ class LoginRoute extends PureComponent {
     const { options } = this.props;
 
     const {
-      errorOnLogin, culture, username, password,
+      errorOnLogin,
     } = this.state;
-
-    const disabled = !username || !password;
 
     return (
       <section className="login">
         <Box className="login__dialog">
-          <form className="login__form">
-            <h1 className="login__title">
-              Login
-            </h1>
+          <h1 className="login__title">
+            Login
+          </h1>
+          <Form
+            className="login__form"
+            label="Login"
+            initial={initial}
+            required={required}
+            onSubmit={this.onLogin}
+          >
             <Box className="login__group">
               <Field label="Username">
                 <TextInput
                   className="login__text-input"
                   name="username"
-                  value={username}
-                  onChange={this.onChange}
                 />
               </Field>
               <Field label="Password">
                 <PasswordInput
                   className="login__text-input"
                   name="password"
-                  value={password}
-                  onChange={this.onChange}
                 />
               </Field>
               <Field label="Culture">
                 <Select
                   className="login__select-input"
                   name="culture"
-                  value={culture}
                   options={options}
-                  onChange={this.onChange}
                 />
               </Field>
             </Box>
-            <Box className="login__group">
-              <Box className="login__box">
-                <Button
-                  className="login__button"
-                  onClick={this.onLogin}
-                  disabled={disabled}
-                >
-                  Login
-                </Button>
-              </Box>
-            </Box>
-          </form>
+          </Form>
         </Box>
         <LoginError show={errorOnLogin} />
       </section>
