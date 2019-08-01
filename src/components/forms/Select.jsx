@@ -1,9 +1,12 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Option from './Option';
+import { FormContext, types } from '../../store/form';
 
 
 class Select extends PureComponent {
+  static contextType = FormContext;
+
   constructor(props) {
     super(props);
 
@@ -13,9 +16,13 @@ class Select extends PureComponent {
   }
 
   onChange(event) {
-    const { onChange } = this.props;
+    const { name, value } = event.target;
+    const [, dispatch] = this.context;
 
-    onChange(event);
+    dispatch({
+      type: types.ON_CHANGE,
+      payload: { name, value },
+    });
   }
 
   mapOptions(data) {
@@ -28,13 +35,13 @@ class Select extends PureComponent {
     const {
       name,
       className,
-      value,
       options,
-      onChange: _onChange, // eslint-disable-line no-unused-vars
       ...rest
     } = this.props;
 
-    const mergedClass = `input input__select ${value === '' ? '' : 'input--edited'} ${className}`;
+    const [value] = this.context;
+
+    const mergedClass = `input input__select ${className}`;
 
     const Options = options.map(this.mapOptions);
 
@@ -43,7 +50,7 @@ class Select extends PureComponent {
         className={mergedClass}
         id={name}
         name={name}
-        value={value}
+        value={value[name]}
         onChange={this.onChange}
         {...rest}
       >
@@ -52,12 +59,6 @@ class Select extends PureComponent {
     );
   }
 }
-
-
-const typeValue = [
-  PropTypes.number,
-  PropTypes.string,
-];
 
 const shapeOptions = {
   deafult: PropTypes.bool,
@@ -70,13 +71,10 @@ Select.propTypes = {
   name: PropTypes.string.isRequired,
   options: PropTypes.arrayOf(PropTypes.shape(shapeOptions)).isRequired,
   className: PropTypes.string,
-  value: PropTypes.oneOfType(typeValue),
-  onChange: PropTypes.func.isRequired,
 };
 
 Select.defaultProps = {
   className: '',
-  value: '',
 };
 
 

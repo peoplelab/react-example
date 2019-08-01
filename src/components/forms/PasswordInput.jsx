@@ -1,14 +1,11 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-
-
-const typeValue = [
-  PropTypes.number,
-  PropTypes.string,
-];
+import { FormContext, types } from '../../store/form';
 
 
 class PasswordInput extends PureComponent {
+  static contextType = FormContext;
+
   constructor(props) {
     super(props);
 
@@ -16,21 +13,25 @@ class PasswordInput extends PureComponent {
   }
 
   onChange(event) {
-    const { onChange } = this.props;
+    const { name, value } = event.target;
+    const [, dispatch] = this.context;
 
-    onChange(event);
+    dispatch({
+      type: types.ON_CHANGE,
+      payload: { name, value },
+    });
   }
 
   render() {
     const {
       name,
       className,
-      value,
-      onChange: _onChange, // eslint-disable-line no-unused-vars
       ...rest
     } = this.props;
 
-    const mergedClass = `input input__text ${value === '' ? '' : 'input--edited'} ${className}`;
+    const [value] = this.context;
+
+    const mergedClass = `input input__password ${className}`;
 
     return (
       <input
@@ -38,7 +39,7 @@ class PasswordInput extends PureComponent {
         type="password"
         id={name}
         name={name}
-        value={value}
+        value={value[name]}
         onChange={this.onChange}
         {...rest}
       />
@@ -50,13 +51,10 @@ class PasswordInput extends PureComponent {
 PasswordInput.propTypes = {
   name: PropTypes.string.isRequired,
   className: PropTypes.string,
-  value: PropTypes.oneOfType(typeValue),
-  onChange: PropTypes.func.isRequired,
 };
 
 PasswordInput.defaultProps = {
   className: '',
-  value: '',
 };
 
 
