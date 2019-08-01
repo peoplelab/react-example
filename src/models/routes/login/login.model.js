@@ -25,5 +25,5 @@ export const apiLogin = async (data) => {
     body: JSON.stringify(body),
   };
 
-  return base('http://localhost:3500/api/v1/Token', request);
+  return base('/api/v1/Token', request);
 };

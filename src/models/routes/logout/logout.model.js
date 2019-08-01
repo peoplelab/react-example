@@ -5,21 +5,14 @@
 import { base } from '../../common/model.base';
 
 
-const config = () => ({
-  url: '/api/v1/Users/Logout',
-  type: 'PUT',
-  dataType: 'json',
-  contentType: 'application/json',
-  beforeSend: (request) => {
-    const accessToken = sessionStorage.getItem('accessToken');
-    const sessionId = sessionStorage.getItem('sessionId');
+export const apiLogout = async (headers) => {
+  const request = {
+    method: "put",
+    headers: {
+      "Content-Type": "application/json",
+      ...headers,
+    },
+  };
 
-    request.setRequestHeader("Authorization", `Bearer ${accessToken}`);
-    request.setRequestHeader("Session", sessionId);
-  },
-});
-
-
-export const apiLogout = (callback) => {
-  base(config(), callback);
+  return base('/api/v1/Users/Logout', request);
 };

@@ -1,25 +1,38 @@
 //-------------------------------------------------------------------
 // Logout controller: controller for logout
 //-------------------------------------------------------------------
-
 import { apiLogout } from '../../../models/routes/logout/logout.model';
 import history from '../../../models/common/history';
-import { resetSession } from '../../common/session';
 
 
-export const callLogout = ({ sucess, failure }) => {
+export const callLogout = async ({ data, onFailure, onSuccess, onError }) => {
 
-  apiLogout(function (response) {
-    const { httpcode, rawdata, rawerror } = response;
+  const headers = {
+    Authorization: `Bearer ${data.accessToken}`,
+    Session: data.sessionId,
+  };
 
-    if (httpcode === 200) {
-      sucess(rawdata);
-      resetSession();
-      history.push('/login');
-      console.log('> logout success');
-    } else {
-      failure(rawerror);
-      console.log('> logout failure');
-    }
-  });
+  console.log('apiLogout', apiLogout);
+  console.log('headers', headers);
+
+  const response = apiLogout(headers);
+
+  console.log('response', response);
+
+  const { httpcode, dataraw, error } = await response;
+
+  if (error) {
+    onFailure(error);
+    console.log('> logout failure');
+    console.log(error);
+  } else if (httpcode === 200) {
+    onSuccess(dataraw);
+    console.log('> logout success');
+    console.log(dataraw);
+    history.push('/login');
+  } else {
+    onError(dataraw);
+    console.log('> logout error');
+    console.log(dataraw);
+  }
 };

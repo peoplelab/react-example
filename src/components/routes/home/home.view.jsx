@@ -4,31 +4,48 @@ import { callLogout } from '../../../controllers/routes/logout/logout.controller
 import Box    from '../../layouts/Box';
 import Anchor from '../../layouts/Anchor';
 import Button from '../../forms/Button';
+import { SessionContext, types } from '../../../store/session';
 
 
 class HomeRoute extends PureComponent {
+  static contextType = SessionContext;
 
 	constructor(props) {
 		super(props);
 
-		//this.onChange = this.onChange.bind(this);
 		this.onLogout = this.onLogout.bind(this);
-		this.onSuccess = this.onSuccess.bind(this);
 		this.onFailure = this.onFailure.bind(this);
-  }
-
-  onSuccess(success) {
-    this.setState({ errorOnLogin: false });
+		this.onSuccess = this.onSuccess.bind(this);
+		this.onError = this.onError.bind(this);
   }
 
   onFailure(failure) {
-    this.setState({ errorOnLogin: true });
+  }
+
+  onSuccess(success) {
+    const [, dispatch] = this.context ;
+
+    dispatch({
+      type: types.SESSION_RESET,
+      payload: success,
+    });
+  }
+
+  onError(error) {
   }
 
 	onLogout() {
+    const [state] = this.context;
+    const data = {
+      accessToken: state.accessToken,
+      sessionId: state.sessionId,
+    };
+
 		callLogout({
-      sucess: this.onSuccess,
-      failure: this.onFailure,
+      data,
+      onFailure: this.onFailure,
+      onSuccess: this.onSuccess,
+      onError: this.onError,
     });
 	}
 
