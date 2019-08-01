@@ -4,7 +4,8 @@
 
 import { apiLogin } from '../../../models/routes/login/login.model';
 import history from '../../../models/common/history';
-import { resetSession, setSession } from '../../common/session';
+import { setSession } from '../../common/session';
+import { types } from '../../../store/session';
 
 
 export const callLogin = ({ data, sucess, failure }) => {
@@ -19,12 +20,12 @@ export const callLogin = ({ data, sucess, failure }) => {
 
     if (httpcode === 200) {
       sucess(rawdata);
-      setSession(rawdata);
+      setSession(types.SESSION_SUCCESS, rawdata);
       history.push('/');
       console.log('> login success');
     } else {
       failure(rawerror);
-      resetSession();
+      setSession(types.SESSION_FAILURE, rawerror);
       console.log('> login failure');
     }
   });

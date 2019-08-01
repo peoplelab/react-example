@@ -1,16 +1,19 @@
-export const logged = () => {
-  const accessToken = sessionStorage.getItem('accessToken');
-  const sessionId = sessionStorage.getItem('sessionId');
-  const expiredAt = sessionStorage.getItem('expiredAt');
+import { useSession, types } from '../../store/session';
+
+
+export const logged = (state) => {
+  const { accessToken, sessionId, expiredAt } = state;
 
   const expired = new Date(expiredAt);
   const now = new Date();
 
-  return expired > now && accessToken && sessionId;
+  return accessToken && sessionId & expired > now;
 };
 
 
 //---------------------
+//  type === types.SESSION_SUCCESS || type === types.SESSION_FAILURE
+//
 //  data = {
 //    username,
 //    accessToken,
@@ -26,13 +29,17 @@ export const logged = () => {
 //    userId,
 //  }
 //---------------------
-export const setSession = (data) => {
-  Object.keys(data).forEach(key => {
-    const value = data[key];
-    sessionStorage.setItem(key, value);
+export const setSession = (type, data) => {
+  const [, dispatch] = useSession;
+  dispatch({
+    type,
+    payload: data,
   });
 };
 
 export const resetSession = () => {
-  sessionStorage.clear();
+  const [, dispatch] = useSession;
+  dispatch({
+    type: types.SESSION_RESET
+  });
 };

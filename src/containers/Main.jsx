@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 // import PropTypes from 'prop-types';
 import createRoutes from './Router';
 import { logged } from '../controllers/common/session';
+import { SessionContext } from '../store/session';
 
 
 /**
@@ -29,11 +30,14 @@ const mapRoutes = (routeProps) => {
  * Define and handle navigation components routes
  */
 class MainComponent extends PureComponent {
+  static contextType = SessionContext;
+
   render() {
+    const [state] = this.context;
     /**
      * Retrive the store to inject it into the routes
      */
-    const isUserLogged = logged();
+    const isUserLogged = logged(state);
 
     /**
      * Inject the store into the routes and retrive their map
