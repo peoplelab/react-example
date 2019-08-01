@@ -1,6 +1,6 @@
 import React, { memo, createContext, useContext, useReducer } from 'react';
 import PropTypes from 'prop-types';
-import Enum from '../models/common/Enum';
+import Enum from './Enum';
 
 
 // ---------------------
