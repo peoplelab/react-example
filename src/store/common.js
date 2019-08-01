@@ -1,4 +1,4 @@
-import React, { memo, createContext, useContext, useReducer } from 'react';
+import React, { memo, createContext, useContext, useReducer, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Enum from './Enum';
 
@@ -67,13 +67,13 @@ export const createStore = () => {
   };
   Store.propTypes = {
     children: PropTypes.node.isRequired,
-    handler: PropTypes.object.isRequired,
+    handler: PropTypes.func.isRequired,
     initial: PropTypes.object.isRequired,
   };
   Store.defaultProps = {
   };
   // enable store immutability
-  const StoreProvider = memo(StoreProvider);
+  const StoreProvider = memo(Store);
   //  <StoreProvider initial={initial} handler={handler}>
   //    {children}
   //  </StoreProvider>
