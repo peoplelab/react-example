@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { enumTypes, createStore } from './common';
+import { enumTypes, createStore } from './common.store';
 
 
 // -------------------
@@ -59,13 +59,13 @@ export const SessionContext = StoreContext;
 
 export const useSession = useStore;
 
-export const SessionProvider = (props) => (
+export const Provider = (props) => (
   <StoreProvider initial={initial} handler={handler}>
     {props.children}
   </StoreProvider>
 );
-SessionProvider.propTypes = {
+Provider.propTypes = {
   children: PropTypes.node.isRequired,
 };
-SessionProvider.defaultProps = {
+Provider.defaultProps = {
 };

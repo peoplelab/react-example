@@ -44,7 +44,7 @@ const AsyncComponent = importComponent => (
           return;
         }
 
-        let Component = component.default;
+        let Component = component.default || component.Provider;
 
         /**
          * Update the React component handler only when the async component is loaded

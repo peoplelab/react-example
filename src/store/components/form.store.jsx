@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { enumTypes, createStore } from './common';
+import { enumTypes, createStore } from '../common.store';
 
 
 // -------------------
@@ -31,15 +31,15 @@ export const FormContext = StoreContext;
 
 export const useForm = useStore;
 
-export const FormProvider = (props) => (
+export const Provider = (props) => (
   <StoreProvider initial={props.initial} handler={handler}>
     {props.children}
   </StoreProvider>
 );
-FormProvider.propTypes = {
+Provider.propTypes = {
   children: PropTypes.node.isRequired,
   initial: PropTypes.object,
 };
-FormProvider.defaultProps = {
+Provider.defaultProps = {
   initial: {}
 };

@@ -10,7 +10,7 @@ import Field from '../../forms/Field';
 import LoginError from './Login.item.Error';
 
 import { callLogin } from '../../../controllers/routes/login/login.controller';
-import { SessionContext, types } from '../../../store/session';
+import { SessionContext, types } from '../../../store/session.store';
 
 import '../../../styles/routes/login.style.scss'; // apply Login style to this route
 

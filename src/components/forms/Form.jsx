@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
-import { FormProvider } from '../../store/form';
+import { Provider } from '../../store/components/form.store';
 import Submit from './Submit';
 
 
@@ -20,14 +20,14 @@ const Form = (props) => {
   const submitClass = `form__submit ${className}-submit`;
 
   return (
-    <FormProvider initial={initial}>
+    <Provider initial={initial}>
       <form className={mergedClass} onSubmit={null} name={name} {...rest}>
         {children}
         <Submit className={submitClass} required={required} onSubmit={onSubmit} name={name}>
           {label}
         </Submit>
       </form>
-    </FormProvider>
+    </Provider>
   );
 };
 

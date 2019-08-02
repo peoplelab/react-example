@@ -1,4 +1,4 @@
-import { types } from '../../store/session';
+import { types } from '../../store/session.store';
 
 
 export const logged = (state) => {

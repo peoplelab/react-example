@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { FormContext, types } from '../../store/form';
+import { FormContext, types } from '../../store/components/form.store';
 
 
 class PasswordInput extends PureComponent {

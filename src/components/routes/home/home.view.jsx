@@ -4,7 +4,7 @@ import { callLogout } from '../../../controllers/routes/logout/logout.controller
 import Box    from '../../layouts/Box';
 import Anchor from '../../layouts/Anchor';
 import Button from '../../forms/Button';
-import { SessionContext, types } from '../../../store/session';
+import { SessionContext, types } from '../../../store/session.store';
 
 
 class HomeRoute extends PureComponent {

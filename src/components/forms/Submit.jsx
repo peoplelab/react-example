@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { FormContext } from '../../store/form';
+import { FormContext } from '../../store/components/form.store';
 
 
 class Submit extends PureComponent {

@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 // import PropTypes from 'prop-types';
 import createRoutes from './Router';
 import { logged } from '../controllers/common/session';
-import { SessionContext } from '../store/session';
+import { SessionContext } from '../store/session.store';
 
 
 /**
@@ -13,14 +13,21 @@ import { SessionContext } from '../store/session';
 const mapRoutes = (routeProps) => {
   const {
     Component,
+    Store,
     path,
     key,
     ...rest
   } = routeProps;
 
-  return (
+  return !Store ? (
     <Route {...rest} path={path} key={`route-${key}`}>
       <Component />
+    </Route>
+  ) : (
+    <Route {...rest} path={path} key={`route-${key}`}>
+      <Store>
+        <Component />
+      </Store>
     </Route>
   );
 };
