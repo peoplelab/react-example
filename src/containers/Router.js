@@ -5,7 +5,7 @@
 // Path: /src/components/routes
 //----------------------------------------------------------------------------------------
 
-import { lazy } from 'react';
+import lazy from '../components/common/AsyncComponent';
 
 /**
  * Inject the store into the routes and retur a map of their.
