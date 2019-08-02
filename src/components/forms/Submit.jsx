@@ -1,38 +1,74 @@
-import React, { memo } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { useForm } from '../../store/form';
+import { FormContext } from '../../store/form';
 
 
-const Submit = (props) => {
-  const [state] = useForm();
+class Submit extends PureComponent {
+  static contextType = FormContext;
 
-  const {
-    children,
-    className,
-    required,
-    ...rest
-  } = props;
+  constructor(props) {
+    super(props);
 
-  const mergedClass = `submit ${className}`;
+    this.onSubmit = this.onSubmit.bind(this);
+  }
 
-  const disabled = required.reduce((acc, key) => (
-    acc
-    || state[key] === undefined
-    || state[key] === null
-    || state[key] === ''
-  ), false);
+  onSubmit(event) {
+    const [value] = this.context;
 
-  return (
-    <button type="submit" className={mergedClass} disabled={disabled} {...rest}>
-      {children}
-    </button>
-  );
-};
+    const { onSubmit, name } = this.props;
+
+    const newEvent = {
+      ...event,
+      target: {
+        ...event.target,
+        name,
+        value,
+      }
+    };
+
+    onSubmit(newEvent);
+  }
+
+  render() {
+    const [state] = this.context;
+
+    const {
+      children,
+      className,
+      required,
+      name: _name, // eslint-disable-line no-unused-vars
+      ...rest
+    } = this.props;
+
+    const mergedClass = `submit ${className}`;
+
+    const disabled = required.reduce((acc, key) => (
+      acc
+      || state[key] === undefined
+      || state[key] === null
+      || state[key] === ''
+    ), false);
+
+    return (
+      <button
+        type="button"
+        className={mergedClass}
+        disabled={disabled}
+        onClick={this.onSubmit}
+        {...rest}
+        >
+        {children}
+      </button>
+    );
+  }
+}
 
 Submit.propTypes = {
   children: PropTypes.node.isRequired,
+  name: PropTypes.string.isRequired,
   className: PropTypes.string,
   required: PropTypes.arrayOf(PropTypes.string),
+  onSubmit: PropTypes.func.isRequired,
 };
 
 Submit.defaultProps = {
@@ -41,4 +77,4 @@ Submit.defaultProps = {
 };
 
 
-export default memo(Submit);
+export default Submit;

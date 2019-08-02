@@ -1,45 +1,39 @@
-import React, { PureComponent } from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import { FormProvider } from '../../store/form';
 import Submit from './Submit';
 
 
-class Form extends PureComponent {
-  constructor(props) {
-    super(props);
+const Form = (props) => {
+  const {
+    children,
+    name,
+    className,
+    label,
+    initial,
+    required,
+    onSubmit,
+    ...rest
+  } = props;
 
-    this.onSubmit= this.onSubmit.bind(this);
-  }
+  const mergedClass = `form ${className}`;
+  const submitClass = `form__submit ${className}-submit`;
 
-  render() {
-    const {
-      children,
-      className,
-      label,
-      initial,
-      required,
-      onSubmit,
-      ...rest
-    } = this.props;
-
-    const mergedClass = `form ${className}`;
-    const submitClass = `form__submit ${className}-submit`;
-
-    return (
-      <FormProvider initial={initial}>
-        <form className={mergedClass} {...rest}>
-          {children}
-          <Submit className={submitClass} required={required} onSubmit={onSubmit}>
-            {label}
-          </Submit>
-        </form>
-      </FormProvider>
-    );
-  }
-}
+  return (
+    <FormProvider initial={initial}>
+      <form className={mergedClass} onSubmit={null} name={name} {...rest}>
+        {children}
+        <Submit className={submitClass} required={required} onSubmit={onSubmit} name={name}>
+          {label}
+        </Submit>
+      </form>
+    </FormProvider>
+  );
+};
 
 Form.propTypes = {
   children: PropTypes.node.isRequired,
+  name: PropTypes.string.isRequired,
   className: PropTypes.string,
   label: PropTypes.string,
   initial: PropTypes.object,
@@ -55,4 +49,4 @@ Form.defaultProps = {
 };
 
 
-export default Form;
+export default memo(Form);

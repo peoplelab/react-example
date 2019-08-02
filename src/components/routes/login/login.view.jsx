@@ -16,7 +16,11 @@ import '../../../styles/routes/login.style.scss'; // apply Login style to this r
 
 
 const required = ['username', 'password'];
-const initial = { culture: 'it-IT' };
+const initial = {
+  username: '',
+  password: '',
+  culture: 'it-IT',
+};
 
 
 class LoginRoute extends PureComponent {
@@ -73,7 +77,7 @@ class LoginRoute extends PureComponent {
 
   onLogin(event) {
     callLogin({
-      data : this.state,
+      data : event.target.value,
       onSuccess: this.onSuccess,
       onFailure: this.onFailure,
       onError: this.onError,
@@ -94,6 +98,7 @@ class LoginRoute extends PureComponent {
             Login
           </h1>
           <Form
+            name="login-form"
             className="login__form"
             label="Login"
             initial={initial}
