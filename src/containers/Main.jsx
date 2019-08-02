@@ -1,4 +1,4 @@
-import React, { PureComponent, Suspense } from 'react';
+import React, { PureComponent } from 'react';
 import { Route, Switch } from 'react-router-dom';
 // import PropTypes from 'prop-types';
 import createRoutes from './Router';
@@ -37,7 +37,7 @@ class MainComponent extends PureComponent {
     /**
      * Retrive the store to inject it into the routes
      */
-    const isUserLogged = logged(state);
+    const isUserLogged = logged(state.session);
 
     /**
      * Inject the store into the routes and retrive their map
@@ -54,17 +54,15 @@ class MainComponent extends PureComponent {
     const External = routes.external.map(mapRoutes);
 
     return (
-      <Suspense fallback={null}>
-        <Switch>
-          {/* <Template> */}
-            {Primary}
-          {/* </Template> */}
-          {Secondary}
-          {Logged}
-          {/* {Messages} */}
-          {External}
-        </Switch>
-      </Suspense>
+      <Switch>
+        {/* <Template> */}
+          {Primary}
+        {/* </Template> */}
+        {Secondary}
+        {Logged}
+        {/* {Messages} */}
+        {External}
+      </Switch>
     );
   }
 }

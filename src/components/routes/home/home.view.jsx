@@ -37,8 +37,8 @@ class HomeRoute extends PureComponent {
 	onLogout() {
     const [state] = this.context;
     const data = {
-      accessToken: state.accessToken,
-      sessionId: state.sessionId,
+      accessToken: state.session.accessToken,
+      sessionId: state.session.sessionId,
     };
 
 		callLogout({

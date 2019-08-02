@@ -29,20 +29,27 @@ export const logged = (state) => {
 //    userId,
 //  }
 //---------------------
-export const successSession = (constext, payload) => {
+export const sessionFailure = (constext, payload) => {
   const [, dispatch] = constext;
 
   dispatch({
-    type: types.SET_SESSION,
+    type: types.SESSION_FAILURE,
     payload,
   });
 };
-
-export const failureSession = (constext, payload) => {
+export const sessionSuccess = (constext, payload) => {
   const [, dispatch] = constext;
 
   dispatch({
-    type: types.SET_SESSION,
+    type: types.SESSION_SUCCESS,
+    payload,
+  });
+};
+export const sessionError = (constext, payload) => {
+  const [, dispatch] = constext;
+
+  dispatch({
+    type: types.SESSION_ERROR,
     payload,
   });
 };

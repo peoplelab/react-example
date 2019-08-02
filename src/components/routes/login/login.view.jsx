@@ -41,29 +41,30 @@ class LoginRoute extends PureComponent {
   }
 
   onFailure(failure) {
-    this.setState({ errorOnLogin: true });
+    const [, dispatch] = this.context;
+
+    dispatch({
+      type: types.SESSION_FAILURE,
+      payload: failure,
+    });
   }
 
   onSuccess(success) {
-    const [, dispatch] = this.context ;
+    const [, dispatch] = this.context;
 
     dispatch({
-      type: types.SET_SESSION,
+      type: types.SESSION_SUCCESS,
       payload: success,
     });
-
-    this.setState({ errorOnLogin: false });
   }
 
   onError(error) {
-    const [, dispatch] = this.context ;
+    const [, dispatch] = this.context;
 
     dispatch({
-      type: types.SET_SESSION,
+      type: types.SESSION_ERROR,
       payload: error,
     });
-
-    this.setState({ errorOnLogin: true });
   }
 
   onChange(event) {
@@ -85,11 +86,11 @@ class LoginRoute extends PureComponent {
   }
 
 	render() {
+    const [state] = this.context;
+
     const { options } = this.props;
 
-    const {
-      errorOnLogin,
-    } = this.state;
+    const errorOnLogin = !(state.failure === null && state.error === null);
 
     return (
       <section className="login">
@@ -149,15 +150,12 @@ const shapeOptions = {
  */
 LoginRoute.propTypes = {
   options: PropTypes.arrayOf(PropTypes.shape(shapeOptions)),
-  errorOnLogin: PropTypes.bool,
-  // onLogin : PropTypes.func.isRequired,
 };
 
 /**
  * Define default value of component properties
  */
 LoginRoute.defaultProps = {
-  errorOnLogin: false,
   options: [
     {
       message: 'it-IT',
