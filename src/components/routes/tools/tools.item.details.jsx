@@ -1,7 +1,8 @@
 import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 import Box from '../../layouts/Box';
+import { ToolsContext } from '../../../store/routes/tools.store';
 
 
 const MainHeader = (
@@ -25,6 +26,8 @@ const AttributesHeader = (
 
 
 class DetailsItem extends PureComponent {
+  static contextType = ToolsContext;
+
 	constructor(props) {
     super(props);
 
@@ -60,12 +63,10 @@ class DetailsItem extends PureComponent {
   }
 
   setMainTable() {
-    const {
-      id,
-      type,
-      code,
-      displayName,
-    } = this.props.details;
+    const [state] = this.context;
+    const { details } = state;
+
+    const { id, type, code, displayName } = details;
 
     return (
       <tr>
@@ -86,9 +87,13 @@ class DetailsItem extends PureComponent {
   }
 
 	render() {
-    const { id, attributes = [] } = this.props.details;
+    const [state] = this.context;
+    const { details } = state;
+    if (!('id' in details)) {
+      return null;
+    }
 
-    console.log(this.props.details);
+    const { id, attributes = [] } = details;
 
     const MainTable = this.setMainTable();
     const AttributesTable = attributes.map(this.setAttributesTable);
@@ -122,11 +127,9 @@ class DetailsItem extends PureComponent {
 
 
 DetailsItem.propTypes = {
-  details: PropTypes.object,
 };
 
 DetailsItem.defaultProps = {
-  details: {},
 };
 
 

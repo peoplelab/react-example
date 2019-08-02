@@ -20,6 +20,9 @@ import Box from '../../layouts/Box';
 import Button from '../../forms/Button';
 import List from './tools.item.list';
 import Details from './tools.item.details';
+import { types } from '../../../store/routes/tools.store';
+import { callToolsList } from '../../../controllers/routes/tools/tools.controller';
+import WrapContext from './tools.wrapper';
 
 import '../../../styles/routes/tools.style.scss';
 
@@ -28,23 +31,56 @@ class ToolsRoute extends PureComponent {
 	constructor(props) {
     super(props);
 
+    this.onFailure = this.onFailure.bind(this);
+    this.onSuccess = this.onSuccess.bind(this);
+    this.onError = this.onError.bind(this);
     this.onCallList = this.onCallList.bind(this);
   }
 
+  onFailure(failure) {
+    const [, dispatch] = this.props.toolsContext;
+
+    dispatch({
+      type: types.TOOLS_FAILURE,
+      payload: failure,
+    });
+  }
+
+  onSuccess(success) {
+    const [, dispatch] = this.props.toolsContext;
+
+    dispatch({
+      type: types.TOOLS_SUCCESS,
+      payload: success,
+    });
+  }
+
+  onError(error) {
+    const [, dispatch] = this.props.toolsContext;
+
+    dispatch({
+      type: types.TOOLS_ERROR,
+      payload: error,
+    });
+  }
+
   onCallList() {
-    this.props.callToolsList();
+    const [state] = this.props.sessionContext;
+
+    const session = {
+      accessToken: state.session.accessToken,
+      sessionId: state.session.sessionId,
+    };
+
+    callToolsList({
+      session,
+      onSuccess: this.onSuccess,
+      onFailure: this.onFailure,
+      onError: this.onError,
+    });
   }
 
 	render() {
-    const {
-      list,
-      id,
-      details,
-      callToolDetails,
-    } = this.props;
-
-    console.log('Render Tools Route');
-
     return (
       <section className="tools">
         <h1 className="tools__title">
@@ -56,12 +92,8 @@ class ToolsRoute extends PureComponent {
               Get tools list
             </Button>
           </Box>
-          {(list.length > 0) && (
-            <List list={list} callToolDetails={callToolDetails} />
-          )}
-          {(!!id && details) && (
-            <Details id={id} details={details} />
-          )}
+          <List />
+          <Details />
         </Box>
       </section>
     );
@@ -70,20 +102,12 @@ class ToolsRoute extends PureComponent {
 
 
 ToolsRoute.propTypes = {
-  callToolsList: PropTypes.func,
-  callToolDetails: PropTypes.func,
-  list: PropTypes.arrayOf(PropTypes.object),
-  id: PropTypes.number,
-  details: PropTypes.object,
+  sessionContext: PropTypes.array.isRequired,
+  toolsContext: PropTypes.array.isRequired,
 };
 
 ToolsRoute.defaultProps = {
-  list: [],
-  id: NaN,
-  details: null,
-  callToolsList: () => {},
-  callToolDetails: () => {},
 };
 
 
-export default ToolsRoute;
+export default WrapContext(ToolsRoute);
