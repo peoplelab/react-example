@@ -9,6 +9,9 @@ Alberatura del progetto
 ### config
 Contiene i file per la configurazione globale del progetto per eseguire sviluppo e rilasci
 
+### mocks
+Contiene le response di esempio delle api per i test in ambiente locale
+
 ### public
 Contiene le risorse statiche del progetto
 
@@ -17,7 +20,7 @@ Es:
 * index.html
 
 ### server
-Contine i server per l'eseguzione e i test del progetto; i server saranno eseguiti su localhost alla rispettiva porta indicata
+Contine i server per l'esecuzione e di test del progetto; i server saranno eseguiti su localhost, ognuno rispettivamente alla porta indicata
 
 ### src
 Contiene le risorse del progetto
@@ -56,38 +59,46 @@ Contiene i file di stile dei componenti React
 ## Files organization
 Fatta eccezione per src/controllers, tutte le directory in src, presentano la stessa alberatura, di seguito riportata
 ``` plain/text
-° [main-folder]
-  ° [folder]
-    ° [name].[category].[js|jsx]
+° [category]
+  ° ?[folder]
+    ° ?[name]
+      ° [name].[category].[js|jsx]
 ```
 
 oppure \*
 ``` plain/text
-° [main-folder]
-  ° [folder]
+° components
+  ° ?[folder]
     ° [name]
-      ° [name].[category].[jsx]
-      ° [name].item.[item-name].[jsx]
+      ° [name].view.jsx
+      ° [name].item.[item-name].jsx
 ```
 
-\* (solo per la view dei componenti React)
+\*: solo per il codice relativo alla view dei componenti React
+
+\*\*: '?' indica un passaggio non obbligatorio
 
 
 Es:
 ``` plain/text
 ° components
   ° routes
-    ° Login.view.jsx
+    ° login
+      ° login.view.jsx
 ° controllers
   ° routes
-    ° Login.controller.js
+    ° login
+      ° login.controller.js
 ° modules
   ° routes
-    ° Login.module.js
+    ° login
+      ° login.module.js
 ° presenters
   ° routes
-    ° Login.presenter.js
+    ° login
+      ° login.presenter.js
 ° styles
   ° routes
-    ° Login.style.scss
+    ° login
+      ° login.style.scss
 ```
