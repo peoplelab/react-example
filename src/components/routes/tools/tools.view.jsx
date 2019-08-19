@@ -20,9 +20,8 @@ import Box from '../../layouts/Box';
 import Button from '../../forms/Button';
 import List from './tools.item.list';
 import Details from './tools.item.details';
-import { types } from '../../../store/routes/tools.store';
-import { callToolsList } from '../../../controllers/routes/tools/tools.controller';
 import WrapContext from './tools.wrapper';
+import { callToolsList } from '../../../controllers/routes/tools/tools.controller';
 
 import '../../../styles/routes/tools.style.scss';
 
@@ -31,53 +30,14 @@ class ToolsRoute extends PureComponent {
 	constructor(props) {
     super(props);
 
-    this.onFailure = this.onFailure.bind(this);
-    this.onSuccess = this.onSuccess.bind(this);
-    this.onError = this.onError.bind(this);
     this.onCallList = this.onCallList.bind(this);
   }
 
-  onFailure(failure) {
-    const [, dispatch] = this.props.toolsContext;
-
-    dispatch({
-      type: types.TOOLS_FAILURE,
-      payload: failure,
-    });
-  }
-
-  onSuccess(success) {
-    const [, dispatch] = this.props.toolsContext;
-
-    dispatch({
-      type: types.TOOLS_SUCCESS,
-      payload: success,
-    });
-  }
-
-  onError(error) {
-    const [, dispatch] = this.props.toolsContext;
-
-    dispatch({
-      type: types.TOOLS_ERROR,
-      payload: error,
-    });
-  }
-
   onCallList() {
-    const [state] = this.props.sessionContext;
+    const { toolsContext, sessionContext } = this.props;
+    const context = { toolsContext, sessionContext };
 
-    const session = {
-      accessToken: state.session.accessToken,
-      sessionId: state.session.sessionId,
-    };
-
-    callToolsList({
-      session,
-      onSuccess: this.onSuccess,
-      onFailure: this.onFailure,
-      onError: this.onError,
-    });
+    callToolsList({ context });
   }
 
 	render() {

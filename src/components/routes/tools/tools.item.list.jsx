@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 import Box from '../../layouts/Box';
 import ButtonData from '../../forms/ButtonData';
-import { types } from '../../../store/routes/tools.store';
 import { callToolDetails } from '../../../controllers/routes/tools/tools.controller';
 import WrapContext from './tools.wrapper';
 
@@ -23,58 +22,18 @@ class ListItem extends PureComponent {
 	constructor(props) {
     super(props);
 
-    this.onFailure = this.onFailure.bind(this);
-    this.onSuccess = this.onSuccess.bind(this);
-    this.onError = this.onError.bind(this);
     this.onCallDetails = this.onCallDetails.bind(this);
 
     this.mapList = this.mapList.bind(this);
   }
 
-  onFailure(failure) {
-    const [, dispatch] = this.props.toolsContext;
-
-    dispatch({
-      type: types.ID_TOOL_FAILURE,
-      payload: failure,
-    });
-  }
-
-  onSuccess(success) {
-    const [, dispatch] = this.props.toolsContext;
-
-    dispatch({
-      type: types.ID_TOOL_SUCCESS,
-      payload: success,
-    });
-  }
-
-  onError(error) {
-    const [, dispatch] = this.props.toolsContext;
-
-    dispatch({
-      type: types.ID_TOOL_ERROR,
-      payload: error,
-    });
-  }
-
   onCallDetails(event) {
     const { data } = event;
 
-    const [state] = this.props.sessionContext;
+    const { toolsContext, sessionContext } = this.props;
+    const context = { toolsContext, sessionContext };
 
-    const session = {
-      accessToken: state.session.accessToken,
-      sessionId: state.session.sessionId,
-    };
-
-    callToolDetails({
-      data,
-      session,
-      onSuccess: this.onSuccess,
-      onFailure: this.onFailure,
-      onError: this.onError,
-    });
+    callToolDetails({ data, context });
   }
 
   mapList(data) {
