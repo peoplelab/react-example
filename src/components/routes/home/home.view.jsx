@@ -4,7 +4,7 @@ import { callLogout } from '../../../controllers/routes/logout/logout.controller
 import Box    from '../../layouts/Box';
 import Anchor from '../../layouts/Anchor';
 import Button from '../../forms/Button';
-import { SessionContext, types } from '../../../store/session.store';
+import { SessionContext } from '../../../store/session.store';
 
 
 class HomeRoute extends PureComponent {
@@ -14,39 +14,12 @@ class HomeRoute extends PureComponent {
 		super(props);
 
 		this.onLogout = this.onLogout.bind(this);
-		this.onFailure = this.onFailure.bind(this);
-		this.onSuccess = this.onSuccess.bind(this);
-		this.onError = this.onError.bind(this);
-  }
-
-  onFailure(failure) {
-  }
-
-  onSuccess(success) {
-    const [, dispatch] = this.context ;
-
-    dispatch({
-      type: types.SESSION_RESET,
-      payload: success,
-    });
-  }
-
-  onError(error) {
   }
 
 	onLogout() {
-    const [state] = this.context;
-    const data = {
-      accessToken: state.session.accessToken,
-      sessionId: state.session.sessionId,
-    };
+    const context = this.context;
 
-		callLogout({
-      data,
-      onFailure: this.onFailure,
-      onSuccess: this.onSuccess,
-      onError: this.onError,
-    });
+		callLogout({ context });
 	}
 
 	render() {
