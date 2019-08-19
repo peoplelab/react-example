@@ -83,7 +83,7 @@ export const callCulturesDelete = async ({ data, context }) => {
   const [, dispatch] = context.cultureContext;
   const [state] = context.sessionContext;
 
-  const { id } = data;
+  const id = data;
 
   const headers = {
     Authorization: `Bearer ${state.session.accessToken}`,
@@ -100,7 +100,7 @@ export const callCulturesDelete = async ({ data, context }) => {
     console.log('> culture delete item from list failure');
     console.log(error);
   } else if (httpcode === 200) {
-    dispatch({ type: types.RESTAPI_CULTURES_DELETE_SUCCESS, payload: dataraw });
+    dispatch({ type: types.RESTAPI_CULTURES_DELETE_SUCCESS, payload: id });
 
     console.log('> culture delete item from list success');
     console.log(dataraw);

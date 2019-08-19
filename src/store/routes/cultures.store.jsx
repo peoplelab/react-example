@@ -56,7 +56,7 @@ const dataDelete = (state, payload) => {
   }
 
   const { data } = state;
-  const newData = data.filter(({ id }) => id !== payload.id);
+  const newData = data.filter(({ id }) => id !== payload);
 
   return newData;
 };
