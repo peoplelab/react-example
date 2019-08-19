@@ -9,7 +9,9 @@ const WrapContext = Component => (
     const sessionContext = useContext(SessionContext);
     const toolsContext = useContext(ToolsContext);
 
-    return <Component sessionContext={sessionContext} toolsContext={toolsContext} {...props} />;
+    const contextProps = { sessionContext, toolsContext };
+
+    return <Component {...contextProps} {...props} />;
   }
 );
 
