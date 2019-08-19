@@ -10,7 +10,7 @@ import Field from '../../forms/Field';
 import LoginError from './Login.item.Error';
 
 import { callLogin } from '../../../controllers/routes/login/login.controller';
-import { SessionContext, types } from '../../../store/session.store';
+import { SessionContext } from '../../../store/session.store';
 
 import '../../../styles/routes/login.style.scss'; // apply Login style to this route
 
@@ -29,10 +29,6 @@ class LoginRoute extends PureComponent {
 	constructor(props) {
     super(props);
 
-    this.onSuccess = this.onSuccess.bind(this);
-    this.onFailure = this.onFailure.bind(this);
-    this.onError = this.onError.bind(this);
-    this.onChange = this.onChange.bind(this);
     this.onLogin = this.onLogin.bind(this);
 
     this.state = {
@@ -40,48 +36,12 @@ class LoginRoute extends PureComponent {
     };
   }
 
-  onFailure(failure) {
-    const [, dispatch] = this.context;
-
-    dispatch({
-      type: types.SESSION_FAILURE,
-      payload: failure,
-    });
-  }
-
-  onSuccess(success) {
-    const [, dispatch] = this.context;
-
-    dispatch({
-      type: types.SESSION_SUCCESS,
-      payload: success,
-    });
-  }
-
-  onError(error) {
-    const [, dispatch] = this.context;
-
-    dispatch({
-      type: types.SESSION_ERROR,
-      payload: error,
-    });
-  }
-
-  onChange(event) {
-    const {
-      name,
-      value,
-    } = event.target;
-
-    this.setState({ [name]: value });
-  }
-
   onLogin(event) {
+    const context = this.context;
+
     callLogin({
-      data : event.target.value,
-      onSuccess: this.onSuccess,
-      onFailure: this.onFailure,
-      onError: this.onError,
+      data: event.target.value,
+      context
     });
   }
 

@@ -3,9 +3,12 @@
 //-------------------------------------------------------------------
 import { apiLogin } from '../../../models/routes/login/login.model';
 import history from '../../../models/common/history';
+import { types } from '../../../store/session.store';
 
 
-export const callLogin = async ({ data, onSuccess, onFailure, onError }) => {
+export const callLogin = async ({ data, context }) => {
+    const [, dispatch] = context;
+
   const request = {
     UserName: data.username,
     Password: data.password,
@@ -17,16 +20,28 @@ export const callLogin = async ({ data, onSuccess, onFailure, onError }) => {
   const { httpcode, dataraw, error } = await response;
 
   if (error) {
-    onFailure(error);
+    dispatch({
+      type: types.SESSION_FAILURE,
+      payload: error,
+    });
+
     console.log('> login failure');
     console.log(error);
   } else if (httpcode === 200) {
-    onSuccess(dataraw);
+    dispatch({
+      type: types.SESSION_SUCCESS,
+      payload: dataraw,
+    });
+
     console.log('> login success');
     console.log(dataraw);
     history.push('/');
   } else {
-    onError(dataraw);
+    dispatch({
+      type: types.SESSION_ERROR,
+      payload: dataraw,
+    });
+
     console.log('> login error');
     console.log(dataraw);
   }
