@@ -6,8 +6,8 @@ import {
   apiCulturePost,
   apiCultureDelete,
   apiCulturePut
-} from '../../../models/routes/culture/culture.model';
-import { types } from '../../../store/routes/culture.store';
+} from '../../../models/routes/cultures/cultures.model';
+import { types } from '../../../store/routes/cultures.store';
 
 
 export const callCulturesGet = async ({ context }) => {

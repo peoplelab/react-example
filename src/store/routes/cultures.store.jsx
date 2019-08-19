@@ -4,7 +4,7 @@ import { enumTypes, createStore } from '../common.store';
 
 
 // -------------------
-// Tools Store types
+// Culture Store types
 // -------------------
 
 export const types = enumTypes(
@@ -27,7 +27,7 @@ export const types = enumTypes(
 
 
 //----------------------------------
-// Tools Store settings
+// Culture Store settings
 //
 // handler: store state hanlders
 //----------------------------------
@@ -100,14 +100,14 @@ const handler = (state, payload) => ({
 
 
 // ----------------------
-// Tools store handlers
+// Culture store handlers
 //-----------------------
 
 const { StoreContext, useStore, StoreProvider } = createStore();
 
-export const ToolsContext = StoreContext;
+export const CultureContext = StoreContext;
 
-export const useTools = useStore;
+export const useCulture = useStore;
 
 export const Provider = (props) => (
   <StoreProvider initial={initial} handler={handler}>

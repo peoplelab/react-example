@@ -1,11 +1,11 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-import Box from '../../../components/layouts/Box/Box.index';
-import Button from '../../../components/forms/Button';
-import ButtonData from '../../../components/forms/ButtonData';
-import TextInput from '../../../components/forms/TextInput';
-import Field from '../../../components/forms/Field';
+import Box from '../../layouts/Box';
+import Button from '../../forms/Button';
+import ButtonData from '../../forms/ButtonData';
+import TextInput from '../../forms/TextInput';
+import Field from '../../forms/Field';
 import WrapContext from './cultures.wrapper';
 import {
   callCulturesGet,

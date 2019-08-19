@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 
-import { CultureContext } from '../../../store/routes/culture.store';
+import { CultureContext } from '../../../store/routes/cultures.store';
 import { SessionContext } from '../../../store/session.store';
 
 
