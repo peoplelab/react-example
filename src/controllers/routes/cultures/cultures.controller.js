@@ -65,7 +65,9 @@ export const callCulturesPost = async ({ data, context }) => {
     console.log('> culture post new item to list failure');
     console.log(error);
   } else if (httpcode === 200) {
-    dispatch({ type: types.RESTAPI_CULTURES_POST_SUCCESS, payload: dataraw });
+    const payload = { ...request, id: dataraw };
+
+    dispatch({ type: types.RESTAPI_CULTURES_POST_SUCCESS, payload });
 
     console.log('> culture post new item to list success');
     console.log(dataraw);
@@ -135,7 +137,7 @@ export const callCulturesPut = async ({ data, context }) => {
     console.log('> culture update list item failure');
     console.log(error);
   } else if (httpcode === 200) {
-    dispatch({ type: types.RESTAPI_CULTURES_PUT_SUCCESS, payload: dataraw });
+    dispatch({ type: types.RESTAPI_CULTURES_PUT_SUCCESS, payload: request });
 
     console.log('> culture update list item success');
     console.log(dataraw);

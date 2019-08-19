@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import Box from '../../layouts/Box';
 import Button from '../../forms/Button';
 import ButtonData from '../../forms/ButtonData';
-import TextInput from '../../forms/TextInput';
 import Field from '../../forms/Field';
 import WrapContext from './cultures.wrapper';
 import {
@@ -72,28 +71,31 @@ class CulturesRoute extends PureComponent {
     const { cultureContext, sessionContext } = this.props;
     const context = { cultureContext, sessionContext };
 
+    const { code, description } = this.state;
+
     callCulturesPost({
-      data: event.target.value,
+      data: { code, description },
       context
     });
   }
 
   onRemoveCulture(event) {
+    const { data } = event;
+
     const { cultureContext, sessionContext } = this.props;
     const context = { cultureContext, sessionContext };
 
-    callCulturesDelete({
-      data: event.data,
-      context
-    });
+    callCulturesDelete({ data, context });
   }
 
   onUpdateCulture(event) {
     const { cultureContext, sessionContext } = this.props;
     const context = { cultureContext, sessionContext };
 
+    const { id, code, description } = this.state;
+
     callCulturesPut({
-      data: event.target.value,
+      data: { id, code, description },
       context
     });
   }
@@ -124,7 +126,8 @@ class CulturesRoute extends PureComponent {
 	render() {
     const { cultureContext } = this.props;
     const [state] = cultureContext;
-    const { list } = state;
+    console.log(state);
+    const { data: list } = state;
 
     const {
       id, code, description
@@ -169,25 +172,31 @@ class CulturesRoute extends PureComponent {
           <Box className="cultures__group">
             <form className="cultures__form">
               <Field label="Culture id (only to update)" className="cultures__field">
-                <TextInput
-                  className="cultures__text-input"
+                <input
+                  className="input input__text cultures__text-input"
                   name="id"
+                  id="id"
+                  type="text"
                   value={strID}
                   onChange={this.onIdChange}
                 />
               </Field>
               <Field label="Code" className="cultures__field">
-                <TextInput
-                  className="cultures__text-input"
+                <input
+                  className="input input__text cultures__text-input"
                   name="code"
+                  id="code"
+                  type="text"
                   value={code}
                   onChange={this.onChange}
                 />
               </Field>
               <Field label="Description" className="cultures__field">
-                <TextInput
-                  className="cultures__text-input"
+                <input
+                  className="input input__text cultures__text-input"
                   name="description"
+                  id="description"
+                  type="text"
                   value={description}
                   onChange={this.onChange}
                 />

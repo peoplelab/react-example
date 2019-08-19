@@ -43,7 +43,7 @@ const dataPost = (state, payload) => {
   const { data } = state;
 
   const newData = [...data, {
-    id: payload.data,
+    id: payload.id,
     code: payload.code,
     description: payload.description,
   }];
@@ -51,7 +51,7 @@ const dataPost = (state, payload) => {
   return newData;
 };
 const dataDelete = (state, payload) => {
-  if (!payload.data) {
+  if (!payload) {
     return state;
   }
 
@@ -61,7 +61,7 @@ const dataDelete = (state, payload) => {
   return newData;
 };
 const dataPut = (state, payload) => {
-  if (!payload.data) {
+  if (!payload) {
     return state;
   }
 
@@ -87,7 +87,7 @@ const handler = (state, payload) => ({
   [types.RESTAPI_CULTURES_DELETE_FAILURE]: { ...state, failure: payload },
   [types.RESTAPI_CULTURES_PUT_FAILURE]: { ...state, failure: payload },
 
-  [types.RESTAPI_CULTURES_GET_SUCCESS]: { ...state, data: payload.data, error: null, failure: null  },
+  [types.RESTAPI_CULTURES_GET_SUCCESS]: { ...state, data: payload, error: null, failure: null  },
   [types.RESTAPI_CULTURES_POST_SUCCESS]: { ...state, data: dataPost(state, payload), error: null, failure: null },
   [types.RESTAPI_CULTURES_DELETE_SUCCESS]: { ...state, data: dataDelete(state, payload), error: null, failure: null },
   [types.RESTAPI_CULTURES_PUT_SUCCESS]: { ...state, data: dataPut(state, payload), error: null, failure: null },
