@@ -49,12 +49,13 @@ const createRoutes = store => ({
       Store: lazy(() => import(/* webpackChunkName: "Tools" */  '../store/routes/tools.store')),
       Component: lazy(() => import(/* webpackChunkName: "Tools" */ '../components/routes/tools/tools.view')),
     },
-    // {
-    //   path: '/cultures',
-    //   key: 'cultures',
-    //   exact: true,
-    //   Component: lazy(() => import(/* webpackChunkName: "Cultures" */ './Cultures/Cultures.index')),
-    // },
+    {
+      path: '/cultures',
+      key: 'cultures',
+      exact: true,
+      Store: lazy(() => import(/* webpackChunkName: "Tools" */  '../store/routes/cultures.store')),
+      Component: lazy(() => import(/* webpackChunkName: "Tools" */ '../components/routes/cultures/cultures.view')),
+    },
   ],
   /**
    * Map of support routes of user logged flow
