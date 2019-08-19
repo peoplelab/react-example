@@ -10,6 +10,7 @@ import {
 import { types } from '../../../store/routes/cultures.store';
 
 
+// call api to retrive culture list and add it to context storage
 export const callCulturesGet = async ({ context }) => {
   const [, dispatch] = context.cultureContext;
   const [state] = context.sessionContext;
@@ -41,6 +42,7 @@ export const callCulturesGet = async ({ context }) => {
   }
 };
 
+// call api to add culture to list and update context storage
 export const callCulturesPost = async ({ data, context }) => {
   const [, dispatch] = context.cultureContext;
   const [state] = context.sessionContext;
@@ -79,6 +81,7 @@ export const callCulturesPost = async ({ data, context }) => {
   }
 };
 
+// call api to delete culture from list and update context storage
 export const callCulturesDelete = async ({ data, context }) => {
   const [, dispatch] = context.cultureContext;
   const [state] = context.sessionContext;
@@ -112,6 +115,7 @@ export const callCulturesDelete = async ({ data, context }) => {
   }
 };
 
+// call api to update list culture and relative item of context storage
 export const callCulturesPut = async ({ data, context }) => {
   const [, dispatch] = context.cultureContext;
   const [state] = context.sessionContext;

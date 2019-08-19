@@ -1,6 +1,7 @@
 import { types } from '../../store/session.store';
 
 
+// check if the user has valid credentials
 export const logged = (state) => {
   const { accessToken, sessionId, expiredAt } = state;
 
@@ -11,8 +12,11 @@ export const logged = (state) => {
 };
 
 
-//---------------------
-//  type === types.SESSION_SUCCESS || type === types.SESSION_FAILURE
+//---------------------------------------------------------------------
+// store the session data response
+//
+//
+//  type === types[SESSION_FAILURE || SESSION_SUCCESS || SESSION_ERROR]
 //
 //  data = {
 //    username,
@@ -28,7 +32,7 @@ export const logged = (state) => {
 //    issuedAt,
 //    userId,
 //  }
-//---------------------
+//---------------------------------------------------------------------
 export const sessionFailure = (constext, payload) => {
   const [, dispatch] = constext;
 
@@ -53,18 +57,3 @@ export const sessionError = (constext, payload) => {
     payload,
   });
 };
-
-// export const setSession = (type, data) => {
-//   const [, dispatch] = useSession;
-//   dispatch({
-//     type,
-//     payload: data,
-//   });
-// };
-
-export const resetSession = () => {};
-//   const [, dispatch] = useSession;
-//   dispatch({
-//     type: types.SESSION_RESET
-//   });
-// };

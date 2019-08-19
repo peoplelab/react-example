@@ -6,6 +6,7 @@ import history from '../../../models/common/history';
 import { types } from '../../../store/session.store';
 
 
+// call api to do login and set with valid credentials the session storage
 export const callLogin = async ({ data, context }) => {
     const [, dispatch] = context;
 

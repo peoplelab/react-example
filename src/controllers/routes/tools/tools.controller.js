@@ -5,6 +5,7 @@ import { apiList, apiDetails } from '../../../models/routes/tools/tools.model';
 import { types } from '../../../store/routes/tools.store';
 
 
+// call api to retrive tools list and save it into context storage
 export const callToolsList = async ({ context }) => {
   const [, dispatch] = context.toolsContext;
   const [state] = context.sessionContext;
@@ -37,6 +38,7 @@ export const callToolsList = async ({ context }) => {
 };
 
 
+// call api to retrive tool details and save it into context storage
 export const callToolDetails = async ({ data, context }) => {
   const id = data;
 

@@ -1,5 +1,5 @@
 //-------------------------------------------------------------------
-// Login model: login api interface
+// Login model: Login api interface
 //-------------------------------------------------------------------
 
 import { base } from '../../common/model.base';
@@ -11,6 +11,7 @@ const defaultData = {
 };
 
 
+// do login
 export const apiLogin = async (data) => {
   const body = {
     ...defaultData,

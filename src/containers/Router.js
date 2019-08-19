@@ -53,8 +53,8 @@ const createRoutes = store => ({
       path: '/cultures',
       key: 'cultures',
       exact: true,
-      Store: lazy(() => import(/* webpackChunkName: "Tools" */  '../store/routes/cultures.store')),
-      Component: lazy(() => import(/* webpackChunkName: "Tools" */ '../components/routes/cultures/cultures.view')),
+      Store: lazy(() => import(/* webpackChunkName: "Cultures" */  '../store/routes/cultures.store')),
+      Component: lazy(() => import(/* webpackChunkName: "Cultures" */ '../components/routes/cultures/cultures.view')),
     },
   ],
   /**

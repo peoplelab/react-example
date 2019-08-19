@@ -6,6 +6,7 @@ import history from '../../../models/common/history';
 import { types } from '../../../store/session.store';
 
 
+// call api to do logout and reset to initial state the session storage
 export const callLogout = async ({ context }) => {
   const [state, dispatch] = context ;
 

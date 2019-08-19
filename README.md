@@ -74,6 +74,15 @@ oppure \*
       ° [name].item.[item-name].jsx
 ```
 
+se è necessario poter usare più `context` all'interno di uno stesso componente React, aggiungere un file `[name].wrappare.jsx` dove indicare i vari contesti da passare come proprietà al component della view \*
+``` plain/text
+° components
+  ° ?[folder]
+    ° [name]
+      ° ...
+      ° [name].wrapper.jsx
+```
+
 \*: solo per il codice relativo alla view dei componenti React
 
 \*\*: '?' indica un passaggio non obbligatorio
