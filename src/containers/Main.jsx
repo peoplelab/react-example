@@ -1,9 +1,10 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 // import PropTypes from 'prop-types';
 import createRoutes from './Router';
 import { logged } from '../controllers/common/session';
 import { SessionContext } from '../store/session.store';
+import { SessionValidity } from '../controllers/session.controller';
 
 
 /**
@@ -36,8 +37,22 @@ const mapRoutes = (routeProps) => {
 /**
  * Define and handle navigation components routes
  */
-class MainComponent extends PureComponent {
+class MainComponent extends Component {
   static contextType = SessionContext;
+
+  constructor(props) {
+    super(props);
+
+    this.timer = null;
+  }
+
+  componentDidUpdate() {
+    if (this.timer !== null) {
+      clearTimeout(this.timer);
+    }
+
+    this.timer = SessionValidity(this.context);
+  }
 
   render() {
     const [state] = this.context;
