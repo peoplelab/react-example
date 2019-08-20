@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
 import Box from '../../layouts/Box';
+import LoginCard from '../../layouts/LoginCard.view';
 import Form from '../../forms/Form';
 import TextInput from '../../forms/TextInput';
 import PasswordInput from '../../forms/PasswordInput';
@@ -30,10 +31,16 @@ class LoginRoute extends PureComponent {
     super(props);
 
     this.onLogin = this.onLogin.bind(this);
+    this.onClick = this.onClick.bind(this);
 
     this.state = {
       errorOnLogin: false,
+      card: null,
     };
+  }
+
+  onClick(event) {
+    this.setState({ card: event.target.value });
   }
 
   onLogin(event) {
@@ -48,9 +55,11 @@ class LoginRoute extends PureComponent {
 	render() {
     const [state] = this.context;
 
-    const { options } = this.props;
+    const { options, usersList } = this.props;
 
     const errorOnLogin = !(state.failure === null && state.error === null);
+
+    const CardsList = usersList.map((data, index) => <LoginCard {...data} key={`user-role-${index}`} onClick={this.onClick} />);
 
     return (
       <section className="login">
@@ -89,6 +98,9 @@ class LoginRoute extends PureComponent {
             </Box>
           </Form>
         </Box>
+        <Box>
+          {CardsList}
+        </Box>
         <LoginError show={errorOnLogin} />
       </section>
     );
@@ -110,12 +122,33 @@ const shapeOptions = {
  */
 LoginRoute.propTypes = {
   options: PropTypes.arrayOf(PropTypes.shape(shapeOptions)),
+  usersList: PropTypes.arrayOf(PropTypes.object),
 };
 
 /**
  * Define default value of component properties
  */
 LoginRoute.defaultProps = {
+  usersList: [
+    {
+      lastAccess: '9:35 05/06/2019',
+      name: 'Stephan Kuttingen',
+      gender: 'male',
+      role: 'user',
+    },
+    {
+      lastAccess: '10:40 04/06/2019',
+      name: 'Alfred Marakakhov',
+      gender: 'male',
+      role: 'super',
+    },
+    {
+      lastAccess: '8:21 04/06/2019',
+      name: 'Maurizia Gambelli',
+      gender: 'female',
+      role: 'admin',
+    }
+  ],
   options: [
     {
       message: 'it-IT',
