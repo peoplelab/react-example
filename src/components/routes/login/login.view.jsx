@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import Box from '../../layouts/Box';
 import LoginCard from '../../layouts/LoginCard.view';
+import Gallery from '../../layouts/Gallery.view';
 import Form from '../../forms/Form';
 import TextInput from '../../forms/TextInput';
 import PasswordInput from '../../forms/PasswordInput';
@@ -59,8 +60,6 @@ class LoginRoute extends PureComponent {
 
     const errorOnLogin = !(state.failure === null && state.error === null);
 
-    const CardsList = usersList.map((data, index) => <LoginCard {...data} key={`user-role-${index}`} onClick={this.onClick} />);
-
     return (
       <section className="login">
         <Box className="login__dialog">
@@ -99,7 +98,9 @@ class LoginRoute extends PureComponent {
           </Form>
         </Box>
         <Box>
-          {CardsList}
+          <Gallery list={usersList}>
+            <LoginCard onClick={this.onClick} />
+          </Gallery>
         </Box>
         <LoginError show={errorOnLogin} />
       </section>

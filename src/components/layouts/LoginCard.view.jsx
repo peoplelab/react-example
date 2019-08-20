@@ -63,7 +63,7 @@ class LoginCard extends PureComponent {
       className,
     } = this.props;
 
-    const icon = toIcon[gender][role];
+    const icon = (gender in toIcon && role in toIcon[gender]) ? toIcon[gender][role] : '';
 
     const mergedClass = `login-card ${className}`;
 
