@@ -44,8 +44,8 @@ module.exports = {
 
           const now = moment();
           global.login.issuedAt = now.format(FORMAT);
-          global.login.expiredAt = now.clone().add('3', 'm').format(FORMAT);
-          global.login.refreshExpiredAt = now.clone().add('5', 'm').format(FORMAT);
+          global.login.expiredAt = now.clone().add('1', 'm').format(FORMAT);
+          global.login.refreshExpiredAt = now.clone().add('2', 'm').format(FORMAT);
 
           status = 200;
           response = RESPONSE[200](UserName);
@@ -69,6 +69,12 @@ module.exports = {
           status = 400;
           response = RESPONSE[400].Timeout;
         } else {
+          global.login.issuedAt = now.format(FORMAT);
+          global.login.expiredAt = now.clone().add('3', 'm').format(FORMAT);
+          if (refreshExpiredAt.isBefore(global.login.expiredAt)) {
+            global.login.expiredAt = refreshExpiredAt;
+          }
+
           status = 200;
           response = RESPONSE[200]();
         }
