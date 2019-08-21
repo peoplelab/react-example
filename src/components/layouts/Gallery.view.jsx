@@ -47,7 +47,7 @@ class Gallery extends PureComponent {
   }
 
   makeSlides(acc, objProps, index) {
-    const { itemVisible, children, width, margin, unit } = this.props;
+    const { itemVisible, children, width, margin } = this.props;
     let { currentIndex } = this.state;
 
     if (index < this.state.index || index >= (currentIndex + itemVisible)) {
@@ -61,9 +61,9 @@ class Gallery extends PureComponent {
     const left = (100 / itemVisible) * (index - currentIndex);
 
     const style = {
-      width: `${width}${unit}`,
+      width,
       left: `${left}%`,
-      margin: `0 ${margin}${unit}`,
+      margin: `0 ${margin}`,
     };
 
     return [...acc, (
@@ -77,7 +77,6 @@ class Gallery extends PureComponent {
     const {
       list,
       height,
-      unit,
       itemVisible,
       className,
     } = this.props;
@@ -88,7 +87,7 @@ class Gallery extends PureComponent {
 
     const Slides = list.reduce(this.makeSlides, []);
 
-    const styleGallery = { height: `${height}${unit}` };
+    const styleGallery = { height };
 
     return (
       <div className={mergedClass} style={styleGallery}>
@@ -118,17 +117,15 @@ class Gallery extends PureComponent {
 Gallery.propTypes = {
   children: PropTypes.node.isRequired,
   list: PropTypes.arrayOf(PropTypes.object).isRequired,
-  height: PropTypes.number.isRequired,
-  width: PropTypes.number.isRequired,
-  margin: PropTypes.number.isRequired,
+  height: PropTypes.string.isRequired,
+  width: PropTypes.string.isRequired,
+  margin: PropTypes.string.isRequired,
   className: PropTypes.string,
-  unit: PropTypes.string,
   itemVisible: PropTypes.number,
 };
 
 Gallery.defaultProps = {
   className: '',
-  unit: 'rem',
   itemVisible: 3,
 };
 

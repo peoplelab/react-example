@@ -99,11 +99,11 @@ class LoginRoute extends PureComponent {
         </Box>
         <Box>
           <Gallery
+            className="login__gallery"
             list={usersList}
-            width={16}
-            height={22}
-            margin={8.708 / 2}
-            unit="rem"
+            width="24rem"
+            height="22rem"
+            margin="calc((100% - (3 * 24rem)) / (3 * 2))"
           >
             <LoginCard onClick={this.onClick} />
           </Gallery>
