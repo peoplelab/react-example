@@ -8,6 +8,8 @@ import Card from './Card.view';
 
 import * as resetIcon from '../../../public/icons/icon-close.svg';
 
+import '../../styles/forms/InputCard.style.scss';
+
 
 class ButtonData extends PureComponent {
   static contextType = FormContext;
@@ -45,8 +47,11 @@ class ButtonData extends PureComponent {
       return <TextInput name={name} className={className} {...rest} />;
     }
 
+
+    const mergedClass = `input-card ${className}`;
+
     return (
-      <Box className="input-card">
+      <Box className={mergedClass}>
         <Card
           {...data}
           name={name}
