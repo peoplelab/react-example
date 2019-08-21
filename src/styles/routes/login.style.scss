@@ -25,6 +25,7 @@
     font-size: 1.5rem;
     font-weight: bold;
     margin: 0 0 1rem;
+    padding: 0 3rem;
   }
 
   .login__form {
@@ -32,11 +33,12 @@
     display: flex;
     justify-content: space-around;
     margin: 0 0 3rem;
+    padding: 0 3rem;
     width: 100%;
 
     .login__field {
       flex: 1;
-      margin: 0 2rem;
+      margin: 0 2rem 0 0;
 
       .login__text-input,
       .login__select-input {
@@ -77,7 +79,22 @@
   }
 
   .login__gallery {
+    height: 22rem;
     width: 100%;
+
+    /* stylelint-disable plugin/selector-bem-pattern */
+    .gallery__box-slides {
+      .gallery__slides-tape {
+        width: 100%;
+
+        .gallery__item-slide {
+          height: 22rem;
+          margin: 0 calc((100% - (3 * 24rem)) / 3) 0 0;
+          width: 24rem;
+        }
+      }
+    }
+    /* stylelint-enable plugin/selector-bem-pattern */
   }
 
   .login__error {

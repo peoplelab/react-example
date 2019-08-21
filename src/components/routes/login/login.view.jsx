@@ -99,9 +99,6 @@ class LoginRoute extends PureComponent {
           <Gallery
             className="login__gallery"
             list={usersList}
-            width="24rem"
-            height="22rem"
-            margin="calc((100% - (3 * 24rem)) / (3 * 2))"
           >
             <LoginCard onClick={this.onClick} />
           </Gallery>
@@ -145,6 +142,42 @@ LoginRoute.defaultProps = {
       lastAccess: '10:40 04/06/2019',
       name: 'Alfred Marakakhov',
       gender: 'male',
+      role: 'super',
+    },
+    {
+      lastAccess: '9:35 05/06/2019',
+      name: 'Stephan Kuttingen',
+      gender: 'female',
+      role: 'user',
+    },
+    {
+      lastAccess: '10:40 04/06/2019',
+      name: 'Alfred Marakakhov',
+      gender: 'female',
+      role: 'super',
+    },
+    {
+      lastAccess: '9:35 05/06/2019',
+      name: 'Stephan Kuttingen',
+      gender: 'male',
+      role: 'user',
+    },
+    {
+      lastAccess: '10:40 04/06/2019',
+      name: 'Alfred Marakakhov',
+      gender: 'male',
+      role: 'super',
+    },
+    {
+      lastAccess: '9:35 05/06/2019',
+      name: 'Stephan Kuttingen',
+      gender: 'female',
+      role: 'user',
+    },
+    {
+      lastAccess: '10:40 04/06/2019',
+      name: 'Alfred Marakakhov',
+      gender: 'female',
       role: 'super',
     },
     {

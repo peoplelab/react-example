@@ -9,7 +9,7 @@
   width: 100%;
 
   .gallery__box-arrow {
-    align-content: center;
+    align-items: center;
     display: flex;
     height: 100%;
     justify-content: center;
@@ -24,8 +24,11 @@
     // }
 
     .gallery__button {
+      background-color: $bg-white;
       cursor: pointer;
-      flex: 1;
+      flex: none;
+      height: 3rem;
+      width: 3rem;
 
       .gallery__button-icon {
         width: 100%;
@@ -39,10 +42,16 @@
     position: relative;
     width: calc(100% - (3rem * 2));
 
-    .gallery__item-slide {
-      height: 100%;
+    .gallery__slides-tape {
+      align-items: center;
+      display: flex;
+      justify-content: space-between;
       position: absolute;
       top: 0;
+
+      .gallery__item-slide {
+        flex: none;
+      }
     }
   }
 }

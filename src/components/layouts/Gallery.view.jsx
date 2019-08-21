@@ -46,37 +46,23 @@ class Gallery extends PureComponent {
     this.setState({ currentIndex });
   }
 
-  makeSlides(acc, objProps, index) {
-    const { itemVisible, children, width, margin } = this.props;
-    let { currentIndex } = this.state;
-
-    if (index < this.state.index || index >= (currentIndex + itemVisible)) {
-      return acc;
-    }
+  makeSlides(objProps, index) {
+    const { children } = this.props;
 
     const newChildern = React.Children.map(children, child =>
       React.cloneElement(child, objProps)
     );
 
-    const left = (100 / itemVisible) * (index - currentIndex);
-
-    const style = {
-      width,
-      left: `${left}%`,
-      margin: `0 ${margin}`,
-    };
-
-    return [...acc, (
-      <div className="gallery__item-slide" key={`slide-${index}`} style={style}>
+    return (
+      <div className="gallery__item-slide" key={`slide-${index}`}>
         {newChildern}
       </div>
-    )];
+    );
   }
 
   render() {
     const {
       list,
-      height,
       itemVisible,
       className,
     } = this.props;
@@ -85,12 +71,13 @@ class Gallery extends PureComponent {
 
     const mergedClass = `gallery ${className}`;
 
-    const Slides = list.reduce(this.makeSlides, []);
+    const Slides = list.map(this.makeSlides);
 
-    const styleGallery = { height };
+    const left = (100 / list.length) * currentIndex * itemVisible;
+    const style = { left: `-${left}%` };
 
     return (
-      <div className={mergedClass} style={styleGallery}>
+      <div className={mergedClass}>
         <div className="gallery__box-arrow gallery__box-arrow--prev">
           {currentIndex > 0 && (
             <button className="gallery__button" type="button" onClick={this.onPrev}>
@@ -99,7 +86,9 @@ class Gallery extends PureComponent {
           )}
         </div>
         <div className="gallery__box-slides">
-          {Slides}
+          <div className="gallery__slides-tape" style={style}>
+            {Slides}
+          </div>
         </div>
         <div className="gallery__box-arrow gallery__box-arrow--next">
           {(currentIndex + itemVisible) < list.length && (
@@ -117,9 +106,6 @@ class Gallery extends PureComponent {
 Gallery.propTypes = {
   children: PropTypes.node.isRequired,
   list: PropTypes.arrayOf(PropTypes.object).isRequired,
-  height: PropTypes.string.isRequired,
-  width: PropTypes.string.isRequired,
-  margin: PropTypes.string.isRequired,
   className: PropTypes.string,
   itemVisible: PropTypes.number,
 };
