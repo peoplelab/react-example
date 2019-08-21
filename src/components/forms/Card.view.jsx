@@ -1,5 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import Box from '../layouts/Box';
+import ButtonForm from './ButtonForm';
 
 import * as admin from '../../../public/icons/users/icon-admin.svg';
 import * as technicalMale from '../../../public/icons/users/icon-technical-male.svg';
@@ -7,7 +9,7 @@ import * as technicalFemale from '../../../public/icons/users/icon-technical-fem
 import * as operatorMale from '../../../public/icons/users/icon-operator-male.svg';
 import * as operatorFemale from '../../../public/icons/users/icon-operator-female.svg';
 
-import '../../styles/layouts/LoginCard.style.scss';
+import '../../styles/forms/Card.style.scss';
 
 
 const roleList = ['admin', 'super', 'user'];
@@ -33,27 +35,7 @@ const roleConverter = {
 };
 
 
-class LoginCard extends PureComponent {
-  constructor(props) {
-    super(props);
-
-    this.onClick = this.onClick.bind(this);
-  }
-
-  onClick(event) {
-    const { onClick, name } = this.props;
-
-    const newEvent = {
-      ...event,
-      target: {
-        ...event.target,
-        value: name
-      }
-    };
-
-    onClick(newEvent);
-  }
-
+class Card extends PureComponent {
   render() {
     const {
       gender,
@@ -68,37 +50,37 @@ class LoginCard extends PureComponent {
     const mergedClass = `login-card ${className}`;
 
     return (
-      <div className={mergedClass}>
-        <button className="login-card__button" type="button" onClick={this.onClick}>
-          <div className="login-card__box">
-            <div className="login-card__picture">
+      <Box className={mergedClass}>
+        <ButtonForm className="login-card__button" name="username" value={name}>
+          <Box className="login-card__box">
+            <Box className="login-card__picture">
               <img className="login-card__picture-icon" src={icon} alt={roleConverter[role]} />
-            </div>
-          </div>
-          <div className="login-card__box">
+            </Box>
+          </Box>
+          <Box className="login-card__box">
             <p className="login-card__paragraph login-card__paragraph--bold">
               {name}
             </p>
             <p className="login-card__paragraph login-card__paragraph--semibold">
               {roleConverter[role]}
             </p>
-          </div>
-          <div className="login-card__box">
+          </Box>
+          <Box className="login-card__box">
             <p className="login-card__paragraph login-card__paragraph--light">
               Last access:
             </p>
             <p className="login-card__paragraph login-card__paragraph--normal">
               {lastAccess}
             </p>
-          </div>
-        </button>
-      </div>
+          </Box>
+        </ButtonForm>
+      </Box>
     );
   }
 }
 
 
-LoginCard.propTypes = {
+Card.propTypes = {
   lastAccess: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   gender: PropTypes.oneOf(genderList).isRequired,
@@ -107,9 +89,9 @@ LoginCard.propTypes = {
   onClick: PropTypes.func.isRequired,
 };
 
-LoginCard.defaultProps = {
+Card.defaultProps = {
   className: '',
 };
 
 
-export default LoginCard;
+export default Card;

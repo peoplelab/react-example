@@ -2,12 +2,13 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
 import Box from '../../layouts/Box';
-import LoginCard from '../../layouts/LoginCard.view';
+import LoginCard from '../../forms/Card.view';
 import Gallery from '../../layouts/Gallery.view';
 import Form from '../../forms/Form';
 import TextInput from '../../forms/TextInput';
 import PasswordInput from '../../forms/PasswordInput';
 import Select from '../../forms/Select';
+import Submit from '../../forms/Submit';
 import Field from '../../forms/Field';
 import LoginError from './Login.item.Error';
 
@@ -63,45 +64,43 @@ class LoginRoute extends PureComponent {
     return (
       <section className="login">
         <Box className="login__dialog">
-          <p className="login__title">
-            Inserisci i tuoi dati
-          </p>
-          <Form
-            name="login-form"
-            className="login__form"
-            label="Login"
-            initial={initial}
-            required={required}
-            onSubmit={this.onLogin}
-          >
-            <Field placeholder className="login__field">
-              <TextInput
-                className="login__text-input"
-                name="username"
-                placeholder="Username"
-              />
-            </Field>
-            <Field placeholder className="login__field">
-              <PasswordInput
-                className="login__text-input"
-                name="password"
-                placeholder="Password"
-              />
-            </Field>
-            <Field placeholder className="login__field">
-              <Select
-                className="login__select-input"
-                name="culture"
-                options={options}
-              />
-            </Field>
+          <Form className="login__form" initial={initial}>
+            <p className="login__title">
+              Inserisci i tuoi dati
+            </p>
+            <Box className="login__form-box">
+              <Field placeholder className="login__field">
+                <TextInput
+                  className="login__text-input"
+                  name="username"
+                  placeholder="Username"
+                />
+              </Field>
+              <Field placeholder className="login__field">
+                <PasswordInput
+                  className="login__text-input"
+                  name="password"
+                  placeholder="Password"
+                />
+              </Field>
+              <Field placeholder className="login__field">
+                <Select
+                  className="login__select-input"
+                  name="culture"
+                  options={options}
+                />
+              </Field>
+              <Submit className="login__form-submit" required={required} onSubmit={this.onLogin} name="login-form">
+                Login
+              </Submit>
+            </Box>
+            <Gallery
+              className="login__form-gallery"
+              list={usersList}
+            >
+              <LoginCard onClick={this.onClick} />
+            </Gallery>
           </Form>
-          <Gallery
-            className="login__gallery"
-            list={usersList}
-          >
-            <LoginCard onClick={this.onClick} />
-          </Gallery>
         </Box>
         <LoginError show={errorOnLogin} />
       </section>

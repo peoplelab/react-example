@@ -1,9 +1,12 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Button from './Button';
+import { FormContext, types } from '../../store/components/form.store';
 
 
 class ButtonData extends PureComponent {
+  static contextType = FormContext;
+
   constructor(props) {
     super(props);
 
@@ -11,21 +14,24 @@ class ButtonData extends PureComponent {
   }
 
   onClick(event) {
-    const { onClick, data } = this.props;
-    const newEvent = { ...event, data };
+    const { name, value } = this.props;
+    const [, dispatch] = this.context;
 
-    onClick(newEvent);
+    dispatch({
+      type: types.ON_CHANGE,
+      payload: { name, value },
+    });
   }
 
   render() {
     const {
-      data: _data, // eslint-disable-line no-unused-vars
-      onClick: _onClick, // eslint-disable-line no-unused-vars
+      name,
+      value: _value, // eslint-disable-line no-unused-vars
       ...rest
     } = this.props;
 
     return (
-      <Button onClick={this.onClick} {...rest} />
+      <Button name={name} onClick={this.onClick} {...rest} />
     );
   }
 }
@@ -39,8 +45,8 @@ const dataType = [
 
 
 ButtonData.propTypes = {
-  data: PropTypes.oneOfType(dataType).isRequired,
-  onClick: PropTypes.func.isRequired,
+  name: PropTypes.string.isRequired,
+  value: PropTypes.oneOfType(dataType).isRequired,
 };
 
 ButtonData.defaultProps = {
