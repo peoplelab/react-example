@@ -4,7 +4,7 @@ import Button from './Button';
 import { FormContext, types } from '../../store/components/form.store';
 
 
-class ButtonData extends PureComponent {
+class ButtonForm extends PureComponent {
   static contextType = FormContext;
 
   constructor(props) {
@@ -14,43 +14,45 @@ class ButtonData extends PureComponent {
   }
 
   onClick(event) {
-    const { name, value } = this.props;
+    const { name, value, onClick } = this.props;
     const [, dispatch] = this.context;
 
     dispatch({
       type: types.ON_CHANGE,
       payload: { name, value },
     });
+
+    if (typeof onClick === 'function') {
+      onClick(event);
+    }
   }
 
   render() {
     const {
       name,
       value: _value, // eslint-disable-line no-unused-vars
+      onClick: _onClick, // eslint-disable-line no-unused-vars
       ...rest
     } = this.props;
 
-    return (
-      <Button name={name} onClick={this.onClick} {...rest} />
+    return name && (
+      <Button {...rest} name={name} onClick={this.onClick} />
     );
   }
 }
 
 
-const dataType = [
-  PropTypes.bool,
-  PropTypes.number,
-  PropTypes.string,
-];
-
-
-ButtonData.propTypes = {
+ButtonForm.propTypes = {
   name: PropTypes.string.isRequired,
-  value: PropTypes.oneOfType(dataType).isRequired,
+  value: PropTypes.any.isRequired,
+  onClick: PropTypes.func,
 };
 
-ButtonData.defaultProps = {
+ButtonForm.defaultProps = {
+  name: null,
+  value: null,
+  onClick: null,
 };
 
 
-export default ButtonData;
+export default ButtonForm;

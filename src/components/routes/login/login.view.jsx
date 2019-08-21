@@ -3,9 +3,10 @@ import PropTypes from 'prop-types';
 
 import Box from '../../layouts/Box';
 import LoginCard from '../../forms/Card.view';
+import InputCard from '../../forms/InputCard.view';
 import Gallery from '../../layouts/Gallery.view';
 import Form from '../../forms/Form';
-import TextInput from '../../forms/TextInput';
+// import TextInput from '../../forms/TextInput';
 import PasswordInput from '../../forms/PasswordInput';
 import Select from '../../forms/Select';
 import Submit from '../../forms/Submit';
@@ -33,16 +34,6 @@ class LoginRoute extends PureComponent {
     super(props);
 
     this.onLogin = this.onLogin.bind(this);
-    this.onClick = this.onClick.bind(this);
-
-    this.state = {
-      errorOnLogin: false,
-      card: null,
-    };
-  }
-
-  onClick(event) {
-    this.setState({ card: event.target.value });
   }
 
   onLogin(event) {
@@ -64,26 +55,27 @@ class LoginRoute extends PureComponent {
     return (
       <section className="login">
         <Box className="login__dialog">
-          <Form className="login__form" initial={initial}>
+          <Form className="login__form" name="login-form" initial={initial}>
             <p className="login__title">
               Inserisci i tuoi dati
             </p>
             <Box className="login__form-box">
-              <Field placeholder className="login__field">
-                <TextInput
+              <Field className="login__field">
+                <InputCard
                   className="login__text-input"
                   name="username"
+                  group="data"
                   placeholder="Username"
                 />
               </Field>
-              <Field placeholder className="login__field">
+              <Field className="login__field">
                 <PasswordInput
                   className="login__text-input"
                   name="password"
                   placeholder="Password"
                 />
               </Field>
-              <Field placeholder className="login__field">
+              <Field className="login__field">
                 <Select
                   className="login__select-input"
                   name="culture"
@@ -98,7 +90,7 @@ class LoginRoute extends PureComponent {
               className="login__form-gallery"
               list={usersList}
             >
-              <LoginCard onClick={this.onClick} />
+              <LoginCard name="username" group="data" />
             </Gallery>
           </Form>
         </Box>
@@ -133,55 +125,55 @@ LoginRoute.defaultProps = {
   usersList: [
     {
       lastAccess: '9:35 05/06/2019',
-      name: 'Stephan Kuttingen',
+      username: 'Stephan Kuttingen',
       gender: 'male',
       role: 'user',
     },
     {
       lastAccess: '10:40 04/06/2019',
-      name: 'Alfred Marakakhov',
-      gender: 'male',
-      role: 'super',
-    },
-    {
-      lastAccess: '9:35 05/06/2019',
-      name: 'Stephan Kuttingen',
-      gender: 'female',
-      role: 'user',
-    },
-    {
-      lastAccess: '10:40 04/06/2019',
-      name: 'Alfred Marakakhov',
-      gender: 'female',
-      role: 'super',
-    },
-    {
-      lastAccess: '9:35 05/06/2019',
-      name: 'Stephan Kuttingen',
-      gender: 'male',
-      role: 'user',
-    },
-    {
-      lastAccess: '10:40 04/06/2019',
-      name: 'Alfred Marakakhov',
+      username: 'Alfred Marakakhov',
       gender: 'male',
       role: 'super',
     },
     {
       lastAccess: '9:35 05/06/2019',
-      name: 'Stephan Kuttingen',
+      username: 'Stephan Kuttingen',
       gender: 'female',
       role: 'user',
     },
     {
       lastAccess: '10:40 04/06/2019',
-      name: 'Alfred Marakakhov',
+      username: 'Alfred Marakakhov',
+      gender: 'female',
+      role: 'super',
+    },
+    {
+      lastAccess: '9:35 05/06/2019',
+      username: 'Stephan Kuttingen',
+      gender: 'male',
+      role: 'user',
+    },
+    {
+      lastAccess: '10:40 04/06/2019',
+      username: 'Alfred Marakakhov',
+      gender: 'male',
+      role: 'super',
+    },
+    {
+      lastAccess: '9:35 05/06/2019',
+      username: 'Stephan Kuttingen',
+      gender: 'female',
+      role: 'user',
+    },
+    {
+      lastAccess: '10:40 04/06/2019',
+      username: 'Alfred Marakakhov',
       gender: 'female',
       role: 'super',
     },
     {
       lastAccess: '8:21 04/06/2019',
-      name: 'Maurizia Gambelli',
+      username: 'Maurizia Gambelli',
       gender: 'female',
       role: 'admin',
     }

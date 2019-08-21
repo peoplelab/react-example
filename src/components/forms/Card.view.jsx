@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Box from '../layouts/Box';
 import ButtonForm from './ButtonForm';
+import { FormContext, types } from '../../store/components/form.store';
 
 import * as admin from '../../../public/icons/users/icon-admin.svg';
 import * as technicalMale from '../../../public/icons/users/icon-technical-male.svg';
@@ -36,13 +37,49 @@ const roleConverter = {
 
 
 class Card extends PureComponent {
+  static contextType = FormContext;
+
+  constructor(props) {
+    super(props);
+
+    this.onClick = this.onClick.bind(this);
+  }
+
+  onClick(event) {
+    const {
+      group,
+      gender,
+      lastAccess,
+      username,
+      role
+    } = this.props;
+    const [, dispatch] = this.context;
+
+    const value = {
+      gender,
+      lastAccess,
+      username,
+      role,
+    };
+
+    dispatch({
+      type: types.ON_CHANGE,
+      payload: {
+        name: group,
+        value,
+      },
+    });
+  }
+
   render() {
     const {
       gender,
       lastAccess,
       name,
+      username,
       role,
       className,
+      disabled,
     } = this.props;
 
     const icon = (gender in toIcon && role in toIcon[gender]) ? toIcon[gender][role] : '';
@@ -50,8 +87,14 @@ class Card extends PureComponent {
     const mergedClass = `login-card ${className}`;
 
     return (
+      lastAccess
+      && name
+      && username
+      && gender
+      && role
+    ) && (
       <Box className={mergedClass}>
-        <ButtonForm className="login-card__button" name="username" value={name}>
+        <ButtonForm className="login-card__button" name={name} value={username} disabled={disabled} onClick={this.onClick}>
           <Box className="login-card__box">
             <Box className="login-card__picture">
               <img className="login-card__picture-icon" src={icon} alt={roleConverter[role]} />
@@ -59,7 +102,7 @@ class Card extends PureComponent {
           </Box>
           <Box className="login-card__box">
             <p className="login-card__paragraph login-card__paragraph--bold">
-              {name}
+              {username}
             </p>
             <p className="login-card__paragraph login-card__paragraph--semibold">
               {roleConverter[role]}
@@ -81,16 +124,25 @@ class Card extends PureComponent {
 
 
 Card.propTypes = {
-  lastAccess: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  gender: PropTypes.oneOf(genderList).isRequired,
-  role: PropTypes.oneOf(roleList).isRequired,
+  lastAccess: PropTypes.string,
+  name: PropTypes.string,
+  group: PropTypes.string,
+  username: PropTypes.string,
+  gender: PropTypes.oneOf(genderList),
+  role: PropTypes.oneOf(roleList),
   className: PropTypes.string,
-  onClick: PropTypes.func.isRequired,
+  disabled: PropTypes.bool,
 };
 
 Card.defaultProps = {
+  lastAccess: '',
+  name: '',
+  group: '',
+  username: '',
+  gender: undefined,
+  role: undefined,
   className: '',
+  disabled: false,
 };
 
 
