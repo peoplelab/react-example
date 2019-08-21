@@ -1,7 +1,10 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-// import '../../styles/layouts/Login.style.scss';
+import * as prevArrow from '../../../public/icons/arrow/icon-prev.svg';
+import * as nextArrow from '../../../public/icons/arrow/icon-next.svg';
+
+import '../../styles/layouts/Gallery.style.scss';
 
 
 class Gallery extends PureComponent {
@@ -44,7 +47,7 @@ class Gallery extends PureComponent {
   }
 
   makeSlides(acc, objProps, index) {
-    const { itemVisible, children } = this.props;
+    const { itemVisible, children, width, margin, unit } = this.props;
     let { currentIndex } = this.state;
 
     if (index < this.state.index || index >= (currentIndex + itemVisible)) {
@@ -55,8 +58,16 @@ class Gallery extends PureComponent {
       React.cloneElement(child, objProps)
     );
 
+    const left = (100 / itemVisible) * (index - currentIndex);
+
+    const style = {
+      width: `${width}${unit}`,
+      left: `${left}%`,
+      margin: `0 ${margin}${unit}`,
+    };
+
     return [...acc, (
-      <div className="gallery__item-slide" key={`slide-${index}`}>
+      <div className="gallery__item-slide" key={`slide-${index}`} style={style}>
         {newChildern}
       </div>
     )];
@@ -65,6 +76,9 @@ class Gallery extends PureComponent {
   render() {
     const {
       list,
+      height,
+      unit,
+      itemVisible,
       className,
     } = this.props;
 
@@ -74,12 +88,14 @@ class Gallery extends PureComponent {
 
     const Slides = list.reduce(this.makeSlides, []);
 
+    const styleGallery = { height: `${height}${unit}` };
+
     return (
-      <div className={mergedClass}>
+      <div className={mergedClass} style={styleGallery}>
         <div className="gallery__box-arrow gallery__box-arrow--prev">
           {currentIndex > 0 && (
             <button className="gallery__button" type="button" onClick={this.onPrev}>
-              <img className="gallery__button-icon" src={undefined} alt="prev" />
+              <img className="gallery__button-icon" src={prevArrow} alt="prev" />
             </button>
           )}
         </div>
@@ -87,9 +103,9 @@ class Gallery extends PureComponent {
           {Slides}
         </div>
         <div className="gallery__box-arrow gallery__box-arrow--next">
-          {currentIndex < list.length - 1 && (
+          {(currentIndex + itemVisible) < list.length && (
             <button className="gallery__button" type="button" onClick={this.onNext}>
-              <img className="gallery__button-icon" src={undefined} alt="next" />
+              <img className="gallery__button-icon" src={nextArrow} alt="next" />
             </button>
           )}
         </div>
@@ -102,12 +118,17 @@ class Gallery extends PureComponent {
 Gallery.propTypes = {
   children: PropTypes.node.isRequired,
   list: PropTypes.arrayOf(PropTypes.object).isRequired,
+  height: PropTypes.number.isRequired,
+  width: PropTypes.number.isRequired,
+  margin: PropTypes.number.isRequired,
   className: PropTypes.string,
+  unit: PropTypes.string,
   itemVisible: PropTypes.number,
 };
 
 Gallery.defaultProps = {
   className: '',
+  unit: 'rem',
   itemVisible: 3,
 };
 

@@ -7,7 +7,7 @@ import * as technicalFemale from '../../../public/icons/users/icon-technical-fem
 import * as operatorMale from '../../../public/icons/users/icon-operator-male.svg';
 import * as operatorFemale from '../../../public/icons/users/icon-operator-female.svg';
 
-import '../../styles/layouts/Login.style.scss';
+import '../../styles/layouts/LoginCard.style.scss';
 
 
 const roleList = ['admin', 'super', 'user'];
