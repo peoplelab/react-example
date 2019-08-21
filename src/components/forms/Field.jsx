@@ -12,15 +12,18 @@ class Field extends PureComponent {
       children,
       className,
       label,
+      placeholder,
     } = this.props;
 
     const mergedClass = `field ${className}`;
 
     return (
       <Box className={mergedClass}>
-        <label className="field__label">
-          {label}
-        </label>
+        {!placeholder && (
+          <label className="field__label">
+            {label}
+          </label>
+        )}
         {children}
       </Box>
     );
@@ -32,10 +35,12 @@ Field.propTypes = {
   children: PropTypes.node.isRequired,
   label: PropTypes.string.isRequired,
   className: PropTypes.string,
+  placeholder: PropTypes.bool,
 };
 
 Field.defaultProps = {
   className: '',
+  placeholder: false,
 };
 
 

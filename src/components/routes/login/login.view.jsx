@@ -63,9 +63,9 @@ class LoginRoute extends PureComponent {
     return (
       <section className="login">
         <Box className="login__dialog">
-          <h1 className="login__title">
-            Login
-          </h1>
+          <p className="login__title">
+            Inserisci i tuoi dati
+          </p>
           <Form
             name="login-form"
             className="login__form"
@@ -74,30 +74,28 @@ class LoginRoute extends PureComponent {
             required={required}
             onSubmit={this.onLogin}
           >
-            <Box className="login__group">
-              <Field label="Username">
-                <TextInput
-                  className="login__text-input"
-                  name="username"
-                />
-              </Field>
-              <Field label="Password">
-                <PasswordInput
-                  className="login__text-input"
-                  name="password"
-                />
-              </Field>
-              <Field label="Culture">
-                <Select
-                  className="login__select-input"
-                  name="culture"
-                  options={options}
-                />
-              </Field>
-            </Box>
+            <Field placeholder className="login__field">
+              <TextInput
+                className="login__text-input"
+                name="username"
+                placeholder="Username"
+              />
+            </Field>
+            <Field placeholder className="login__field">
+              <PasswordInput
+                className="login__text-input"
+                name="password"
+                placeholder="Password"
+              />
+            </Field>
+            <Field placeholder className="login__field">
+              <Select
+                className="login__select-input"
+                name="culture"
+                options={options}
+              />
+            </Field>
           </Form>
-        </Box>
-        <Box>
           <Gallery
             className="login__gallery"
             list={usersList}
