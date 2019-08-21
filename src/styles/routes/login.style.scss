@@ -43,7 +43,7 @@
         flex: 1;
         margin: 0 2rem 0 0;
 
-        .login__text-input,
+        .login__text-input:not(.input-card),
         .login__select-input {
           border: $border-light-grey solid 0.125rem;
           border-radius: 0.25rem;
