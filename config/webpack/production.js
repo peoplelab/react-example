@@ -20,6 +20,7 @@ module.exports = {
     rules: [
       {
         test: /\.(png|jpe?g|gif|svg)$/i,
+        exclude: /node_modules/,
         use: [
           {
             loader: 'file-loader',
