@@ -16,43 +16,55 @@ class Select extends PureComponent {
   }
 
   onChange(event) {
-    const { name, value } = event.target;
-    const [, dispatch] = this.context;
+    const { onTest } = this.props;
 
-    dispatch({
-      type: types.ON_CHANGE,
-      payload: { name, value },
-    });
+    let test = true;
+    if (typeof onTest === 'function') {
+      test = onTest(event);
+    }
+
+    if (test) {
+      const { name, value } = event.target;
+      const [, dispatch] = this.context;
+
+      dispatch({
+        type: types.ON_CHANGE,
+        payload: { [name]: value },
+      });
+    }
   }
 
   mapOptions(data) {
     const { value, message } = data;
 
-    return (<Option value={value} message={message} key={`option-${value}`} />);
+    return (
+      <Option
+        value={value}
+        message={message}
+        key={`option-${value}`}
+      />
+    );
   }
 
   render() {
     const {
       name,
-      className,
+      onTest: _onTest, // eslint-disable-line no-unused-vars
       options,
       ...rest
     } = this.props;
 
     const [value] = this.context;
 
-    const mergedClass = `input input__select ${className}`;
-
     const Options = options.map(this.mapOptions);
 
     return (
       <select
-        className={mergedClass}
         id={name}
+        {...rest}
         name={name}
         value={value[name]}
         onChange={this.onChange}
-        {...rest}
       >
         {Options}
       </select>
@@ -61,7 +73,6 @@ class Select extends PureComponent {
 }
 
 const shapeOptions = {
-  deafult: PropTypes.bool,
   message: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
 };
@@ -70,11 +81,11 @@ const shapeOptions = {
 Select.propTypes = {
   name: PropTypes.string.isRequired,
   options: PropTypes.arrayOf(PropTypes.shape(shapeOptions)).isRequired,
-  className: PropTypes.string,
+  onTest: PropTypes.func,
 };
 
 Select.defaultProps = {
-  className: '',
+  onTest: null,
 };
 
 

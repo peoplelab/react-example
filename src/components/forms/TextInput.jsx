@@ -13,35 +13,41 @@ class TextInput extends PureComponent {
   }
 
   onChange(event) {
-    const { name, value } = event.target;
-    const [, dispatch] = this.context;
+    const { onTest } = this.props;
 
-    dispatch({
-      type: types.ON_CHANGE,
-      payload: { name, value },
-    });
+    let test = true;
+    if (typeof onTest === 'function') {
+      test = onTest(event);
+    }
+
+    if (test) {
+      const { name, value } = event.target;
+      const [, dispatch] = this.context;
+
+      dispatch({
+        type: types.ON_CHANGE,
+        payload: { [name]: value },
+      });
+    }
   }
 
   render() {
     const {
       name,
-      className,
+      onTest: _onTest, // eslint-disable-line no-unused-vars
       ...rest
     } = this.props;
 
     const [value] = this.context;
 
-    const mergedClass = `input input__text ${className}`;
-
     return (
       <input
-        className={mergedClass}
-        type="text"
         id={name}
+        {...rest}
+        type="text"
         name={name}
         value={value[name]}
         onChange={this.onChange}
-        {...rest}
       />
     );
   }
@@ -50,11 +56,11 @@ class TextInput extends PureComponent {
 
 TextInput.propTypes = {
   name: PropTypes.string.isRequired,
-  className: PropTypes.string,
+  onTest: PropTypes.func,
 };
 
 TextInput.defaultProps = {
-  className: '',
+  onTest: null,
 };
 
 

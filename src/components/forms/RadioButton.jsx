@@ -1,15 +1,11 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-
-
-const typeValue = [
-  PropTypes.bool,
-  PropTypes.number,
-  PropTypes.string,
-];
+import { FormContext, types } from '../../store/components/form.store';
 
 
 class RadioButton extends PureComponent {
+  static contextType = FormContext;
+
   constructor(props) {
     super(props);
 
@@ -17,34 +13,43 @@ class RadioButton extends PureComponent {
   }
 
   onChange(event) {
-    const { onChange } = this.props;
+    const { onTest } = this.props;
 
-    onChange(event);
+    let test = true;
+    if (typeof onTest === 'function') {
+      test = onTest(event);
+    }
+
+    if (test) {
+      const { name, value } = event.target;
+      const [, dispatch] = this.context;
+
+      dispatch({
+        type: types.ON_CHANGE,
+        payload: { [name]: value },
+      });
+    }
   }
 
   render() {
     const {
-      id,
       name,
       checked,
-      className,
-      value,
-      onChange: _onChange, // eslint-disable-line no-unused-vars
+      onTest: _onTest, // eslint-disable-line no-unused-vars
       ...rest
     } = this.props;
 
-    const mergedClass = `input input__radio ${value === '' ? '' : 'input--edited'} ${className}`;
+    const [value] = this.context;
 
     return (
       <input
-        className={mergedClass}
-        type="radio"
-        id={id || name}
+        id={name}
+        {...rest}
+        type="text"
         name={name}
-        value={value}
+        value={value[name]}
         checked={checked}
         onChange={this.onChange}
-        {...rest}
       />
     );
   }
@@ -53,17 +58,13 @@ class RadioButton extends PureComponent {
 
 RadioButton.propTypes = {
   name: PropTypes.string.isRequired,
-  value: PropTypes.oneOfType(typeValue).isRequired,
   checked: PropTypes.bool,
-  id: PropTypes.string,
-  className: PropTypes.string,
-  onChange: PropTypes.func.isRequired,
+  onTest: PropTypes.func,
 };
 
 RadioButton.defaultProps = {
   checked: false,
-  id: '',
-  className: '',
+  onTest: null,
 };
 
 

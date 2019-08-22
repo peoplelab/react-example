@@ -26,7 +26,7 @@ class Submit extends PureComponent {
       }
     };
 
-    onSubmit(newEvent);
+    onSubmit({ [name]: value }, newEvent);
   }
 
   render() {
@@ -34,28 +34,23 @@ class Submit extends PureComponent {
 
     const {
       children,
-      className,
+      disabled: disabledProp,
       required,
-      name: _name, // eslint-disable-line no-unused-vars
+      name,
       ...rest
     } = this.props;
 
-    const mergedClass = `submit ${className}`;
-
     const disabled = required.reduce((acc, key) => (
-      acc
-      || state[key] === undefined
-      || state[key] === null
-      || state[key] === ''
-    ), false);
+      acc || state[key] === undefined || state[key] === null || state[key] === ''
+    ), disabledProp);
 
     return (
       <button
+        {...rest}
         type="button"
-        className={mergedClass}
+        name={name}
         disabled={disabled}
         onClick={this.onSubmit}
-        {...rest}
         >
         {children}
       </button>
@@ -66,13 +61,13 @@ class Submit extends PureComponent {
 Submit.propTypes = {
   children: PropTypes.node.isRequired,
   name: PropTypes.string.isRequired,
-  className: PropTypes.string,
+  disabled: PropTypes.bool,
   required: PropTypes.arrayOf(PropTypes.string),
   onSubmit: PropTypes.func.isRequired,
 };
 
 Submit.defaultProps = {
-  className: '',
+  disabled: false,
   required: [],
 };
 

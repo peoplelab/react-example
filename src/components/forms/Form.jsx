@@ -1,39 +1,48 @@
-import React, { memo } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { Provider } from '../../store/components/form.store';
+import { Provider, FormContext } from '../../store/components/form.store';
 
 
-const Form = (props) => {
-  const {
-    children,
-    name,
-    className,
-    initial,
-    ...rest
-  } = props;
+class Form extends PureComponent {
+  static contextType = FormContext;
 
-  const mergedClass = `form ${className}`;
+  constructor(props) {
+    super(props);
 
-  return (
-    <Provider initial={initial}>
-      <form className={mergedClass} onSubmit={null} name={name} {...rest}>
-        {children}
-      </form>
-    </Provider>
-  );
-};
+    this.getContext = this.getContext.bind(this);
+  }
+
+  getContext() {
+    this.props.getContext(FormContext);
+  }
+
+  render() {
+    const {
+      children,
+      initial,
+      ...rest
+    } = this.props;
+
+    return (
+      <Provider initial={initial}>
+        <form {...rest} onSubmit={null}>
+          {children}
+        </form>
+      </Provider>
+    );
+  }
+}
 
 Form.propTypes = {
   children: PropTypes.node.isRequired,
-  name: PropTypes.string.isRequired,
-  className: PropTypes.string,
   initial: PropTypes.object,
+  getContext: PropTypes.func,
 };
 
 Form.defaultProps = {
-  className: '',
   initial: {},
+  getContext: null,
 };
 
 
-export default memo(Form);
+export default Form;

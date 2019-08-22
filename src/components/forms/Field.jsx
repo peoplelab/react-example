@@ -16,14 +16,23 @@ class Field extends PureComponent {
 
     const mergedClass = `field ${className}`;
 
+    const [child] = children;
+
+    let id = undefined;
+    if (React.isValidElement(child)) {
+      ({ id } = child.props);
+    }
+
+    const newChildern = React.cloneElement(child, { className: 'field__input' });
+
     return (
       <Box className={mergedClass}>
         {label && (
-          <label className="field__label">
+          <label className="field__label" htmlFor={id}>
             {label}
           </label>
         )}
-        {children}
+        {newChildern}
       </Box>
     );
   }
