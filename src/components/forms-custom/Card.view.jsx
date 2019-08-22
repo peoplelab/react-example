@@ -65,8 +65,7 @@ class Card extends PureComponent {
     dispatch({
       type: types.ON_CHANGE,
       payload: {
-        name: group,
-        value,
+        [group]: value,
       },
     });
   }

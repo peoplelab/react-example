@@ -27,8 +27,7 @@ class ButtonData extends PureComponent {
     dispatch({
       type: types.ON_CHANGE,
       payload: {
-        name: group,
-        value: null
+        [group]: null
       },
     });
   }

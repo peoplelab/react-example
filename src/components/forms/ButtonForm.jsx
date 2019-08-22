@@ -18,7 +18,7 @@ class ButtonForm extends PureComponent {
 
     dispatch({
       type: types.ON_CHANGE,
-      payload: { name, value },
+      payload: { [name]: value },
     });
 
     if (typeof onClick === 'function') {
