@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { Provider, FormContext } from '../../store/components/form.store';
+import { Provider, FormContext } from '../../store/forms/form.store';
 
 
 class Form extends PureComponent {

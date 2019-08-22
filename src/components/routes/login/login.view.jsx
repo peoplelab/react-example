@@ -2,11 +2,10 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
 import Box from '../../layouts/Box';
-import LoginCard from '../../forms/Card.view';
-import InputCard from '../../forms/InputCard.view';
+import LoginCard from '../../forms-custom/Card.view';
+import InputCard from '../../forms-custom/InputCard.view';
 import Gallery from '../../layouts/Gallery.view';
 import Form from '../../forms/Form';
-// import TextInput from '../../forms/TextInput';
 import PasswordInput from '../../forms/PasswordInput';
 import Select from '../../forms/Select';
 import Submit from '../../forms/Submit';

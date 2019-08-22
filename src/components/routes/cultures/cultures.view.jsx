@@ -2,8 +2,8 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
 import Box from '../../layouts/Box';
-import Button from '../../forms/Button';
-import ButtonData from '../../forms/ButtonData';
+import Button from '../../layouts/Button';
+import ButtonData from '../../layouts/ButtonData';
 import Field from '../../forms/Field';
 import WrapContext from './cultures.wrapper';
 import {

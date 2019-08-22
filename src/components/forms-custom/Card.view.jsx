@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Box from '../layouts/Box';
-import ButtonForm from './ButtonForm';
-import { FormContext, types } from '../../store/components/form.store';
+import ButtonForm from '../forms/ButtonForm';
+import { FormContext, types } from '../../store/forms/form.store';
 
 import * as admin from '../../../public/icons/users/icon-admin.svg';
 import * as technicalMale from '../../../public/icons/users/icon-technical-male.svg';

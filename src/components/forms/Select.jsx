@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Option from './Option';
-import { FormContext, types } from '../../store/components/form.store';
+import { FormContext, types } from '../../store/forms/form.store';
 
 
 class Select extends PureComponent {

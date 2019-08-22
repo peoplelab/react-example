@@ -1,9 +1,9 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { FormContext, types } from '../../store/components/form.store';
+import { FormContext, types } from '../../store/forms/form.store';
 import Box from '../layouts/Box';
-import ButtonForm from './ButtonForm';
-import TextInput from './TextInput';
+import ButtonForm from '../forms/ButtonForm';
+import TextInput from '../forms/TextInput';
 import Card from './Card.view';
 
 import * as resetIcon from '../../../public/icons/icon-close.svg';

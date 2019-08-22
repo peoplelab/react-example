@@ -3,7 +3,7 @@ import React, { PureComponent } from 'react';
 import { callLogout } from '../../../controllers/routes/logout/logout.controller';
 import Box    from '../../layouts/Box';
 import Anchor from '../../layouts/Anchor';
-import Button from '../../forms/Button';
+import Button from '../../layouts/Button';
 import { SessionContext } from '../../../store/session.store';
 
 

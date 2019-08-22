@@ -17,7 +17,7 @@ import PropTypes from 'prop-types';
 
 // ** Carica i componenti predefiniti di sistema (snippets) **
 import Box from '../../layouts/Box';
-import Button from '../../forms/Button';
+import Button from '../../layouts/Button';
 import List from './tools.item.list';
 import Details from './tools.item.details';
 import WrapContext from './tools.wrapper';

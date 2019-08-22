@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Button from './Button';
-import { FormContext, types } from '../../store/components/form.store';
+import { FormContext, types } from '../../store/forms/form.store';
 
 
 class ButtonForm extends PureComponent {
@@ -44,13 +44,12 @@ class ButtonForm extends PureComponent {
 
 ButtonForm.propTypes = {
   name: PropTypes.string.isRequired,
-  value: PropTypes.any.isRequired,
+  value: PropTypes.any,
   onClick: PropTypes.func,
 };
 
 ButtonForm.defaultProps = {
-  name: null,
-  value: null,
+  value: undefined,
   onClick: null,
 };
 
