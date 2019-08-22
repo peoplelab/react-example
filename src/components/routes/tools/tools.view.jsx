@@ -22,11 +22,14 @@ import List from './tools.item.list';
 import Details from './tools.item.details';
 import WrapContext from './tools.wrapper';
 import { callToolsList } from '../../../controllers/routes/tools/tools.controller';
+import { ToolsContext } from '../../../store/routes/tools.store';
 
 import '../../../styles/routes/tools.style.scss';
 
 
 class ToolsRoute extends PureComponent {
+  static contextType = ToolsContext;
+
 	constructor(props) {
     super(props);
 
@@ -34,8 +37,11 @@ class ToolsRoute extends PureComponent {
   }
 
   onCallList() {
-    const { toolsContext, sessionContext } = this.props;
-    const context = { toolsContext, sessionContext };
+    const { sessionContext } = this.props;
+    const context = {
+      toolsContext: this.context,
+      sessionContext
+    };
 
     callToolsList({ context });
   }
@@ -63,7 +69,6 @@ class ToolsRoute extends PureComponent {
 
 ToolsRoute.propTypes = {
   sessionContext: PropTypes.array.isRequired,
-  toolsContext: PropTypes.array.isRequired,
 };
 
 ToolsRoute.defaultProps = {

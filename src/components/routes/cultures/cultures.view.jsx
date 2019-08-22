@@ -12,6 +12,7 @@ import {
   callCulturesDelete,
   callCulturesPut,
 } from '../../../controllers/routes/cultures/cultures.controller';
+import { CultureContext } from '../../../store/routes/cultures.store';
 
 import '../../../styles/routes/cultures.style.scss';
 
@@ -26,6 +27,8 @@ const header = (
 
 
 class CulturesRoute extends PureComponent {
+  static contextType = CultureContext
+
 	constructor(props) {
     super(props);
 
@@ -61,15 +64,21 @@ class CulturesRoute extends PureComponent {
   }
 
   onGetCultures() {
-    const { cultureContext, sessionContext } = this.props;
-    const context = { cultureContext, sessionContext };
+    const { sessionContext } = this.props;
+    const context = {
+      cultureContext: this.context,
+      sessionContext
+    };
 
     callCulturesGet({ context });
   }
 
   onAddCulture() {
-    const { cultureContext, sessionContext } = this.props;
-    const context = { cultureContext, sessionContext };
+    const { sessionContext } = this.props;
+    const context = {
+      cultureContext: this.context,
+      sessionContext
+    };
 
     const { code, description } = this.state;
 
@@ -82,15 +91,21 @@ class CulturesRoute extends PureComponent {
   onRemoveCulture(event) {
     const { data } = event;
 
-    const { cultureContext, sessionContext } = this.props;
-    const context = { cultureContext, sessionContext };
+    const { sessionContext } = this.props;
+    const context = {
+      cultureContext: this.context,
+      sessionContext
+    };
 
     callCulturesDelete({ data, context });
   }
 
   onUpdateCulture(event) {
-    const { cultureContext, sessionContext } = this.props;
-    const context = { cultureContext, sessionContext };
+    const { sessionContext } = this.props;
+    const context = {
+      cultureContext: this.context,
+      sessionContext
+    };
 
     const { id, code, description } = this.state;
 
@@ -124,8 +139,7 @@ class CulturesRoute extends PureComponent {
   }
 
 	render() {
-    const { cultureContext } = this.props;
-    const [state] = cultureContext;
+    const [state] = this.context;
     console.log(state);
     const { data: list } = state;
 
@@ -221,7 +235,6 @@ class CulturesRoute extends PureComponent {
 
 
 CulturesRoute.propTypes = {
-  cultureContext: PropTypes.array.isRequired,
   sessionContext: PropTypes.array.isRequired,
 };
 

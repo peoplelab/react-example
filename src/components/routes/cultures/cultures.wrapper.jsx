@@ -1,15 +1,13 @@
 import React, { useContext } from 'react';
 
-import { CultureContext } from '../../../store/routes/cultures.store';
 import { SessionContext } from '../../../store/session.store';
 
 
 const WrapContext = Component => (
   function Wrapper(props) {
     const sessionContext = useContext(SessionContext);
-    const cultureContext = useContext(CultureContext);
 
-    const contextProps = { sessionContext, cultureContext };
+    const contextProps = { sessionContext };
 
     return <Component {...contextProps} {...props} />;
   }
