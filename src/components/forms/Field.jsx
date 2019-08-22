@@ -16,14 +16,18 @@ class Field extends PureComponent {
 
     const mergedClass = `field ${className}`;
 
-    const [child] = children;
 
     let id = undefined;
-    if (React.isValidElement(child)) {
-      ({ id } = child.props);
-    }
+    const newChildern = React.Children.map(children, child => {
+      if (!(React.isValidElement(child))) {
+        return;
+      }
 
-    const newChildern = React.cloneElement(child, { className: 'field__input' });
+      ({ id } = child.props);
+
+      return React.cloneElement(child, { className: 'field__input' });
+    });
+
 
     return (
       <Box className={mergedClass}>
