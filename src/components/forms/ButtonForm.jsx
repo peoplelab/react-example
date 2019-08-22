@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import Button from './Button';
 import { FormContext, types } from '../../store/forms/form.store';
 
 
@@ -29,6 +28,7 @@ class ButtonForm extends PureComponent {
 
   render() {
     const {
+      children,
       name,
       value: _value, // eslint-disable-line no-unused-vars
       onClick: _onClick, // eslint-disable-line no-unused-vars
@@ -36,19 +36,28 @@ class ButtonForm extends PureComponent {
     } = this.props;
 
     return name && (
-      <Button {...rest} name={name} onClick={this.onClick} />
+      <button
+        {...rest}
+        name={name}
+        type="button"
+        onClick={this.onClick}
+      >
+        {children}
+      </button>
     );
   }
 }
 
 
 ButtonForm.propTypes = {
+  children: PropTypes.node,
   name: PropTypes.string.isRequired,
   value: PropTypes.any,
   onClick: PropTypes.func,
 };
 
 ButtonForm.defaultProps = {
+  children: null,
   value: undefined,
   onClick: null,
 };

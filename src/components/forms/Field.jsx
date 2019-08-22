@@ -25,7 +25,9 @@ class Field extends PureComponent {
 
       ({ id } = child.props);
 
-      return React.cloneElement(child, { className: 'field__input' });
+      const { className } = child.props;
+
+      return React.cloneElement(child, { className: `field__input ${className}` });
     });
 
 

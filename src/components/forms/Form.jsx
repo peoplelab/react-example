@@ -20,6 +20,7 @@ class Form extends PureComponent {
     const {
       children,
       initial,
+      getContext: _getContext, // eslint-disable-line no-unused-vars
       ...rest
     } = this.props;
 
