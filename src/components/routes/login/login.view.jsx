@@ -35,11 +35,11 @@ class LoginRoute extends PureComponent {
     this.onLogin = this.onLogin.bind(this);
   }
 
-  onLogin(event) {
+  onLogin(data, event) {
     const context = this.context;
 
     callLogin({
-      data: event.target.value,
+      data,
       context
     });
   }

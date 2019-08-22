@@ -47,6 +47,7 @@ class ToolsRoute extends PureComponent {
   }
 
 	render() {
+    const { sessionContext } = this.props;
     return (
       <section className="tools">
         <h1 className="tools__title">
@@ -58,7 +59,7 @@ class ToolsRoute extends PureComponent {
               Get tools list
             </Button>
           </Box>
-          <List />
+          <List sessionContext={sessionContext} toolsContext={this.context} />
           <Details />
         </Box>
       </section>

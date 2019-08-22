@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import Box from '../../layouts/Box';
 import ButtonData from '../../layouts/ButtonData';
 import { callToolDetails } from '../../../controllers/routes/tools/tools.controller';
-import WrapContext from './tools.wrapper';
 
 
 const header = (
@@ -100,4 +99,4 @@ ListItem.defaultProps = {
 };
 
 
-export default WrapContext(ListItem);
+export default ListItem;
