@@ -17,7 +17,7 @@ export const types = enumTypes('ON_CHANGE');
 //----------------------------------
 
 const handler = (state, payload) => ({
-  [types.ON_CHANGE]: { ...state, [payload.name]: payload.value },
+  [types.ON_CHANGE]: { ...state, ...payload },
 });
 
 
