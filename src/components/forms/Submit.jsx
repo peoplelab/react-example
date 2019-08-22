@@ -26,7 +26,7 @@ class Submit extends PureComponent {
       }
     };
 
-    onSubmit({ [name]: value }, newEvent);
+    onSubmit(value, newEvent);
   }
 
   render() {
