@@ -30,16 +30,8 @@ class ButtonData extends PureComponent {
   }
 }
 
-
-const dataType = [
-  PropTypes.bool,
-  PropTypes.number,
-  PropTypes.string,
-];
-
-
 ButtonData.propTypes = {
-  data: PropTypes.oneOfType(dataType).isRequired,
+  data: PropTypes.any.isRequired,
   onClick: PropTypes.func.isRequired,
 };
 

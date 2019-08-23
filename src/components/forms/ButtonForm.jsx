@@ -1,11 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { FormContext, types } from '../../store/forms/form.store';
-
 
 class ButtonForm extends PureComponent {
-  static contextType = FormContext;
-
   constructor(props) {
     super(props);
 

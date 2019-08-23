@@ -1,148 +1,116 @@
-import React, { PureComponent } from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 import Box from '../layouts/Box';
-import ButtonForm from '../forms/ButtonForm';
-import { FormContext, types } from '../../store/forms/form.store';
+import ButtonData from '../layouts/ButtonData';
 
 import * as admin from '../../../public/icons/users/icon-admin.svg';
-import * as technicalMale from '../../../public/icons/users/icon-technical-male.svg';
-import * as technicalFemale from '../../../public/icons/users/icon-technical-female.svg';
-import * as operatorMale from '../../../public/icons/users/icon-operator-male.svg';
-import * as operatorFemale from '../../../public/icons/users/icon-operator-female.svg';
+import * as technical from '../../../public/icons/users/icon-technical-male.svg';
+import * as operator from '../../../public/icons/users/icon-operator-male.svg';
 
 import '../../styles/forms/Card.style.scss';
 
 
-const roleList = ['admin', 'super', 'user'];
-const genderList = ['male', 'female'];
-
 const toIcon = {
-  female: {
-    admin: admin,
-    super: technicalFemale,
-    user: operatorFemale,
-  },
-  male: {
-    admin: admin,
-    super: technicalMale,
-    user: operatorMale,
-  },
+  ADMIN: admin,
+  SUPER: technical,
+  USER: operator,
 };
 
 const roleConverter = {
-  admin: 'Administrator',
-  super: 'Technician',
-  user: 'Operator',
+  ADMIN: 'Administrator',
+  SUPER: 'Technician',
+  USER: 'Operator',
 };
 
 
-class Card extends PureComponent {
-  static contextType = FormContext;
+const Card = (props) => {
+  const {
+    issuedAt,
+    username,
+    groups,
+    culture,
+    name,
+    className,
+    group,
+    disabled,
+    onClick,
+  } = props;
 
-  constructor(props) {
-    super(props);
+  const mergedClass = `login-card ${className}`;
 
-    this.onClick = this.onClick.bind(this);
-  }
-
-  onClick(event) {
-    const {
-      group,
-      gender,
-      lastAccess,
+  const data = {
+    [name]: username,
+    [group]: {
+      issuedAt,
+      groups,
       username,
-      role
-    } = this.props;
-    const [, dispatch] = this.context;
+      culture,
+    }
+  };
 
-    const value = {
-      gender,
-      lastAccess,
-      username,
-      role,
-    };
+  const [role] = groups;
+  const lastAccess = moment(issuedAt, 'YYYY-MM-DDThh:mm:ss.SSSSSSS+z').format('hh:mm DD/MM/YYYY');
 
-    dispatch({
-      type: types.ON_CHANGE,
-      payload: {
-        [group]: value,
-      },
-    });
-  }
-
-  render() {
-    const {
-      gender,
-      lastAccess,
-      name,
-      username,
-      role,
-      className,
-      disabled,
-    } = this.props;
-
-    const icon = (gender in toIcon && role in toIcon[gender]) ? toIcon[gender][role] : '';
-
-    const mergedClass = `login-card ${className}`;
-
-    return (
-      lastAccess
-      && name
-      && username
-      && gender
-      && role
-    ) && (
-      <Box className={mergedClass}>
-        <ButtonForm className="login-card__button" name={name} value={username} disabled={disabled} onClick={this.onClick}>
-          <Box className="login-card__box">
-            <Box className="login-card__picture">
-              <img className="login-card__picture-icon" src={icon} alt={roleConverter[role]} />
-            </Box>
+  return (
+    lastAccess
+    && username
+    && culture
+    && role
+    && name
+  ) && (
+    <Box className={mergedClass}>
+      <ButtonData className="login-card__button" disabled={disabled} data={data} onClick={onClick}>
+        <Box className="login-card__box">
+          <Box className="login-card__picture">
+            <img className="login-card__picture-icon" src={toIcon[role]} alt={roleConverter[role]} />
           </Box>
-          <Box className="login-card__box">
-            <p className="login-card__paragraph login-card__paragraph--bold">
-              {username}
-            </p>
-            <p className="login-card__paragraph login-card__paragraph--semibold">
-              {roleConverter[role]}
-            </p>
-          </Box>
-          <Box className="login-card__box">
-            <p className="login-card__paragraph login-card__paragraph--light">
-              Last access:
-            </p>
-            <p className="login-card__paragraph login-card__paragraph--normal">
-              {lastAccess}
-            </p>
-          </Box>
-        </ButtonForm>
-      </Box>
-    );
-  }
-}
+        </Box>
+        <Box className="login-card__box">
+          <p className="login-card__paragraph login-card__paragraph--bold">
+            {username}
+          </p>
+          <p className="login-card__paragraph login-card__paragraph--semibold">
+            {roleConverter[role]}
+          </p>
+        </Box>
+        <Box className="login-card__box">
+          <p className="login-card__paragraph login-card__paragraph--light">
+            Last access:
+          </p>
+          <p className="login-card__paragraph login-card__paragraph--normal">
+            {lastAccess}
+          </p>
+        </Box>
+      </ButtonData>
+    </Box>
+  );
+};
 
 
 Card.propTypes = {
-  lastAccess: PropTypes.string,
+  issuedAt: PropTypes.string,
+  username: PropTypes.string,
+  groups: PropTypes.arrayOf(PropTypes.string),
+  culture: PropTypes.string,
   name: PropTypes.string,
   group: PropTypes.string,
-  username: PropTypes.string,
-  gender: PropTypes.oneOf(genderList),
-  role: PropTypes.oneOf(roleList),
   className: PropTypes.string,
   disabled: PropTypes.bool,
+  onClick: PropTypes.func,
 };
 
 Card.defaultProps = {
-  lastAccess: '',
+  issuedAt: '',
+  username: '',
+  groups: [],
+  culture: '',
   name: '',
   group: '',
-  username: '',
-  gender: undefined,
-  role: undefined,
   className: '',
   disabled: false,
+  onClick: () => {},
 };
 
 
-export default Card;
+export default memo(Card);

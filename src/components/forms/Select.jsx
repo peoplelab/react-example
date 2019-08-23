@@ -30,8 +30,6 @@ class Select extends PureComponent {
       ...rest
     } = this.props;
 
-    const [value] = this.context;
-
     const mergedClass = `input input__select ${className}`;
 
     const Options = options.map(this.mapOptions);
@@ -42,8 +40,6 @@ class Select extends PureComponent {
         {...rest}
         className={mergedClass}
         name={name}
-        value={value[name]}
-        onChange={this.onChange}
       >
         {Options}
       </select>

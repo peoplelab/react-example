@@ -11,7 +11,7 @@ const Field = (props) => {
     children,
     className,
     label,
-  } = this.props;
+  } = props;
 
   const mergedClass = `field ${className}`;
 

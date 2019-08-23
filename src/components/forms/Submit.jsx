@@ -25,21 +25,20 @@ class Submit extends PureComponent {
   }
 
   render() {
-    const [state] = this.context;
-
     const {
       children,
       className,
       disabled: disabledProp,
       required,
       name,
+      value,
       ...rest
     } = this.props;
 
     const mergedClass = `input input__submit ${className}`;
 
     const disabled = required.reduce((acc, key) => (
-      acc || state[key] === undefined || state[key] === null || state[key] === ''
+      acc || value[key] === undefined || value[key] === null || value[key] === ''
     ), disabledProp);
 
     return (
