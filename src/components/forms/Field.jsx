@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import Box from '../layouts/Box';
 
@@ -6,43 +6,41 @@ import Box from '../layouts/Box';
 /**
  * Form field
  */
-class Field extends PureComponent {
-  render() {
-    const {
-      children,
-      className,
-      label,
-    } = this.props;
+const Field = (props) => {
+  const {
+    children,
+    className,
+    label,
+  } = this.props;
 
-    const mergedClass = `field ${className}`;
-
-
-    let id = undefined;
-    const newChildern = React.Children.map(children, child => {
-      if (!(React.isValidElement(child))) {
-        return;
-      }
-
-      ({ id } = child.props);
-
-      const { className } = child.props;
-
-      return React.cloneElement(child, { className: `field__input ${className}` });
-    });
+  const mergedClass = `field ${className}`;
 
 
-    return (
-      <Box className={mergedClass}>
-        {label && (
-          <label className="field__label" htmlFor={id}>
-            {label}
-          </label>
-        )}
-        {newChildern}
-      </Box>
-    );
-  }
-}
+  let id = undefined;
+  const newChildern = React.Children.map(children, child => {
+    if (!(React.isValidElement(child))) {
+      return;
+    }
+
+    ({ id } = child.props);
+
+    const { className } = child.props;
+
+    return React.cloneElement(child, { className: `field__input ${className}` });
+  });
+
+
+  return (
+    <Box className={mergedClass}>
+      {label && (
+        <label className="field__label" htmlFor={id}>
+          {label}
+        </label>
+      )}
+      {newChildern}
+    </Box>
+  );
+};
 
 
 Field.propTypes = {
@@ -57,4 +55,4 @@ Field.defaultProps = {
 };
 
 
-export default Field;
+export default memo(Field);

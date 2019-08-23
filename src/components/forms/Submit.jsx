@@ -1,11 +1,8 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { FormContext } from '../../store/forms/form.store';
 
 
 class Submit extends PureComponent {
-  static contextType = FormContext;
-
   constructor(props) {
     super(props);
 
@@ -13,9 +10,7 @@ class Submit extends PureComponent {
   }
 
   onSubmit(event) {
-    const [value] = this.context;
-
-    const { onSubmit, name } = this.props;
+    const { onSubmit, name, value } = this.props;
 
     const newEvent = {
       ...event,
@@ -65,6 +60,7 @@ class Submit extends PureComponent {
 Submit.propTypes = {
   children: PropTypes.node.isRequired,
   name: PropTypes.string.isRequired,
+  value: PropTypes.object.isRequired,
   disabled: PropTypes.bool,
   className: PropTypes.string,
   required: PropTypes.arrayOf(PropTypes.string),

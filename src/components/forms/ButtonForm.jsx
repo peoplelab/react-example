@@ -14,16 +14,17 @@ class ButtonForm extends PureComponent {
 
   onClick(event) {
     const { name, value, onClick } = this.props;
-    const [, dispatch] = this.context;
 
-    dispatch({
-      type: types.ON_CHANGE,
-      payload: { [name]: value },
-    });
+    const newEvent = {
+      ...event,
+      target: {
+        ...event.target,
+        name,
+        value,
+      }
+    };
 
-    if (typeof onClick === 'function') {
-      onClick(event);
-    }
+    onClick(newEvent);
   }
 
   render() {
