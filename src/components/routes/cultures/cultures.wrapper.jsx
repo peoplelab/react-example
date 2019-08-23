@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 
-import { SessionContext } from '../../../store/session.store';
+import { SessionContext } from '../../../store/session.store.jsx';
 
 
 const WrapContext = Component => (

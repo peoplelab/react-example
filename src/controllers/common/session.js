@@ -1,14 +1,15 @@
-import { types } from '../../store/session.store';
+import { types } from '../../store/session.store.jsx';
+import moment from 'moment';
 
 
 // check if the user has valid credentials
 export const logged = (state) => {
   const { accessToken, sessionId, expiredAt } = state;
 
-  const expired = new Date(expiredAt);
-  const now = new Date();
+  const expired = moment(expiredAt, 'YYYY-MM-DDThh:mm:ss.SSSSSSS+z');
+  const now = moment();
 
-  return accessToken && sessionId && expired > now;
+  return accessToken && sessionId && expired.isAfter(now);
 };
 
 

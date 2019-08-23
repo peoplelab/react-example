@@ -3,7 +3,7 @@
 //-------------------------------------------------------------------
 import { apiLogout } from '../../../models/routes/logout/logout.model';
 import history from '../../../models/common/history';
-import { types } from '../../../store/session.store';
+import { types } from '../../../store/session.store.jsx';
 
 
 // call api to do logout and reset to initial state the session storage
