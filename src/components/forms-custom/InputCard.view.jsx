@@ -14,7 +14,7 @@ const InputCard = (props) => {
     data,
     children,
     name,
-    group,
+    target,
     className,
     onClick,
   } = props;
@@ -23,10 +23,7 @@ const InputCard = (props) => {
     return children;
   }
 
-  const dataReset = {
-    [name]: '',
-    [group]: null,
-  };
+  const dataReset = target.reduce((acc, key) => ({ ...acc, [key]: '' }), { [name]: null });
 
   const mergedClass = `input-card ${className}`;
 
@@ -34,6 +31,7 @@ const InputCard = (props) => {
     <Box className={mergedClass}>
       <Card
         {...data}
+        target={target}
         name={name}
         disabled
         className="input-card__card"
@@ -49,7 +47,7 @@ const InputCard = (props) => {
 InputCard.propTypes = {
   children: PropTypes.node.isRequired,
   name: PropTypes.string.isRequired,
-  group: PropTypes.string.isRequired,
+  target: PropTypes.arrayOf(PropTypes.string).isRequired,
   data: PropTypes.object,
   className: PropTypes.string,
   onClick: PropTypes.func,

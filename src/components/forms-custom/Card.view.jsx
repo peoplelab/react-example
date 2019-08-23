@@ -32,22 +32,21 @@ const Card = (props) => {
     culture,
     name,
     className,
-    group,
+    target,
     disabled,
     onClick,
   } = props;
 
   const mergedClass = `login-card ${className}`;
 
-  const data = {
-    [name]: username,
-    [group]: {
+  const data = target.reduce((acc, key) => ({ ...acc, [key]: props[key] }), {
+    [name]: {
       issuedAt,
       groups,
       username,
       culture,
     }
-  };
+  });
 
   const [role] = groups;
   const lastAccess = moment(issuedAt, 'YYYY-MM-DDThh:mm:ss.SSSSSSS+z').format('hh:mm DD/MM/YYYY');
@@ -94,7 +93,7 @@ Card.propTypes = {
   groups: PropTypes.arrayOf(PropTypes.string),
   culture: PropTypes.string,
   name: PropTypes.string,
-  group: PropTypes.string,
+  target: PropTypes.arrayOf(PropTypes.string),
   className: PropTypes.string,
   disabled: PropTypes.bool,
   onClick: PropTypes.func,
@@ -106,7 +105,7 @@ Card.defaultProps = {
   groups: [],
   culture: '',
   name: '',
-  group: '',
+  target: [],
   className: '',
   disabled: false,
   onClick: () => {},
