@@ -64,7 +64,6 @@ const callRefresh = async ({ data, context }) => {
 
     console.log('> session refresh success');
     console.log(dataraw);
-    history.push('/');
   } else {
     dispatch({
       type: types.SESSION_ERROR,
