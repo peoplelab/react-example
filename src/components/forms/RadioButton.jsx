@@ -33,6 +33,7 @@ class RadioButton extends PureComponent {
 
   render() {
     const {
+      className,
       name,
       checked,
       onTest: _onTest, // eslint-disable-line no-unused-vars
@@ -41,11 +42,14 @@ class RadioButton extends PureComponent {
 
     const [value] = this.context;
 
+    const mergedClass = `input input__text ${className}`;
+
     return (
       <input
         id={name}
         {...rest}
-        type="text"
+        className={mergedClass}
+        type="radio"
         name={name}
         value={value[name]}
         checked={checked}
@@ -58,12 +62,14 @@ class RadioButton extends PureComponent {
 
 RadioButton.propTypes = {
   name: PropTypes.string.isRequired,
+  className: PropTypes.string,
   checked: PropTypes.bool,
   onTest: PropTypes.func,
 };
 
 RadioButton.defaultProps = {
   checked: false,
+  className: '',
   onTest: null,
 };
 

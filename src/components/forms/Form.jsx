@@ -19,14 +19,21 @@ class Form extends PureComponent {
   render() {
     const {
       children,
+      className,
       initial,
       getContext: _getContext, // eslint-disable-line no-unused-vars
       ...rest
     } = this.props;
 
+    const mergedClass = `form ${className}`;
+
     return (
       <Provider initial={initial}>
-        <form {...rest} onSubmit={null}>
+        <form
+          {...rest}
+          className={mergedClass}
+          onSubmit={null}
+        >
           {children}
         </form>
       </Provider>
@@ -36,12 +43,14 @@ class Form extends PureComponent {
 
 Form.propTypes = {
   children: PropTypes.node.isRequired,
+  className: PropTypes.string,
   initial: PropTypes.object,
   getContext: PropTypes.func,
 };
 
 Form.defaultProps = {
   initial: {},
+  className: '',
   getContext: null,
 };
 

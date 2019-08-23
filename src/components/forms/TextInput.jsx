@@ -33,6 +33,7 @@ class TextInput extends PureComponent {
 
   render() {
     const {
+      className,
       name,
       onTest: _onTest, // eslint-disable-line no-unused-vars
       ...rest
@@ -40,10 +41,13 @@ class TextInput extends PureComponent {
 
     const [value] = this.context;
 
+    const mergedClass = `input input__text ${className}`;
+
     return (
       <input
         id={name}
         {...rest}
+        className={mergedClass}
         type="text"
         name={name}
         value={value[name]}
@@ -56,10 +60,12 @@ class TextInput extends PureComponent {
 
 TextInput.propTypes = {
   name: PropTypes.string.isRequired,
+  className: PropTypes.string,
   onTest: PropTypes.func,
 };
 
 TextInput.defaultProps = {
+  className: '',
   onTest: null,
 };
 

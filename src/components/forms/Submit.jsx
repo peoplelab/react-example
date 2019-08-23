@@ -34,11 +34,14 @@ class Submit extends PureComponent {
 
     const {
       children,
+      className,
       disabled: disabledProp,
       required,
       name,
       ...rest
     } = this.props;
+
+    const mergedClass = `input input__submit ${className}`;
 
     const disabled = required.reduce((acc, key) => (
       acc || state[key] === undefined || state[key] === null || state[key] === ''
@@ -47,6 +50,7 @@ class Submit extends PureComponent {
     return (
       <button
         {...rest}
+        className={mergedClass}
         type="button"
         name={name}
         disabled={disabled}
@@ -62,12 +66,14 @@ Submit.propTypes = {
   children: PropTypes.node.isRequired,
   name: PropTypes.string.isRequired,
   disabled: PropTypes.bool,
+  className: PropTypes.string,
   required: PropTypes.arrayOf(PropTypes.string),
   onSubmit: PropTypes.func.isRequired,
 };
 
 Submit.defaultProps = {
   disabled: false,
+  className: '',
   required: [],
 };
 

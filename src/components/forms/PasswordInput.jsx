@@ -33,6 +33,7 @@ class PasswordInput extends PureComponent {
 
   render() {
     const {
+      className,
       name,
       onTest: _onTest, // eslint-disable-line no-unused-vars
       ...rest
@@ -40,10 +41,13 @@ class PasswordInput extends PureComponent {
 
     const [value] = this.context;
 
+    const mergedClass = `input input__password ${className}`;
+
     return (
       <input
         id={name}
         {...rest}
+        className={mergedClass}
         type="password"
         name={name}
         value={value[name]}
@@ -56,10 +60,12 @@ class PasswordInput extends PureComponent {
 
 PasswordInput.propTypes = {
   name: PropTypes.string.isRequired,
+  className: PropTypes.string,
   onTest: PropTypes.func,
 };
 
 PasswordInput.defaultProps = {
+  className: '',
   onTest: null,
 };
 

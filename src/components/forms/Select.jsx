@@ -48,6 +48,7 @@ class Select extends PureComponent {
 
   render() {
     const {
+      className,
       name,
       onTest: _onTest, // eslint-disable-line no-unused-vars
       options,
@@ -56,12 +57,15 @@ class Select extends PureComponent {
 
     const [value] = this.context;
 
+    const mergedClass = `input input__select ${className}`;
+
     const Options = options.map(this.mapOptions);
 
     return (
       <select
         id={name}
         {...rest}
+        className={mergedClass}
         name={name}
         value={value[name]}
         onChange={this.onChange}
@@ -81,10 +85,12 @@ const shapeOptions = {
 Select.propTypes = {
   name: PropTypes.string.isRequired,
   options: PropTypes.arrayOf(PropTypes.shape(shapeOptions)).isRequired,
+  className: PropTypes.string,
   onTest: PropTypes.func,
 };
 
 Select.defaultProps = {
+  className: '',
   onTest: null,
 };
 
