@@ -2,8 +2,9 @@
 // Login controller: controller for login
 //-------------------------------------------------------------------
 import { apiLogin, apiCultureGet, apiLastLogin } from '../../../models/routes/login/login.model';
-// import history from '../../../models/common/history';
-// import { types } from '../../../store/session.store';
+import history from '../../../models/common/history';
+import store from '../../../store/redux.store';
+import { types } from '../../../store/session.store';
 
 
 // call api to do login and set with valid credentials the session storage
@@ -18,7 +19,23 @@ export const callLogin = async ({ data, fn }) => {
 
   const { httpcode, dataraw, error } = await response;
 
-  fn(httpcode === 200 ? httpcode : dataraw || error);
+  if (httpcode === 200) {
+    store.dispatch({
+      type: types.SET_SESSION,
+      payload: dataraw,
+    });
+    fn({ errorOnLogin: false });
+    history.push('/');
+
+    console.log('> login success');
+    console.log(dataraw);
+  } else {
+    fn({ errorOnLogin: true });
+
+    console.log('> login error');
+    console.log(dataraw);
+    console.log(error);
+  }
 };
 
 export const callCultureGet = async ({ fn }) => {
@@ -43,7 +60,7 @@ export const callLastLogin = async ({ fn }) => {
 // //-------------------------------------------------------------------
 // import { apiLogin } from '../../../models/routes/login/login.model';
 // // import history from '../../../models/common/history';
-// // import { types } from '../../../store/session.store';
+// // import { types } from '../../../store/session.store.jsx';
 
 
 // // call api to do login and set with valid credentials the session storage

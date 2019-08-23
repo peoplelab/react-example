@@ -14,7 +14,6 @@ import Field from '../../forms/Field';
 import LoginError from './Login.item.Error';
 
 import { callLogin, callCultureGet, callLastLogin } from '../../../controllers/routes/login/login.controller';
-import { SessionContext } from '../../../store/session.store';
 
 import '../../../styles/routes/login.style.scss'; // apply Login style to this route
 
@@ -29,7 +28,6 @@ const initial = {
 
 
 class LoginRoute extends Component {
-  static contextType = SessionContext;
 
 	constructor(props) {
     super(props);
@@ -38,6 +36,7 @@ class LoginRoute extends Component {
       ...initial,
       usersList: [],
       cultureList: [],
+      errorOnLogin: false,
     };
 
     this.updateState = this.updateState.bind(this);
@@ -48,7 +47,6 @@ class LoginRoute extends Component {
 
   componentDidMount() {
     const fn = this.updateState;
-    // const fn = () => {};
 
     callCultureGet({ fn });
     callLastLogin({ fn });
@@ -71,21 +69,16 @@ class LoginRoute extends Component {
   }
 
   onLogin(data, event) {
-    // const context = this.context;
+    const fn = this.updateState;
 
     callLogin({
       data,
-      // context
-      fn: (data) => { alert(data); },
+      fn,
     });
   }
 
 	render() {
-    const [state] = this.context;
-
-    const errorOnLogin = !(state.failure === null && state.error === null);
-
-    const { username, password, culture, data, usersList, cultureList } = this.state;
+    const { username, password, culture, data, usersList, cultureList, errorOnLogin } = this.state;
 
     const newCultureList = cultureList.map((value) => ({ value: value.code, message: value.description }));
 
