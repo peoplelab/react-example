@@ -28,7 +28,6 @@ const initial = {
 };
 
 
-
 class LoginRoute extends Component {
   static contextType = SessionContext;
 
@@ -38,7 +37,7 @@ class LoginRoute extends Component {
     this.state = {
       ...initial,
       usersList: [],
-      options: [],
+      cultureList: [],
     };
 
     this.updateState = this.updateState.bind(this);
@@ -86,9 +85,9 @@ class LoginRoute extends Component {
 
     const errorOnLogin = !(state.failure === null && state.error === null);
 
-    const { username, password, culture, data, usersList, options } = this.state;
+    const { username, password, culture, data, usersList, cultureList } = this.state;
 
-    const newOptions = options.map((value) => ({ value: value.code, message: value.description }));
+    const newCultureList = cultureList.map((value) => ({ value: value.code, message: value.description }));
 
     return (
       <section className="login">
@@ -117,7 +116,7 @@ class LoginRoute extends Component {
               </Field>
               <Field className="login__field">
                 <Select
-                  className="login__select-input" name="culture" value={culture} onChange={this.onChange} options={newOptions}
+                  className="login__select-input" name="culture" value={culture} onChange={this.onChange} options={newCultureList}
                 />
               </Field>
               <Submit className="login__form-submit" required={required} value={this.state} onSubmit={this.onLogin} name="login-form">

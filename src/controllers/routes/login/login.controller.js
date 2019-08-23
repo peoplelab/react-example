@@ -26,7 +26,7 @@ export const callCultureGet = async ({ fn }) => {
 
   const { httpcode, dataraw, error } = await response;
 
-  fn({ options: httpcode === 200 ? dataraw : dataraw || error });
+  fn({ cultureList: httpcode === 200 ? dataraw : dataraw || error });
 };
 
 export const callLastLogin = async ({ fn }) => {
