@@ -13,6 +13,10 @@ module.exports = [
     "api": require(`.${url.login}`),
   },
   {
+    "url": `${url.login}/latest/:ip/:numerOfLogins`,
+    "api": require(`.${url.login}/latest`),
+  },
+  {
     "url": url.logout,
     "api": require(`.${url.logout}`),
   },
