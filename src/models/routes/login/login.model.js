@@ -5,9 +5,11 @@
 import { base } from '../../common/model.base';
 
 
+const IP = '1';
+
 const defaultData = {
   GrantType: 'Password',
-  IP: '1',
+  IP,
 };
 
 
@@ -27,4 +29,31 @@ export const apiLogin = async (data) => {
   };
 
   return base('/api/v1/Token', request);
+};
+
+
+
+// get cultures list
+export const apiCultureGet = async () => {
+  const request = {
+    method: "get",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+
+  return base('/api/v1/Cultures', request);
+};
+
+
+// get last users logged list
+export const apiLastLogin = async () => {
+  const request = {
+    method: "get",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+
+  return base(`api/v1/Token/latest/${IP}/9`, request);
 };

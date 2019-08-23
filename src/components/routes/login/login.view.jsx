@@ -1,60 +1,95 @@
-import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from 'react';
+// import PropTypes from 'prop-types';
 
 import Box from '../../layouts/Box';
 import LoginCard from '../../forms-custom/Card.view';
 import InputCard from '../../forms-custom/InputCard.view';
 import Gallery from '../../layouts/Gallery.view';
 import Form from '../../forms/Form';
+import TextInput from '../../forms/TextInput';
 import PasswordInput from '../../forms/PasswordInput';
 import Select from '../../forms/Select';
 import Submit from '../../forms/Submit';
 import Field from '../../forms/Field';
 import LoginError from './Login.item.Error';
 
-import { callLogin } from '../../../controllers/routes/login/login.controller';
+import { callLogin, callCultureGet, callLastLogin } from '../../../controllers/routes/login/login.controller';
 import { SessionContext } from '../../../store/session.store';
 
 import '../../../styles/routes/login.style.scss'; // apply Login style to this route
 
 
 const required = ['username', 'password'];
-const initial = {
-  username: '',
-  password: '',
-  culture: 'it-IT',
-};
 
 
-class LoginRoute extends PureComponent {
+class LoginRoute extends Component {
   static contextType = SessionContext;
 
 	constructor(props) {
     super(props);
 
+    this.state = {
+      username: '',
+      password: '',
+      culture: 'it-IT',
+      data: null,
+      usersList: [],
+      options: [],
+    };
+
+    this.updateState = this.updateState.bind(this);
+    this.setUsername = this.setUsername.bind(this);
+    this.onChange = this.onChange.bind(this);
     this.onLogin = this.onLogin.bind(this);
   }
 
+  componentDidMount() {
+    const fn = this.updateState;
+    // const fn = () => {};
+
+    callCultureGet({ fn });
+    callLastLogin({ fn });
+  }
+
+  updateState(data) {
+    this.setState(data);
+  }
+
+  onChange(event) {
+    const { name, value } = event.target;
+
+    this.setState({ [name]: value });
+  }
+
+  setUsername(event) {
+    const { data } = event;
+
+    this.setState(data);
+  }
+
   onLogin(data, event) {
-    const context = this.context;
+    // const context = this.context;
 
     callLogin({
       data,
-      context
+      // context
+      fn: (data) => { alert(data); },
     });
   }
 
 	render() {
     const [state] = this.context;
 
-    const { options, usersList } = this.props;
-
     const errorOnLogin = !(state.failure === null && state.error === null);
+
+    const { username, password, culture, data, usersList, options } = this.state;
+
+    const newOptions = options.map(({ code, description }) => ({ value: code, message: description }));
 
     return (
       <section className="login">
         <Box className="login__dialog">
-          <Form className="login__form" name="login-form" initial={initial}>
+          <Form className="login__form" name="login-form">
             <p className="login__title">
               Inserisci i tuoi dati
             </p>
@@ -64,24 +99,23 @@ class LoginRoute extends PureComponent {
                   className="login__text-input"
                   name="username"
                   group="data"
-                  placeholder="Username"
-                />
+                  data={data}
+                  onClick={this.setUsername}
+                >
+                  <TextInput className="login__text-input" name="username" value={username} onChange={this.onChange} placeholder="Username" />
+                </InputCard>
               </Field>
               <Field className="login__field">
                 <PasswordInput
-                  className="login__text-input"
-                  name="password"
-                  placeholder="Password"
+                  className="login__text-input" name="password" value={password} onChange={this.onChange} placeholder="Password"
                 />
               </Field>
               <Field className="login__field">
                 <Select
-                  className="login__select-input"
-                  name="culture"
-                  options={options}
+                  className="login__select-input" name="culture" value={culture} onChange={this.onChange} options={newOptions}
                 />
               </Field>
-              <Submit className="login__form-submit" required={required} onSubmit={this.onLogin} name="login-form">
+              <Submit className="login__form-submit" required={required} value={this.state} onSubmit={this.onLogin} name="login-form">
                 Login
               </Submit>
             </Box>
@@ -89,7 +123,7 @@ class LoginRoute extends PureComponent {
               className="login__form-gallery"
               list={usersList}
             >
-              <LoginCard name="username" group="data" />
+              <LoginCard name="username" group="lastLogin" onClick={this.setUsername} />
             </Gallery>
           </Form>
         </Box>
@@ -99,90 +133,17 @@ class LoginRoute extends PureComponent {
 	}
 }
 
-/**
- * Define object keys id and relative value types
- */
-const shapeOptions = {
-  deafult: PropTypes.bool,
-  message: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
-};
-
 
 /**
  * Define component properties types
  */
 LoginRoute.propTypes = {
-  options: PropTypes.arrayOf(PropTypes.shape(shapeOptions)),
-  usersList: PropTypes.arrayOf(PropTypes.object),
 };
 
 /**
  * Define default value of component properties
  */
 LoginRoute.defaultProps = {
-  usersList: [
-    {
-      lastAccess: '9:35 05/06/2019',
-      username: 'Stephan Kuttingen',
-      gender: 'male',
-      role: 'user',
-    },
-    {
-      lastAccess: '10:40 04/06/2019',
-      username: 'Alfred Marakakhov',
-      gender: 'male',
-      role: 'super',
-    },
-    {
-      lastAccess: '9:35 05/06/2019',
-      username: 'Stephan Kuttingen',
-      gender: 'female',
-      role: 'user',
-    },
-    {
-      lastAccess: '10:40 04/06/2019',
-      username: 'Alfred Marakakhov',
-      gender: 'female',
-      role: 'super',
-    },
-    {
-      lastAccess: '9:35 05/06/2019',
-      username: 'Stephan Kuttingen',
-      gender: 'male',
-      role: 'user',
-    },
-    {
-      lastAccess: '10:40 04/06/2019',
-      username: 'Alfred Marakakhov',
-      gender: 'male',
-      role: 'super',
-    },
-    {
-      lastAccess: '9:35 05/06/2019',
-      username: 'Stephan Kuttingen',
-      gender: 'female',
-      role: 'user',
-    },
-    {
-      lastAccess: '10:40 04/06/2019',
-      username: 'Alfred Marakakhov',
-      gender: 'female',
-      role: 'super',
-    },
-    {
-      lastAccess: '8:21 04/06/2019',
-      username: 'Maurizia Gambelli',
-      gender: 'female',
-      role: 'admin',
-    }
-  ],
-  options: [
-    {
-      message: 'it-IT',
-      value: 'it-IT',
-    }
-  ]
 };
 
 
