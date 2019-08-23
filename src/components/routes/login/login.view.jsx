@@ -20,6 +20,13 @@ import '../../../styles/routes/login.style.scss'; // apply Login style to this r
 
 
 const required = ['username', 'password'];
+const initial = {
+  username: '',
+  password: '',
+  culture: 'it-IT',
+  data: null,
+};
+
 
 
 class LoginRoute extends Component {
@@ -29,10 +36,7 @@ class LoginRoute extends Component {
     super(props);
 
     this.state = {
-      username: '',
-      password: '',
-      culture: 'it-IT',
-      data: null,
+      ...initial,
       usersList: [],
       options: [],
     };
@@ -100,6 +104,7 @@ class LoginRoute extends Component {
                   target={["username", "culture"]}
                   name="data"
                   data={data}
+                  reset={initial}
                   onClick={this.setUsername}
                 >
                   <TextInput className="login__text-input" name="username" value={username} onChange={this.onChange} placeholder="Username" />

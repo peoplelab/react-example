@@ -16,14 +16,13 @@ const InputCard = (props) => {
     name,
     target,
     className,
+    reset,
     onClick,
   } = props;
 
   if (data === null) {
     return children;
   }
-
-  const dataReset = target.reduce((acc, key) => ({ ...acc, [key]: '' }), { [name]: null });
 
   const mergedClass = `input-card ${className}`;
 
@@ -36,7 +35,7 @@ const InputCard = (props) => {
         disabled
         className="input-card__card"
       />
-      <ButtonData className="input-card__reset" data={dataReset} onClick={onClick}>
+      <ButtonData className="input-card__reset" data={reset} onClick={onClick}>
         <img className="input-card__reset-icon" src={resetIcon} alt="reset" />
       </ButtonData>
     </Box>
@@ -50,12 +49,14 @@ InputCard.propTypes = {
   target: PropTypes.arrayOf(PropTypes.string).isRequired,
   data: PropTypes.object,
   className: PropTypes.string,
+  reset: PropTypes.object,
   onClick: PropTypes.func,
 };
 
 InputCard.defaultProps = {
   className: '',
   data: null,
+  reset: null,
   onClick: () => {},
 };
 
