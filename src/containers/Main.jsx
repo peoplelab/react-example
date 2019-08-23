@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import createRoutes from './Router';
 import { logged } from '../controllers/common/session';
-import { SessionContext } from '../store/session.store';
 import { SessionValidity } from '../controllers/session.controller';
 
 
@@ -38,8 +38,6 @@ const mapRoutes = (routeProps) => {
  * Define and handle navigation components routes
  */
 class MainComponent extends Component {
-  static contextType = SessionContext;
-
   constructor(props) {
     super(props);
 
@@ -51,15 +49,11 @@ class MainComponent extends Component {
       clearTimeout(this.timer);
     }
 
-    this.timer = SessionValidity(this.context);
+    this.timer = SessionValidity();
   }
 
   render() {
-    const [state] = this.context;
-    /**
-     * Retrive the store to inject it into the routes
-     */
-    const isUserLogged = logged(state.session);
+    const { isUserLogged } = this.props;
 
     /**
      * Inject the store into the routes and retrive their map
@@ -94,6 +88,7 @@ class MainComponent extends Component {
  * Define component properties types
  */
 MainComponent.propTypes = {
+  isUserLogged: PropTypes.bool.isRequired,
 };
 
 /**
@@ -103,4 +98,8 @@ MainComponent.defaultProps = {
 };
 
 
-export default MainComponent;
+const mapStateToProps = state => ({
+  isUserLogged: logged(state) || false,
+});
+
+export default connect(mapStateToProps)(MainComponent);
