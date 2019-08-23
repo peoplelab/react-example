@@ -84,7 +84,7 @@ class LoginRoute extends Component {
 
     const { username, password, culture, data, usersList, options } = this.state;
 
-    const newOptions = options.map(({ code, description }) => ({ value: code, message: description }));
+    const newOptions = options.map((value) => ({ value: value.code, message: value.description }));
 
     return (
       <section className="login">
@@ -97,8 +97,8 @@ class LoginRoute extends Component {
               <Field className="login__field">
                 <InputCard
                   className="login__text-input"
-                  name="username"
-                  group="data"
+                  target={["username", "culture"]}
+                  name="data"
                   data={data}
                   onClick={this.setUsername}
                 >
@@ -123,7 +123,11 @@ class LoginRoute extends Component {
               className="login__form-gallery"
               list={usersList}
             >
-              <LoginCard name="username" group="lastLogin" onClick={this.setUsername} />
+              <LoginCard
+                target={["username", "culture"]}
+                name="data"
+                onClick={this.setUsername}
+              />
             </Gallery>
           </Form>
         </Box>
