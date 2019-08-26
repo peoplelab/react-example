@@ -62,20 +62,20 @@ class MainComponent extends Component {
      * List of primary routes
      */
     const Primary = routes.primary.map(mapRoutes);
-    const Secondary = routes.secondary.map(mapRoutes);
+    // const Secondary = routes.secondary.map(mapRoutes);
     const Logged = isUserLogged ? routes.logged.map(mapRoutes) : null;
     // const Messages = isUserLogged && routes.messages.map(mapRoutes);
-    const External = routes.external.map(mapRoutes);
+    // const External = routes.external.map(mapRoutes);
 
     return (
       <Switch>
         {/* <Template> */}
           {Primary}
         {/* </Template> */}
-        {Secondary}
+        {/* {Secondary} */}
         {Logged}
         {/* {Messages} */}
-        {External}
+        {/* {External} */}
       </Switch>
     );
   }

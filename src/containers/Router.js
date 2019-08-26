@@ -37,7 +37,7 @@ const createRoutes = store => ({
    *
    * Note: login by user not required
    */
-  secondary: [],
+  // secondary: [],
   /**
    * Map of routes that required login by user.
    */
@@ -62,13 +62,13 @@ const createRoutes = store => ({
    *
    * Note: login by user required.
    */
-  messages: [],
+  // messages: [],
   /**
    * Landing page routes separated from other flows
    *
    * Note: login by user not required
    */
-  external: [],
+  // external: [],
 });
 
 
