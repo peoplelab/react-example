@@ -1,7 +1,9 @@
+import { connect } from 'react-redux';
+import Main from './Main.view';
 import moment from 'moment';
 
 
-// check if the user has valid credentials
+// Verifica che l'utente sia in possesso di credenziali ancora valide
 export const logged = (state) => {
   const { accessToken, sessionId, expiredAt } = state;
 
@@ -10,3 +12,12 @@ export const logged = (state) => {
 
   return accessToken && sessionId && expired.isAfter(now);
 };
+
+
+
+const mapStateToProps = state => ({
+  isUserLogged: logged(state) || false,
+});
+
+
+export default connect(mapStateToProps)(Main);

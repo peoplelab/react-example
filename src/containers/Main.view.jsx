@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import createRoutes from './Router';
-import { logged } from '../controllers/common/session';
 import { SessionValidity } from '../controllers/session.controller';
 
 
@@ -98,8 +96,4 @@ MainComponent.defaultProps = {
 };
 
 
-const mapStateToProps = state => ({
-  isUserLogged: logged(state) || false,
-});
-
-export default connect(mapStateToProps)(MainComponent);
+export default MainComponent;
