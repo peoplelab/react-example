@@ -1,4 +1,4 @@
-import { types } from '../../store/session.store.2.jsx';
+// import { types } from '../../store/session.store.2.jsx';
 import moment from 'moment';
 
 
@@ -34,27 +34,27 @@ export const logged = (state) => {
 //    userId,
 //  }
 //---------------------------------------------------------------------
-export const sessionFailure = (constext, payload) => {
-  const [, dispatch] = constext;
+// export const sessionFailure = (constext, payload) => {
+//   const [, dispatch] = constext;
 
-  dispatch({
-    type: types.SESSION_FAILURE,
-    payload,
-  });
-};
-export const sessionSuccess = (constext, payload) => {
-  const [, dispatch] = constext;
+//   dispatch({
+//     type: types.SESSION_FAILURE,
+//     payload,
+//   });
+// };
+// export const sessionSuccess = (constext, payload) => {
+//   const [, dispatch] = constext;
 
-  dispatch({
-    type: types.SESSION_SUCCESS,
-    payload,
-  });
-};
-export const sessionError = (constext, payload) => {
-  const [, dispatch] = constext;
+//   dispatch({
+//     type: types.SESSION_SUCCESS,
+//     payload,
+//   });
+// };
+// export const sessionError = (constext, payload) => {
+//   const [, dispatch] = constext;
 
-  dispatch({
-    type: types.SESSION_ERROR,
-    payload,
-  });
-};
+//   dispatch({
+//     type: types.SESSION_ERROR,
+//     payload,
+//   });
+// };
