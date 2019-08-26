@@ -6,7 +6,7 @@
 //----------------------------------------------------------------------------------------
 
 import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 
 // -------------------------------------------------------------------------------------
@@ -45,14 +45,12 @@ class ToolsRoute extends PureComponent {
   }
 
   onCallList() {
-    const { headers } = this.props;
     const dispatch = this.updateState;
 
-    callToolsList({ headers, dispatch });
+    callToolsList({ dispatch });
   }
 
 	render() {
-    const { headers } = this.props;
     return (
       <section className="tools">
         <h1 className="tools__title">
@@ -64,7 +62,7 @@ class ToolsRoute extends PureComponent {
               Get tools list
             </Button>
           </Box>
-          <List headers={headers} toolsSetState={this.updateState} toolsGetState={this.state} />
+          <List toolsSetState={this.updateState} toolsGetState={this.state} />
           <Details toolsGetState={this.state} />
         </Box>
       </section>
@@ -74,7 +72,6 @@ class ToolsRoute extends PureComponent {
 
 
 ToolsRoute.propTypes = {
-  headers: PropTypes.object.isRequired,
 };
 
 ToolsRoute.defaultProps = {

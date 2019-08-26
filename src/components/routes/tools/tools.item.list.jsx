@@ -29,11 +29,10 @@ class ListItem extends PureComponent {
   onCallDetails(event) {
     const { data } = event;
 
-    const { headers, toolsSetState } = this.props;
+    const { toolsSetState } = this.props;
 
     callToolDetails({
       data,
-      headers,
       dispatch: toolsSetState,
     });
   }
@@ -95,7 +94,6 @@ class ListItem extends PureComponent {
 
 
 ListItem.propTypes = {
-  headers: PropTypes.object.isRequired,
   toolsSetState: PropTypes.func.isRequired,
   toolsGetState: PropTypes.object.isRequired,
 };

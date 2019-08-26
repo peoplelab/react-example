@@ -14,9 +14,7 @@ class HomeRoute extends PureComponent {
   }
 
 	onLogout() {
-    const { headers } = this.props;
-
-		callLogout({ headers });
+		callLogout({});
 	}
 
 	render() {
@@ -55,7 +53,6 @@ class HomeRoute extends PureComponent {
  * Define component properties types
  */
 HomeRoute.propTypes = {
-  headers: PropTypes.object.isRequired,
 };
 
 /**

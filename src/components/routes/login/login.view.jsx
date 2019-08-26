@@ -46,14 +46,14 @@ class LoginRoute extends Component {
   }
 
   componentDidMount() {
-    const fn = this.updateState;
+    const dispatch = this.updateState;
 
-    callCultureGet({ fn });
-    callLastLogin({ fn });
+    callCultureGet({ dispatch });
+    callLastLogin({ dispatch });
   }
 
-  updateState(data) {
-    this.setState(data);
+  updateState(newState) {
+    this.setState(newState);
   }
 
   onChange(event) {
@@ -69,11 +69,11 @@ class LoginRoute extends Component {
   }
 
   onLogin(data, event) {
-    const fn = this.updateState;
+    const dispatch = this.updateState;
 
     callLogin({
       data,
-      fn,
+      dispatch,
     });
   }
 

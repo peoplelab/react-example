@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 import Box from '../../layouts/Box';
 import Button from '../../layouts/Button';
@@ -68,52 +68,37 @@ class CulturesRoute extends PureComponent {
   }
 
   onGetCultures() {
-    const { headers } = this.props;
-    const dispatch = this.updateState;
-
     callCulturesGet({
-      headers,
-      dispatch,
+      dispatch: this.updateState,
     });
   }
 
   onAddCulture() {
-    const { headers } = this.props;
-    const dispatch = this.updateState;
-
     const { code, description } = this.state;
 
     callCulturesPost({
       data: { code, description },
-      headers,
-      dispatch,
+      dispatch: this.updateState,
       state: this.state,
     });
   }
 
   onRemoveCulture(event) {
     const { data } = event;
-    const { headers } = this.props;
-    const dispatch = this.updateState;
 
     callCulturesDelete({
       data,
-      headers,
-      dispatch,
+      dispatch: this.updateState,
       state: this.state,
     });
   }
 
   onUpdateCulture(event) {
-    const { headers } = this.props;
-    const dispatch = this.updateState;
-
     const { id, code, description } = this.state;
 
     callCulturesPut({
       data: { id, code, description },
-      headers,
-      dispatch,
+      dispatch: this.updateState,
       state: this.state,
     });
   }
@@ -234,7 +219,6 @@ class CulturesRoute extends PureComponent {
 
 
 CulturesRoute.propTypes = {
-  headers: PropTypes.object.isRequired,
 };
 
 CulturesRoute.defaultProps = {
