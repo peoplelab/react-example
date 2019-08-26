@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import Box    from '../../layouts/Box';
 import Anchor from '../../layouts/Anchor';
 import Button from '../../layouts/Button';
