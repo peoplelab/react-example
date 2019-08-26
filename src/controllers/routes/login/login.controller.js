@@ -5,54 +5,58 @@ import { apiLogin, apiCultureGet, apiLastLogin } from '../../../models/routes/lo
 import history from '../../../models/common/history';
 import store from '../../../store/redux.store';
 import { types } from '../../../store/session.store';
+import { base } from '../../common/controller.base';
 
 
 // call api to do login and set with valid credentials the session storage
-export const callLogin = async ({ data, fn }) => {
+export const callLogin = async ({ data, dispatch }) => {
   const request = {
     UserName: data.username,
     Password: data.password,
     Culture: data.culture,
   };
 
-  const response = apiLogin(request);
-
-  const { httpcode, dataraw, error } = await response;
-
-  if (httpcode === 200) {
-    store.dispatch({
-      type: types.SET_SESSION,
-      payload: dataraw,
-    });
-    fn({ errorOnLogin: false });
-    history.push('/');
-
-    console.log('> login success');
-    console.log(dataraw);
-  } else {
-    fn({ errorOnLogin: true });
-
-    console.log('> login error');
-    console.log(dataraw);
-    console.log(error);
-  }
+  base({
+    request,
+    api: apiLogin,
+    success: ({ dataraw }) => {
+      store.dispatch({
+        type: types.SET_SESSION,
+        payload: dataraw,
+      });
+      dispatch({ errorOnLogin: false });
+      history.push('/');
+    },
+    failure: () => {
+      dispatch({ errorOnLogin: true });
+    }
+  });
 };
 
-export const callCultureGet = async ({ fn }) => {
-  const response = apiCultureGet();
-
-  const { httpcode, dataraw, error } = await response;
-
-  fn({ cultureList: httpcode === 200 ? dataraw : dataraw || error });
+export const callCultureGet = async ({ data, dispatch }) => {
+  base({
+    api: apiCultureGet,
+    success: ({ dataraw }) => {
+      dispatch({ cultureList: dataraw });
+    },
+    failure: ({ dataraw, error }) => {
+      dispatch({ cultureList: dataraw || error });
+    }
+  });
 };
 
-export const callLastLogin = async ({ fn }) => {
-  const response = apiLastLogin();
-
-  const { httpcode, dataraw, error } = await response;
-
-  fn({ usersList: httpcode === 200 ? dataraw : dataraw || error });
+export const callLastLogin = async ({ dispatch }) => {
+  base({
+    api: apiLastLogin,
+    success: ({ dataraw }) => {
+      dispatch({ usersList: dataraw });
+    },
+    failure: ({ dataraw, error }) => {
+      dispatch({ usersList: dataraw || error });
+    }
+  });
 };
+
 
 
 // //-------------------------------------------------------------------

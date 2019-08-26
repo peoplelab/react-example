@@ -6,12 +6,12 @@ import { base } from '../../common/model.base';
 
 
 // get tools list
-export const apiList = async (session) => {
+export const apiList = async ({ headers }) => {
   const request = {
     method: "get",
     headers: {
       "Content-Type": "application/json",
-      ...session,
+      ...headers,
     },
   };
 
@@ -20,14 +20,14 @@ export const apiList = async (session) => {
 
 
 // get tool details
-export const apiDetails = async (id, session) => {
+export const apiDetails = async ({ headers, params }) => {
   const request = {
     method: "get",
     headers: {
       "Content-Type": "application/json",
-      ...session,
+      ...headers,
     },
   };
 
-  return base(`/api/v1/tools/${id}`, request);
+  return base(`/api/v1/tools/${params.id}`, request);
 };

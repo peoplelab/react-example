@@ -7,6 +7,7 @@ import {
   apiCultureDelete,
   apiCulturePut
 } from '../../../models/routes/cultures/cultures.model';
+import { base } from '../../common/controller.base';
 
 
 const dataPost = (state, payload) => {
@@ -18,12 +19,6 @@ const dataPost = (state, payload) => {
     description: payload.description,
   }];
 
-  console.log('POST -----------------------------------------');
-  console.log(state);
-  console.log(payload);
-  console.log(newData);
-  console.log('POST -----------------------------------------');
-
   return { ...state, data: newData };
 };
 const dataDelete = (state, payload) => {
@@ -33,12 +28,6 @@ const dataDelete = (state, payload) => {
 
   const { data } = state;
   const newData = data.filter(({ id }) => id !== payload.id);
-
-  console.log('DELETE -----------------------------------------');
-  console.log(state);
-  console.log(payload);
-  console.log(newData);
-  console.log('DELETE -----------------------------------------');
 
   return { ...state, data: newData };
 };
@@ -59,127 +48,81 @@ const dataPut = (state, payload) => {
     description: payload.description,
   }, ...after];
 
-  console.log('PUT -----------------------------------------');
-  console.log(state);
-  console.log(payload);
-  console.log(newData);
-  console.log('PUT -----------------------------------------');
-
   return { ...state, data: newData };
 };
 
 
 // call api to retrive culture list and add it to context storage
-export const callCulturesGet = async ({ headers, dispatch }) => {
-  const response = apiCultureGet(headers);
-
-  const { httpcode, dataraw, error } = await response;
-
-  if (error) {
-    dispatch({ error, list: [] });
-
-    console.log('> culture get list failure');
-    console.log(error);
-  } else if (httpcode === 200) {
-    dispatch({ data: dataraw });
-
-    console.log('> culture get list success');
-    console.log(dataraw);
-  } else {
-    dispatch({ error: dataraw, data: [] });
-
-    console.log('> culture get list error');
-    console.log(dataraw);
-  }
+export const callCulturesGet = async ({ dispatch }) => {
+  base({
+    api: apiCultureGet,
+    success: ({ dataraw }) => {
+      dispatch({ data: dataraw });
+    },
+    failure: () => {
+      dispatch({ data: [] });
+    }
+  });
 };
 
 // call api to add culture to list and update context storage
-export const callCulturesPost = async ({ data, headers, dispatch, state }) => {
-  const request = {
-    code: data.code,
-    description: data.description,
+export const callCulturesPost = async ({ data, dispatch, state }) => {
+  const arg = {
+    request: {
+      code: data.code,
+      description: data.description,
+    },
+    api: apiCulturePost,
+    success: ({ dataraw }) => {
+      dispatch(dataPost(state, { ...arg.request, id: dataraw }));
+    },
+    failure: ({ dataraw, error }) => {
+      dispatch({ error: dataraw || error });
+    }
   };
 
-  const response = apiCulturePost(request, headers);
-
-  const { httpcode, dataraw, error } = await response;
-
-  if (error) {
-    dispatch({ error });
-
-    console.log('> culture post new item to list failure');
-    console.log(error);
-  } else if (httpcode === 200) {
-
-    dispatch(dataPost(state, { ...request, id: dataraw }));
-
-    console.log('> culture post new item to list success');
-    console.log(dataraw);
-  } else {
-    dispatch({ error: dataraw });
-
-    console.log('> culture post new item to list error');
-    console.log(dataraw);
-  }
+  base(arg);
 };
 
 // call api to delete culture from list and update context storage
-export const callCulturesDelete = async ({ data, headers, dispatch, state }) => {
-  const id = data;
+export const callCulturesDelete = async ({ data, dispatch, state }) => {
+  const arg = {
+    params: {
+      id: data,
+    },
+    api: apiCultureDelete,
+    success: ({ dataraw }) => {
+      dispatch(dataDelete(state, { id: arg.params.id }));
+    },
+    failure: ({ dataraw, error }) => {
+      dispatch({ error: dataraw || error, id: '' });
+    }
+  };
 
-  const response = apiCultureDelete(id, headers);
-
-  const { httpcode, dataraw, error } = await response;
-
-  if (error) {
-    dispatch({ error });
-
-    console.log('> culture delete item from list failure');
-    console.log(error);
-  } else if (httpcode === 200) {
-    dispatch(dataDelete(state, { id }));
-
-    console.log('> culture delete item from list success');
-    console.log(dataraw);
-  } else {
-    dispatch({ error: dataraw, id: '' });
-
-    console.log('> culture delete item from list error');
-    console.log(dataraw);
-  }
+  base(arg);
 };
 
 // call api to update list culture and relative item of context storage
-export const callCulturesPut = async ({ data, headers, dispatch, state }) => {
-  const request = {
-    id: data.id,
-    code: data.code,
-    description: data.description,
+export const callCulturesPut = async ({ data, dispatch, state }) => {
+  const arg = {
+    request: {
+      id: data.id,
+      code: data.code,
+      description: data.description,
+    },
+    api: apiCulturePut,
+    success: ({ dataraw }) => {
+      dispatch(dataPut(state, { ...arg.request }));
+    },
+    failure: ({ dataraw, error }) => {
+      dispatch({
+        error: dataraw,
+        id: '',
+        code: '',
+        description: '',
+      });
+    }
   };
 
-  const response = apiCulturePut(request, headers);
-
-  const { httpcode, dataraw, error } = await response;
-
-  if (error) {
-    dispatch({ error });
-
-    console.log('> culture update list item failure');
-    console.log(error);
-  } else if (httpcode === 200) {
-    dispatch(dataPut(state, { ...request }));
-
-    console.log('> culture update list item success');
-    console.log(dataraw);
-  } else {
-    dispatch({
-      error: dataraw,
-      id: '',
-      code: '',
-      description: '',
-    });
-
-    console.log('> culture update list item error');
-    console.log(dataraw);
-  }
+  base(arg);
 };

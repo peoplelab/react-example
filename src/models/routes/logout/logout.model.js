@@ -6,7 +6,7 @@ import { base } from '../../common/model.base';
 
 
 // do logout
-export const apiLogout = async (headers) => {
+export const apiLogout = async ({ headers }) => {
   const request = {
     method: "put",
     headers: {

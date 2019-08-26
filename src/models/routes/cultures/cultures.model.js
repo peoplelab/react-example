@@ -11,12 +11,12 @@ import { base } from '../../common/model.base';
 const url = '/api/v1/Cultures';
 
 // get cultures list
-export const apiCultureGet = async (session) => {
+export const apiCultureGet = async ({ headers }) => {
   const request = {
     method: "get",
     headers: {
       "Content-Type": "application/json",
-      ...session,
+      ...headers,
     },
   };
 
@@ -24,12 +24,12 @@ export const apiCultureGet = async (session) => {
 };
 
 // add new culture to list
-export const apiCulturePost = async (data, session) => {
+export const apiCulturePost = async ({ headers, request: data }) => {
   const request = {
     method: "post",
     headers: {
       "Content-Type": "application/json",
-      ...session,
+      ...headers,
     },
     body: JSON.stringify(data),
   };
@@ -38,25 +38,25 @@ export const apiCulturePost = async (data, session) => {
 };
 
 // delete culture from list
-export const apiCultureDelete = async (id, session) => {
+export const apiCultureDelete = async ({ headers, params }) => {
   const request = {
     method: "delete",
     headers: {
       "Content-Type": "application/json",
-      ...session,
+      ...headers,
     },
   };
 
-  return base(`${url}/${id}`, request);
+  return base(`${url}/${params.id}`, request);
 };
 
 // update specific list culture
-export const apiCulturePut = async (data, session) => {
+export const apiCulturePut = async ({ headers, request: data }) => {
   const request = {
     method: "put",
     headers: {
       "Content-Type": "application/json",
-      ...session,
+      ...headers,
     },
     body: JSON.stringify(data),
   };

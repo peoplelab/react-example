@@ -11,7 +11,7 @@ const defaultData = {
 
 
 // do login
-export const apiRefresh = async (data) => {
+export const apiRefresh = async ({ request: data }) => {
   const body = {
     ...defaultData,
     ...data,

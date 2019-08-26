@@ -14,7 +14,7 @@ const defaultData = {
 
 
 // do login
-export const apiLogin = async (data) => {
+export const apiLogin = async ({ request: data }) => {
   const body = {
     ...defaultData,
     ...data,
