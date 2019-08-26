@@ -1,14 +1,17 @@
+//----------------------------------------------------------------------------------------
+// File: AsyncComponent.jsx
+//
+// Desc: Componente React per il caricamento asincrono dei componenti della view
+// Path: /src/components/common/AsyncComponent
+//----------------------------------------------------------------------------------------
+
+
 import React, { Component as ReactComponent } from 'react';
 
 
 let IS_MOUNTED = false;
 
-/**
- * Handle asynchronous loading of React components
- *
- * Note: if required, it sends Redux store to component
- * @param {React} importComponent React async component
- */
+// Recupera il componente React da caricare in modo asincrono
 const AsyncComponent = importComponent => (
   class extends ReactComponent {
     static get mountedComponent() {
@@ -23,22 +26,18 @@ const AsyncComponent = importComponent => (
     constructor(props) {
       super(props);
 
-      /**
-       * Prevent setState on unmounted compoent
-       */
+      // Previene l'uso di setState negli unmunted component
       this.mounted = AsyncComponent.mountedComponent;
 
-      /**
-       * Load component when ready
-       */
+      // Carica il componente React appena è disponibile
       this.state = { Component: null };
     }
 
     componentDidMount() {
+      // Avverte la promise che il AsyncComponent è stato caricato completamente
       this.mounted = true;
-      /**
-       * Retrive asynchronous the async component to render
-       */
+
+      // Recupera, in modo asincrono, il componente React da caricare
       importComponent().then((component) => {
         if (!(this.mounted) ){
           return;
@@ -46,24 +45,21 @@ const AsyncComponent = importComponent => (
 
         let Component = component.default || component.Provider;
 
-        /**
-         * Update the React component handler only when the async component is loaded
-         */
+        // Aggiorna lo stato solo quando AsyncComponent è stato completamente caricato completamente
         this.setState({ Component });
       });
     }
 
     componentWillUnmount() {
+      // Avverte la promise che il AsyncComponent non esiste più
       this.mounted = false;
     }
 
-    /**
-     * Render the async component only when is stored into this.state
-     */
+    // Appena possibile, renderizza il componente asincrono
     render() {
       let { Component } = this.state;
 
-      return Component ? <Component {...this.props} /> : null;
+      return Component && <Component {...this.props} />;
     }
   }
 );
