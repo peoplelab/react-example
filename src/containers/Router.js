@@ -7,17 +7,9 @@
 
 import lazy from '../components/common/AsyncComponent';
 
-/**
- * Inject the store into the routes and retur a map of their.
- *
- * Note: the routes are mapped in macro category
- */
-const createRoutes = store => ({
-  /**
-   * Map of routes of main flow
-   *
-   * Note: These route do not require login by user
-   */
+// Lista delle rotte dell'applicativo
+const createRoutes = () => ({
+  // Lista delle pagine pubbliche
   primary: [
     {
       path: '/',
@@ -32,15 +24,7 @@ const createRoutes = store => ({
       Component: lazy(() => import(/* webpackChunkName: "Login" */ '../components/routes/login/login.view')),
     },
   ],
-  /**
-   * Map of support routes of main flow
-   *
-   * Note: login by user not required
-   */
-  // secondary: [],
-  /**
-   * Map of routes that required login by user.
-   */
+  // Lista delle pagine private
   logged: [
     {
       path: '/tools',
@@ -57,19 +41,27 @@ const createRoutes = store => ({
       Component: lazy(() => import(/* webpackChunkName: "Cultures" */ '../components/routes/cultures/cultures.view')),
     },
   ],
-  /**
-   * Map of support routes of user logged flow
-   *
-   * Note: login by user required.
-   */
+
+  // Lista delle pagine pubbliche di supporto
+  // secondary: [],
+
+  // Lista delle pagine private di supporto
   // messages: [],
-  /**
-   * Landing page routes separated from other flows
-   *
-   * Note: login by user not required
-   */
+
+  // Lista delle landing page esterne all'applicativo
   // external: [],
 });
 
 
 export default createRoutes;
+
+
+// {
+//   path: '/',   // percorso della pagina
+//   key: 'home', // chiave della pagina, necessaria perché possa essere identificata da React
+//   exact: true, // se true, richiede che il percorso sia esattamente quello specificato, altrimenti uno simile
+//   Store: lazy(() => import(/* webpackChunkName: "[CHUNK_NAME]" */  '[FILE_PATH]')),    // Caricamento asincrono del file relativo allo store context del componente React
+//   Component: lazy(() => import(/* webpackChunkName: "[CHUNK_NAME]" */ '[FILE_PATH]')), // Caricamento asincrono del file relativo alla view del componente React
+// },
+//
+// CHUNK_NAME --> nome del file generato da webpack, dove sarà contenuto il codice compilato da caricare in modo asincrono

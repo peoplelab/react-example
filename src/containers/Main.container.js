@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
-import Main from './Main.view';
 import moment from 'moment';
+import Main from './Main.view';
 
 
-// Verifica che l'utente sia in possesso di credenziali ancora valide
+// Verifica che l'utente sia in possesso di credenziali valide
 export const logged = (state) => {
   const { accessToken, sessionId, expiredAt } = state;
 
@@ -14,10 +14,11 @@ export const logged = (state) => {
 };
 
 
-
+// Traforma gli stati Redux in proprietà del componente React
 const mapStateToProps = state => ({
   isUserLogged: logged(state) || false,
 });
 
 
+// connette la view del componente React con lo store di Redux
 export default connect(mapStateToProps)(Main);

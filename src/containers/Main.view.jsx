@@ -32,9 +32,7 @@ const mapRoutes = (routeProps) => {
 };
 
 
-/**
- * Define and handle navigation components routes
- */
+// Definizione del gestore delle pagine dell'applicativo
 class MainComponent extends Component {
   constructor(props) {
     super(props);
@@ -42,6 +40,7 @@ class MainComponent extends Component {
     this.timer = null;
   }
 
+  // A componente montato, verifica che la sessione sia valida entro un determinato lasso di tempo, indicato nella response del servizio di login
   componentDidUpdate() {
     if (this.timer !== null) {
       clearTimeout(this.timer);
@@ -53,27 +52,26 @@ class MainComponent extends Component {
   render() {
     const { isUserLogged } = this.props;
 
-    /**
-     * Inject the store into the routes and retrive their map
-     */
+    // Recupero delle pagine dell'applicativo
     const routes = createRoutes();
 
-    /**
-     * List of primary routes
-     */
-    const Primary = routes.primary.map(mapRoutes);
-    // const Secondary = routes.secondary.map(mapRoutes);
-    const Logged = isUserLogged ? routes.logged.map(mapRoutes) : null;
-    // const Messages = isUserLogged && routes.messages.map(mapRoutes);
-    // const External = routes.external.map(mapRoutes);
+    const Primary = routes.primary.map(mapRoutes);                   // Lista delle pagine pubbliche
+    const Logged = isUserLogged && routes.logged.map(mapRoutes);     // Lista delle pagine private
+    // const Secondary = routes.secondary.map(mapRoutes);               // Pagine pubbliche di supporto
+    // const Messages = isUserLogged && routes.messages.map(mapRoutes); // Pagine private di supporto
+    // const External = routes.external.map(mapRoutes);                 // Lista delle landing page esterne all'applicativo
 
     return (
       <Switch>
-        {/* <Template> */}
+        {/* <PrimaryTemplate> */}
           {Primary}
-        {/* </Template> */}
-        {/* {Secondary} */}
+        {/* </PrimaryTemplate> */}
+
+        {/* <LoggedTemplate> */}
         {Logged}
+        {/* </LoggedTemplate> */}
+
+        {/* {Secondary} */}
         {/* {Messages} */}
         {/* {External} */}
       </Switch>
