@@ -5,14 +5,12 @@ import Box from '../../layouts/Box';
 import Button from '../../layouts/Button';
 import ButtonData from '../../layouts/ButtonData';
 import Field from '../../forms/Field';
-import WrapContext from './cultures.wrapper';
 import {
   callCulturesGet,
   callCulturesPost,
   callCulturesDelete,
   callCulturesPut,
 } from '../../../controllers/routes/cultures/cultures.controller';
-import { CultureContext } from '../../../store/routes/cultures.store';
 
 import '../../../styles/routes/cultures.style.scss';
 
@@ -27,8 +25,6 @@ const header = (
 
 
 class CulturesRoute extends PureComponent {
-  static contextType = CultureContext
-
 	constructor(props) {
     super(props);
 
@@ -36,8 +32,12 @@ class CulturesRoute extends PureComponent {
       id: '',
       code: '',
       description: '',
+      data: [],
+      error: null,
+      failure: null,
     };
 
+    this.updateState = this.updateState.bind(this);
     this.onIdChange = this.onIdChange.bind(this);
     this.onChange = this.onChange.bind(this);
     this.onGetCultures = this.onGetCultures.bind(this);
@@ -46,6 +46,10 @@ class CulturesRoute extends PureComponent {
     this.onUpdateCulture = this.onUpdateCulture.bind(this);
 
     this.mapList = this.mapList.bind(this);
+  }
+
+  updateState(newState) {
+    this.setState(newState);
   }
 
   onIdChange(event) {
@@ -64,54 +68,53 @@ class CulturesRoute extends PureComponent {
   }
 
   onGetCultures() {
-    const { sessionContext } = this.props;
-    const context = {
-      cultureContext: this.context,
-      sessionContext
-    };
+    const { headers } = this.props;
+    const dispatch = this.updateState;
 
-    callCulturesGet({ context });
+    callCulturesGet({
+      headers,
+      dispatch,
+    });
   }
 
   onAddCulture() {
-    const { sessionContext } = this.props;
-    const context = {
-      cultureContext: this.context,
-      sessionContext
-    };
+    const { headers } = this.props;
+    const dispatch = this.updateState;
 
     const { code, description } = this.state;
 
     callCulturesPost({
       data: { code, description },
-      context
+      headers,
+      dispatch,
+      state: this.state,
     });
   }
 
   onRemoveCulture(event) {
     const { data } = event;
+    const { headers } = this.props;
+    const dispatch = this.updateState;
 
-    const { sessionContext } = this.props;
-    const context = {
-      cultureContext: this.context,
-      sessionContext
-    };
-
-    callCulturesDelete({ data, context });
+    callCulturesDelete({
+      data,
+      headers,
+      dispatch,
+      state: this.state,
+    });
   }
 
   onUpdateCulture(event) {
-    const { sessionContext } = this.props;
-    const context = {
-      cultureContext: this.context,
-      sessionContext
-    };
+    const { headers } = this.props;
+    const dispatch = this.updateState;
 
     const { id, code, description } = this.state;
 
     callCulturesPut({
       data: { id, code, description },
-      context
+      headers,
+      dispatch,
+      state: this.state,
     });
   }
 
@@ -139,12 +142,8 @@ class CulturesRoute extends PureComponent {
   }
 
 	render() {
-    const [state] = this.context;
-    console.log(state);
-    const { data: list } = state;
-
     const {
-      id, code, description
+      id, code, description, data: list
     } = this.state;
 
     const strID = isNaN(id) ? '' : id.toString();
@@ -235,11 +234,11 @@ class CulturesRoute extends PureComponent {
 
 
 CulturesRoute.propTypes = {
-  sessionContext: PropTypes.array.isRequired,
+  headers: PropTypes.object.isRequired,
 };
 
 CulturesRoute.defaultProps = {
 };
 
 
-export default WrapContext(CulturesRoute);
+export default CulturesRoute;

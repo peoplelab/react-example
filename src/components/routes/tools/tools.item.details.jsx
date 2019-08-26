@@ -1,8 +1,6 @@
 import React, { PureComponent } from 'react';
-// import PropTypes from 'prop-types';
-
+import PropTypes from 'prop-types';
 import Box from '../../layouts/Box';
-import { ToolsContext } from '../../../store/routes/tools.store';
 
 
 const MainHeader = (
@@ -26,8 +24,6 @@ const AttributesHeader = (
 
 
 class DetailsItem extends PureComponent {
-  static contextType = ToolsContext;
-
 	constructor(props) {
     super(props);
 
@@ -63,8 +59,8 @@ class DetailsItem extends PureComponent {
   }
 
   setMainTable() {
-    const [state] = this.context;
-    const { details } = state;
+    const { toolsGetState } = this.props;
+    const { details } = toolsGetState;
 
     const { id, type, code, displayName } = details;
 
@@ -87,9 +83,9 @@ class DetailsItem extends PureComponent {
   }
 
 	render() {
-    const [state] = this.context;
-    const { details } = state;
-    if (!('id' in details)) {
+    const { toolsGetState } = this.props;
+    const { details } = toolsGetState;
+    if (!details || !('id' in details)) {
       return null;
     }
 
@@ -127,6 +123,7 @@ class DetailsItem extends PureComponent {
 
 
 DetailsItem.propTypes = {
+  toolsGetState: PropTypes.object.isRequired,
 };
 
 DetailsItem.defaultProps = {

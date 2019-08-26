@@ -3,7 +3,6 @@ import { Provider } from 'react-redux';
 import { Router } from "react-router"; // Handle navigation into the app
 import { hot } from 'react-hot-loader/root';
 import Main from './Main'; // Handle routes tree
-import { Provider as SP } from '../store/session.store.jsx'; // Session storage
 import history from '../models/common/history'; // Browser history handler
 import { getUserIP } from '../models/common/userIP'; // Get user ip address
 import store from '../store/redux.store';
@@ -21,11 +20,9 @@ class AppComponent extends Component {
   render() {
     return (
       <Provider store={store}>
-        <SP>
-          <Router history={history}>
-            <Main />
-          </Router>
-        </SP>
+        <Router history={history}>
+          <Main />
+        </Router>
       </Provider>
     );
   }

@@ -29,10 +29,13 @@ class ListItem extends PureComponent {
   onCallDetails(event) {
     const { data } = event;
 
-    const { toolsContext, sessionContext } = this.props;
-    const context = { toolsContext, sessionContext };
+    const { headers, toolsSetState } = this.props;
 
-    callToolDetails({ data, context });
+    callToolDetails({
+      data,
+      headers,
+      dispatch: toolsSetState,
+    });
   }
 
   mapList(data) {
@@ -62,10 +65,11 @@ class ListItem extends PureComponent {
   }
 
 	render() {
-    const [state] = this.props.toolsContext;
-    const { list } = state;
+    const { toolsGetState } = this.props;
 
-    if (list.length === 0) {
+    const { list } = toolsGetState;
+
+    if (!(Array.isArray(list)) || list.length === 0) {
       return null;
     }
 
@@ -91,8 +95,9 @@ class ListItem extends PureComponent {
 
 
 ListItem.propTypes = {
-  sessionContext: PropTypes.array.isRequired,
-  toolsContext: PropTypes.array.isRequired,
+  headers: PropTypes.object.isRequired,
+  toolsSetState: PropTypes.func.isRequired,
+  toolsGetState: PropTypes.object.isRequired,
 };
 
 ListItem.defaultProps = {

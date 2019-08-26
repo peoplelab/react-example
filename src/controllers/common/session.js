@@ -1,4 +1,4 @@
-import { types } from '../../store/session.store.jsx';
+import { types } from '../../store/session.store.2.jsx';
 import moment from 'moment';
 
 

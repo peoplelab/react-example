@@ -20,34 +20,39 @@ import Box from '../../layouts/Box';
 import Button from '../../layouts/Button';
 import List from './tools.item.list';
 import Details from './tools.item.details';
-import WrapContext from './tools.wrapper';
 import { callToolsList } from '../../../controllers/routes/tools/tools.controller';
-import { ToolsContext } from '../../../store/routes/tools.store';
 
 import '../../../styles/routes/tools.style.scss';
 
 
 class ToolsRoute extends PureComponent {
-  static contextType = ToolsContext;
-
 	constructor(props) {
     super(props);
 
+    this.state = {
+      list: [],
+      details  : {},
+      error: null,
+      failure: null,
+    };
+
+    this.updateState = this.updateState.bind(this);
     this.onCallList = this.onCallList.bind(this);
   }
 
-  onCallList() {
-    const { sessionContext } = this.props;
-    const context = {
-      toolsContext: this.context,
-      sessionContext
-    };
+  updateState(newState) {
+    this.setState(newState);
+  }
 
-    callToolsList({ context });
+  onCallList() {
+    const { headers } = this.props;
+    const dispatch = this.updateState;
+
+    callToolsList({ headers, dispatch });
   }
 
 	render() {
-    const { sessionContext } = this.props;
+    const { headers } = this.props;
     return (
       <section className="tools">
         <h1 className="tools__title">
@@ -59,8 +64,8 @@ class ToolsRoute extends PureComponent {
               Get tools list
             </Button>
           </Box>
-          <List sessionContext={sessionContext} toolsContext={this.context} />
-          <Details />
+          <List headers={headers} toolsSetState={this.updateState} toolsGetState={this.state} />
+          <Details toolsGetState={this.state} />
         </Box>
       </section>
     );
@@ -69,11 +74,11 @@ class ToolsRoute extends PureComponent {
 
 
 ToolsRoute.propTypes = {
-  sessionContext: PropTypes.array.isRequired,
+  headers: PropTypes.object.isRequired,
 };
 
 ToolsRoute.defaultProps = {
 };
 
 
-export default WrapContext(ToolsRoute);
+export default ToolsRoute;

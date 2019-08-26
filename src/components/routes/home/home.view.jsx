@@ -1,15 +1,12 @@
 import React, { PureComponent } from 'react';
-// import PropTypes from 'prop-types';
-import { callLogout } from '../../../controllers/routes/logout/logout.controller';
+import PropTypes from 'prop-types';
 import Box    from '../../layouts/Box';
 import Anchor from '../../layouts/Anchor';
 import Button from '../../layouts/Button';
-import { SessionContext } from '../../../store/session.store.jsx';
+import { callLogout } from '../../../controllers/routes/logout/logout.controller';
 
 
 class HomeRoute extends PureComponent {
-  static contextType = SessionContext;
-
 	constructor(props) {
 		super(props);
 
@@ -17,9 +14,9 @@ class HomeRoute extends PureComponent {
   }
 
 	onLogout() {
-    const context = this.context;
+    const { headers } = this.props;
 
-		callLogout({ context });
+		callLogout({ headers });
 	}
 
 	render() {
@@ -54,9 +51,16 @@ class HomeRoute extends PureComponent {
 }
 
 
+/**
+ * Define component properties types
+ */
 HomeRoute.propTypes = {
+  headers: PropTypes.object.isRequired,
 };
 
+/**
+ * Define default value of component properties
+ */
 HomeRoute.defaultProps = {
 };
 
