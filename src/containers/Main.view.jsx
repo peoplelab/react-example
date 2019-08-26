@@ -1,3 +1,11 @@
+//-----------------------------------------------------------------------------------
+// File: Main.view.jsx
+//
+// Desc: Componente per la gestione delle pagine dell'applicazione
+// Path: /src/container/Main.view
+//-----------------------------------------------------------------------------------
+
+
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';

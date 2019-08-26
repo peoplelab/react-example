@@ -1,3 +1,11 @@
+//----------------------------------------------------------------------------------------
+// File: App.jsx
+//
+// Desc: Entry point dell'applicazione React
+// Path: /src/container/App
+//----------------------------------------------------------------------------------------
+
+
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';              // Gestore della connessione tra React e Redux store
 import { Router } from "react-router";               // Gestore della navigazione

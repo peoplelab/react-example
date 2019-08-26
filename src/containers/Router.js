@@ -1,5 +1,5 @@
 //----------------------------------------------------------------------------------------
-// File: Router.js		[main]
+// File: Router.js
 //
 // Desc: Definizione delle routes mappate dell'applicazione
 // Path: /src/components/routes

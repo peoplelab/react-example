@@ -1,9 +1,9 @@
-//------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------
 // File: redux.store.js
 //
-// Desc: Inizializzazione delle store globale dell'applicazione tramite la libreria di Redux
+// Desc: Entry point dello store globale dell'applicazione
 // Path: /src/store/redux.store
-//------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------
 
 
 import { compose, createStore } from 'redux'; // Import dei componneti di redux

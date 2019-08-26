@@ -1,3 +1,11 @@
+//----------------------------------------------------------------------------------------------------
+// File: Main.container.js
+//
+// Desc: Gestore della comunicazione tra lo store globale e il componente per la gestione delle pagine
+// Path: /src/container/Main.container
+//----------------------------------------------------------------------------------------------------
+
+
 import { connect } from 'react-redux';
 import moment from 'moment';
 import Main from './Main.view';
