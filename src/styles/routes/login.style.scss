@@ -90,13 +90,13 @@
         .gallery__slides-tape {
           width: 100%;
 
-          .gallery__item-slide {
-            height: 22rem;
-            margin: 0 calc((100% - (3 * 24rem)) / 2) 0 0;
-            width: 24rem;
+          .gallery__slide {
+            width: 100%;
 
-            &:nth-of-type(3n) {
-              margin: 0;
+            .gallery__slide-item {
+              height: 22rem;
+              margin: 0 calc((100% - (3 * 24rem)) / 2) 0 0;
+              width: 24rem;
             }
           }
         }

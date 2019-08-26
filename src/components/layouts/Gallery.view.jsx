@@ -46,18 +46,40 @@ class Gallery extends PureComponent {
     this.setState({ currentIndex });
   }
 
-  makeSlides(objProps, index) {
-    const { children } = this.props;
+  makeSlides() {
+    const {
+      list,
+      itemVisible,
+      children,
+    } = this.props;
 
-    const newChildern = React.Children.map(children, child =>
-      React.cloneElement(child, objProps)
-    );
+    const slides = [];
 
-    return (
-      <div className="gallery__item-slide" key={`slide-${index}`}>
-        {newChildern}
-      </div>
-    );
+    for (let j = 0; j < list.length / itemVisible; j++) {
+      let items = [];
+
+      for(let k = 0; k < itemVisible; k++) {
+        const objProps = list[j * itemVisible + k];
+
+        const newChildern = React.Children.map(children, child =>
+          React.cloneElement(child, objProps)
+        );
+
+        items.push(
+          <div className="gallery__slide-item" key={`slide-${k}`}>
+            {newChildern}
+          </div>
+        );
+      }
+
+      slides.push(
+        <div className="gallery__slide" key={`slide-${j}`}>
+          {items}
+        </div>
+      );
+    }
+
+    return slides;
   }
 
   render() {
@@ -71,9 +93,9 @@ class Gallery extends PureComponent {
 
     const mergedClass = `gallery ${className}`;
 
-    const Slides = list.map(this.makeSlides);
+    const Slides = this.makeSlides();
 
-    const left = (100 / list.length) * currentIndex * itemVisible;
+    const left = 100 * (currentIndex / itemVisible);
     const style = { left: `-${left}%` };
 
     return (

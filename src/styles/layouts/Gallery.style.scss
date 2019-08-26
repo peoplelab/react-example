@@ -43,14 +43,18 @@
     width: calc(100% - (3rem * 2));
 
     .gallery__slides-tape {
-      align-items: center;
-      display: flex;
-      justify-content: space-between;
+      display: block;
       position: absolute;
       top: 0;
+      white-space: nowrap;
 
-      .gallery__item-slide {
-        flex: none;
+      .gallery__slide {
+        display: inline-block;
+        white-space: nowrap;
+
+        .gallery__slide-item {
+          display: inline-block;
+        }
       }
     }
   }
