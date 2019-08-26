@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import createRoutes from './Router';
 import { logged } from '../controllers/common/session';
 import { SessionValidity } from '../controllers/session.controller';
-import container from '../controllers/common/container';
 
 
 /**
@@ -21,15 +20,13 @@ const mapRoutes = (routeProps) => {
     ...rest
   } = routeProps;
 
-  const Container = container(Component);
-
   return (
     <Route {...rest} path={path} key={`route-${key}`}>
       {!Store ? (
-        <Container />
+        <Component />
       ) : (
         <Store>
-          <Container />
+          <Component />
         </Store>
       )}
     </Route>
