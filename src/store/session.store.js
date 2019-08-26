@@ -1,19 +1,19 @@
-//----------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------
 // File: session.store.js
 //
-// Desc: Definizione delle store globale per la gestione della sessione
+// Desc: Definizione del gestore dello stato di sessione dello store globale
 // Path: /src/store/session.store
-//----------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------
 
 
 import Enum from '../models/common/Enum';
 
 
-// Lista delle tipologie di azioni disponibili
+// Lista delle tipologie di azioni applicabili allo store
 export const types = Enum.from('SET_USER_IP', 'SET_SESSION', 'RESET_SESSION');
 
 
-// Stato iniziale dello store
+// Stato iniziale dello store, basato sulla response di login
 const initialState = {
   ip: '',
   username: '',
@@ -30,7 +30,7 @@ const initialState = {
 };
 
 
-// Gestore delle azioni passate nel dispatcher dello store
+// Gestore delle azioni passate in store.dispatch per poter modificare lo stato corrente dello store
 const actionHandlers = {
   [types.SET_USER_IP]:  (state, { payload }) => ({
     ...state,
@@ -47,7 +47,7 @@ const actionHandlers = {
 };
 
 
-// Inizializzazione del reducer delle sessione
+// Inizializzazione del reducer della sessione per poter filtrare le azioni applicate allo store
 export const reducer = (state = initialState, action) => {
   const handler = actionHandlers[action.type];
 
