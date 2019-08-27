@@ -34,7 +34,7 @@ const AsyncComponent = importComponent => (
     }
 
     componentDidMount() {
-      // Avverte la promise che il AsyncComponent è stato caricato completamente
+      // Autorizza il recupero del componente tornato dalla promise
       this.mounted = true;
 
       // Recupera, in modo asincrono, il componente React da caricare
@@ -51,7 +51,7 @@ const AsyncComponent = importComponent => (
     }
 
     componentWillUnmount() {
-      // Avverte la promise che il AsyncComponent non esiste più
+      // Disabilita il recupero del componente tornato dalla promise
       this.mounted = false;
     }
 

@@ -6,45 +6,31 @@
 //----------------------------------------------------------------------------------------
 
 
-import React, { PureComponent } from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 
 
-class Button extends PureComponent {
-  constructor(props) {
-    super(props);
+const Button = (props) => {
+  const {
+    children,
+    className,
+    onClick: _onClick, // eslint-disable-line no-unused-vars
+    ...rest
+  } = this.props;
 
-    this.onClick = this.onClick.bind(this);
-  }
+  const mergedClass = `button ${className}`;
 
-  onClick(event) {
-    const { onClick } = this.props;
-
-    onClick(event);
-  }
-
-  render() {
-    const {
-      children,
-      className,
-      onClick: _onClick, // eslint-disable-line no-unused-vars
-      ...rest
-    } = this.props;
-
-    const mergedClass = `button ${className}`;
-
-    return (
-      <button
-        className={mergedClass}
-        type="button"
-        onClick={this.onClick}
-        {...rest}
-      >
-        {children}
-      </button>
-    );
-  }
-}
+  return (
+    <button
+      className={mergedClass}
+      type="button"
+      onClick={this.onClick}
+      {...rest}
+    >
+      {children}
+    </button>
+  );
+};
 
 
 Button.propTypes = {
@@ -59,4 +45,4 @@ Button.defaultProps = {
 };
 
 
-export default Button;
+export default memo(Button);

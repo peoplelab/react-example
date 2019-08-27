@@ -23,7 +23,7 @@ class HomeRoute extends PureComponent {
 
   // chimata a logout
 	onLogout() {
-    // in assenza di parametri nel funzione del controller, è necessario passare sempre un oggetto vuoto
+    // in assenza di parametri nella funzione del controller, è necessario passare sempre un oggetto vuoto
 		callLogout({});
 	}
 

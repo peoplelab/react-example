@@ -23,7 +23,7 @@ const Field = (props) => {
 
   const mergedClass = `field ${className}`;
 
-
+  // recupera l'id del campo e aggiunge una nuova classe (children deve contenere un solo componente)
   let id = undefined;
   const newChildern = React.Children.map(children, child => {
     if (!(React.isValidElement(child))) {
@@ -52,7 +52,7 @@ const Field = (props) => {
 
 
 Field.propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.element.isRequired,
   label: PropTypes.string,
   className: PropTypes.string,
 };
