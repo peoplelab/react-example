@@ -18,8 +18,9 @@ const devtool = COMPILE_ENV === 'PRODUCTION' ? 'source-map' : 'inline-source-map
 module.exports = {
   output: {
     path: path.resolve(__dirname, '../../release/dist'),
-    filename: '[hash].js',
-    chunkFilename: '[chunkhash].js',
+    filename: 'scripts/[hash].js',
+    chunkFilename: 'scripts/[chunkhash].js',
+    sourceMapFilename: 'map/[chunkhash].js.map',
     publicPath: '/',
   },
   mode: 'production',
@@ -34,6 +35,7 @@ module.exports = {
             loader: 'file-loader',
             options: {
               name: '[contenthash].[ext]',
+              outputPath: 'images',
             },
           },
         ],
@@ -46,7 +48,7 @@ module.exports = {
       filename: 'index.html',
       inject: true,
       hash: true,
-      minify: false,
+      minify: true,
       template: './public/index.html',
       title: 'Mitrol',
     }),

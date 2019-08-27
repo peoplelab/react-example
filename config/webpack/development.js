@@ -20,10 +20,10 @@ const outputPath = NODE_ENV === 'DEVELOPMENT' ? '../../release/temp' : '../../re
 module.exports = {
   output: {
     path: path.resolve(__dirname, outputPath),
-    filename: 'bundle.js',
-    chunkFilename: '[name].js',
+    filename: 'scripts/bundle.js',
+    chunkFilename: 'scripts/[name].js',
     devtoolLineToLine: true,
-    sourceMapFilename: '[name].js.map',
+    sourceMapFilename: 'map/[name].js.map',
     pathinfo: true,
     publicPath: '/',
   },
@@ -40,6 +40,7 @@ module.exports = {
             loader: 'file-loader',
             options: {
               name: '[path][name].[ext]',
+              outputPath: 'images',
             },
           },
         ],
