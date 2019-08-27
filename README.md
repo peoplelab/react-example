@@ -1,9 +1,40 @@
 
 # Mitrol
 
+## Commands
+Lista dei comandi `npm` e `yarn`
+
+``` plain/text
+  npm run [command]
+  yarn [command]
+```
 
 
-## Folders
+### Lint
+Lista dei comandi per la ricerca di errori e warning
+
+* `lint` ricerca di errori e avvisi nel codice JavaScript
+* `lint:fix` ricerca di errori e avvisi nel codice JavaScript ed eventuale correzione quando possibile
+* `stylelint` ricerca di errori e avvisi nel codice SASS
+* `stylelint:fix` ricerca di errori e avvisi nel codice SASS ed eventuale correzione quando possibile
+
+### Mocks
+Lista dei comandi per l'uso dei mocks
+
+* `mocks:start` comando per l'avvio diretto del server node, da usare solo in sviluppo
+* `mocks:build` comando per la creazione di una build dei mock, da usare solo per i test di produzione
+
+### Release
+Lista dei comandi per la creazione di distribuzioni del progetto
+* `build` distribuzione per i test
+* `dist` distribuzione per la produzione
+
+### Emulazione
+Lista dei comandi per l'emulazione in locale del progetto
+* `start` Emulazione di un rilascio `build`, i servizi puntano diretta alle api di Mitrol
+* `start:mocks` Emulazione di un rilascio `build`, i servizi puntano al server mock locale
+
+## Folders Tree
 Alberatura del progetto
 
 ### config
@@ -34,13 +65,13 @@ Contiene i file view dei componenti React
 #### src/containers
 Contiene i file per la gestione dell'applicativo
 
-##### src/containers/App
+##### src/containers/App.jsx
 Gestisce i componenti di configurazione del progetto
 
-##### src/containers/Main
+##### src/containers/[Main.container.js && Main.view.jsx]
 Gestisce le route da visualizzare e la loro accessibilità da parte dell'utente
 
-##### src/containers/Router
+##### src/containers/Router.js
 Gestisce il recupero asincrono delle route da fornire nel Main
 
 #### src/controllers
@@ -49,15 +80,15 @@ Contiene i file controller dei componenti React
 #### src/models
 Contiene i file model dei componenti React
 
-#### src/presenters
-Contiene i file presenter dei componenti React
+#### src/store
+Contiene lo store globale, relativo alla sessione, dell'applicativo
 
 #### src/styles
 Contiene i file di stile dei componenti React
 
 
 ## Files organization
-Fatta eccezione per src/controllers, tutte le directory in src, presentano la stessa alberatura, di seguito riportata
+Fatta eccezione per `src/controllers` e `src/store`, tutte le directory in src, presentano la stessa alberatura, di seguito riportata
 ``` plain/text
 ° [category]
   ° ?[folder]
@@ -74,16 +105,7 @@ oppure \*
       ° [name].item.[item-name].jsx
 ```
 
-se è necessario poter usare più `context` all'interno di uno stesso componente React, aggiungere un file `[name].wrappare.jsx` dove indicare i vari contesti da passare come proprietà al component della view \*
-``` plain/text
-° components
-  ° ?[folder]
-    ° [name]
-      ° ...
-      ° [name].wrapper.jsx
-```
-
-\*: solo per il codice relativo alla view dei componenti React
+\*: specifico per `src/components`
 
 \*\*: '?' indica un passaggio non obbligatorio
 
@@ -102,10 +124,6 @@ Es:
   ° routes
     ° login
       ° login.module.js
-° presenters
-  ° routes
-    ° login
-      ° login.presenter.js
 ° styles
   ° routes
     ° login
