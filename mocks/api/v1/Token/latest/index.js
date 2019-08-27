@@ -1,4 +1,4 @@
-const responseJSON = require('./response');
+const responseJSON = require('./response.json');
 
 module.exports = {
   GET: (req, res) => {
