@@ -1,3 +1,11 @@
+//----------------------------------------------------------------------------------------
+// File: Submit.jsx
+//
+// Desc: Pulsante form per la conferma e l'invio dei dati contenuti nella form corrente
+// Path: /src/components/forms/Submit
+//----------------------------------------------------------------------------------------
+
+
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 

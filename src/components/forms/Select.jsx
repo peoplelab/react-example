@@ -1,3 +1,11 @@
+//------------------------------------------------------------------------------------------
+// File: Select.jsx
+//
+// Desc: Campo di input per la selezione e la gestione di singoli dati indicati in una lista
+// Path: /src/components/forms/Select
+//------------------------------------------------------------------------------------------
+
+
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Option from './Option';

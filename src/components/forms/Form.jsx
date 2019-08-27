@@ -1,3 +1,11 @@
+//----------------------------------------------------------------------------------------
+// File: Form.jsx
+//
+// Desc: Componente form per l'incapsulamento e gestione dei dati
+// Path: /src/components/forms/Form
+//----------------------------------------------------------------------------------------
+
+
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 

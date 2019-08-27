@@ -1,3 +1,11 @@
+//----------------------------------------------------------------------------------------
+// File: Option.jsx
+//
+// Desc: Componente form contenente i dati di una singola opzione di una lista select
+// Path: /src/components/forms/Option
+//----------------------------------------------------------------------------------------
+
+
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 

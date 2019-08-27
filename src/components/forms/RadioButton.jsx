@@ -1,3 +1,11 @@
+//---------------------------------------------------------------------------------------------
+// File: RadioButton.jsx
+//
+// Desc: Campo di input per la selezione e la gestione di singoli dati data una scelta multipla
+// Path: /src/components/forms/RadioButton
+//---------------------------------------------------------------------------------------------
+
+
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 

@@ -1,3 +1,11 @@
+//----------------------------------------------------------------------------------------
+// File: TextInput.jsx
+//
+// Desc: Campo di input per l'inserimento e la gestione di valori numerici o testuali
+// Path: /src/components/forms/TextInput
+//----------------------------------------------------------------------------------------
+
+
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 

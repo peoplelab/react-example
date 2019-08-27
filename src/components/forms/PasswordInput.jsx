@@ -1,3 +1,11 @@
+//----------------------------------------------------------------------------------------
+// File: PasswordInput.jsx
+//
+// Desc: Campo di input per l'inserimento e la gestione delle password
+// Path: /src/components/forms/PasswordInput
+//----------------------------------------------------------------------------------------
+
+
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 

@@ -1,3 +1,11 @@
+//----------------------------------------------------------------------------------------
+// File: Field.jsx
+//
+// Desc: Container layout per i campi delle form
+// Path: /src/components/forms/Field
+//----------------------------------------------------------------------------------------
+
+
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import Box from '../layouts/Box';
