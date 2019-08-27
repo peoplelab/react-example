@@ -7,7 +7,7 @@
 
 
 const path = require('path');
-const globalVars = require('./config/globals/server');
+const globalVars = require('./config/global/server');
 const { ServerConfig } = require('./config/plugin/webpack.externals');
 
 

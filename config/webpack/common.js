@@ -7,7 +7,7 @@
 
 
 const { HotModuleReplacementPlugin } = require('webpack');
-const globalVars = require('../globals/client');
+const globalVars = require('../global/client');
 
 
 const { COMPILE_ENV } = process.env;

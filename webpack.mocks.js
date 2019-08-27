@@ -8,7 +8,7 @@
 
 
 const path = require('path');
-const globalVars = require('./config/globals/mocks');
+const globalVars = require('./config/global/mocks');
 const { ServerConfig } = require('./config/plugin/webpack.externals');
 
 
