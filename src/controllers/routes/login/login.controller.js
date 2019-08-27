@@ -38,7 +38,7 @@ export const callLogin = async ({ data, dispatch }) => {
 };
 
 // richiesta per il recupero della lista delle culture da passare alla view
-export const callCultureGet = async ({ data, dispatch }) => {
+export const callCultureGet = async ({ dispatch }) => {
   base({
     api: apiCultureGet,
     success: ({ dataraw }) => {
