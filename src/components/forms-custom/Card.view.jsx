@@ -1,3 +1,11 @@
+//------------------------------------------------------------------------------------------------
+// File: Card.jsx
+//
+// Desc: Campo di input specifico per la gestione di dati predefiniti aventi uno specifico layout
+// Path: /src/components/forms-custom/Card
+//------------------------------------------------------------------------------------------------
+
+
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';

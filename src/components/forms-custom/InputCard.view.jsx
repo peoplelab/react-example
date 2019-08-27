@@ -1,3 +1,11 @@
+//------------------------------------------------------------------------------------------------------------------------------
+// File: InputCard.jsx
+//
+// Desc: Campo di input specifico per la gestione tra dati predefiniti e dati inseriti dall'utente. Presenta un layout specifico
+// Path: /src/components/forms-custom/InputCard
+//------------------------------------------------------------------------------------------------------------------------------
+
+
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import Box from '../layouts/Box';
@@ -20,6 +28,7 @@ const InputCard = (props) => {
     onClick,
   } = props;
 
+  // se il dato predefiti non è indicato, torna il componente per l'inserimento manuale dei dati
   if (data === null) {
     return children;
   }
