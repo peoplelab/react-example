@@ -28,7 +28,6 @@ export const SessionValidity = () => {
   const timer = setTimeout(() => {
     if (moment().isAfter(refresh)) {
       store.dispatch({ type: types.RESET_SESSION });
-      history.replace('/login');
     } else if (moment().isAfter(token)) {
       const data = { refreshToken };
       callRefresh({ data });
