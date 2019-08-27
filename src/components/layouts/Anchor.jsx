@@ -1,3 +1,11 @@
+//------------------------------------------------------------------------------------------------------
+// File: Anchor.jsx
+//
+// Desc: Componente per la gestione della navigazione e il reindirizzamente all'interno dell'applicativo
+// Path: /src/components/layouts/Anchor
+//------------------------------------------------------------------------------------------------------
+
+
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';

@@ -1,3 +1,11 @@
+//----------------------------------------------------------------------------------------
+// File: Box.jsx
+//
+// Desc: Componente React con il ruolo di contenitore generico
+// Path: /src/components/layouts/Box
+//----------------------------------------------------------------------------------------
+
+
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 

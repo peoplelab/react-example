@@ -1,3 +1,11 @@
+//----------------------------------------------------------------------------------------
+// File: ButtonData.jsx
+//
+// Desc: Pulsante per l'esecuzione di azioni e il passaggio di dati al loro interno
+// Path: /src/components/layouts/ButtonData
+//----------------------------------------------------------------------------------------
+
+
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Button from './Button';

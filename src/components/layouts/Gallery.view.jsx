@@ -1,3 +1,12 @@
+//-------------------------------------------------------------------------------------------
+// File: Gallery.jsx
+//
+// Desc: Componente React per l'inizializzazione e la gestione di una galleria di elementi
+//       Ogni elemento viene creato tramite un componente templete presente in props.children
+// Path: /src/components/layouts/Gallery
+//-------------------------------------------------------------------------------------------
+
+
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 

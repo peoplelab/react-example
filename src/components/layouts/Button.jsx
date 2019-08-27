@@ -1,3 +1,11 @@
+//----------------------------------------------------------------------------------------
+// File: Button.jsx
+//
+// Desc: Pulsante per l'esecuzione di azioni
+// Path: /src/components/layouts/Button
+//----------------------------------------------------------------------------------------
+
+
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
