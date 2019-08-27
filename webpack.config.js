@@ -1,8 +1,8 @@
 //----------------------------------------------------------------------------------------
-// File: client.js
+// File: webpack.config.js
 //
 // Desc: Entry point del file di configurazione di webpack per l'applicativo lato client
-// Path: /src/config/global/client
+// Path: /src/webpack.config
 //----------------------------------------------------------------------------------------
 
 

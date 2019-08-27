@@ -1,8 +1,8 @@
 //----------------------------------------------------------------------------------------
-// File: client.js
+// File: webpack.mocks.js
 //
 // Desc: Entry point del file di configurazione di webpack del server mock
-// Path: /src/config/global/client
+// Path: /src/webpack.mocks
 //----------------------------------------------------------------------------------------
 
 
