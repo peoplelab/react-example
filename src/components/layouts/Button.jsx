@@ -14,9 +14,8 @@ const Button = (props) => {
   const {
     children,
     className,
-    onClick: _onClick, // eslint-disable-line no-unused-vars
     ...rest
-  } = this.props;
+  } = props;
 
   const mergedClass = `button ${className}`;
 
@@ -24,7 +23,6 @@ const Button = (props) => {
     <button
       className={mergedClass}
       type="button"
-      onClick={this.onClick}
       {...rest}
     >
       {children}
@@ -36,7 +34,6 @@ const Button = (props) => {
 Button.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
-  onClick: PropTypes.func.isRequired,
 };
 
 Button.defaultProps = {
