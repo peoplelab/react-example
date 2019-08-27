@@ -1,6 +1,10 @@
-//-------------------------------------------------------------------
-// Tools controller: controller for tools
-//-------------------------------------------------------------------
+//----------------------------------------------------------------------------------------
+// File: cultures.controller.js
+//
+// Path: /src/controllers/cultures/cultures.controller
+//----------------------------------------------------------------------------------------
+
+
 import {
   apiCultureGet,
   apiCulturePost,
@@ -10,6 +14,7 @@ import {
 import { base } from '../../common/controller.base';
 
 
+// Gestione e conversione dei dati grezzi della response da inviare alla view
 const dataPost = (state, payload) => {
   const { data } = state;
 
@@ -21,6 +26,8 @@ const dataPost = (state, payload) => {
 
   return { ...state, data: newData };
 };
+
+// Gestione e conversione dei dati grezzi della response da inviare alla view
 const dataDelete = (state, payload) => {
   if (!payload) {
     return state;
@@ -31,6 +38,8 @@ const dataDelete = (state, payload) => {
 
   return { ...state, data: newData };
 };
+
+// Gestione e conversione dei dati grezzi della response da inviare alla view
 const dataPut = (state, payload) => {
   if (!payload) {
     return state;
@@ -52,7 +61,7 @@ const dataPut = (state, payload) => {
 };
 
 
-// call api to retrive culture list and add it to context storage
+// richiesta per il recupero della lista delle culture da passare alla view
 export const callCulturesGet = async ({ dispatch }) => {
   base({
     api: apiCultureGet,
@@ -65,7 +74,7 @@ export const callCulturesGet = async ({ dispatch }) => {
   });
 };
 
-// call api to add culture to list and update context storage
+// richiesta per aggiungere una nuova cultura, indicata precedentemente nella view
 export const callCulturesPost = async ({ data, dispatch, state }) => {
   const arg = {
     request: {
@@ -84,7 +93,7 @@ export const callCulturesPost = async ({ data, dispatch, state }) => {
   base(arg);
 };
 
-// call api to delete culture from list and update context storage
+// richiesta per eliminare una cultura, indicata precedentemente nella view
 export const callCulturesDelete = async ({ data, dispatch, state }) => {
   const arg = {
     params: {
@@ -102,7 +111,7 @@ export const callCulturesDelete = async ({ data, dispatch, state }) => {
   base(arg);
 };
 
-// call api to update list culture and relative item of context storage
+// richiesta per aggiornare una cultura, indicata precedentemente nella view
 export const callCulturesPut = async ({ data, dispatch, state }) => {
   const arg = {
     request: {

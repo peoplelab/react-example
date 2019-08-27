@@ -1,11 +1,15 @@
-//-------------------------------------------------------------------
-// Tools controller: controller for tools
-//-------------------------------------------------------------------
+//----------------------------------------------------------------------------------------
+// File: tools.controller.js
+//
+// Path: /src/controllers/tools/tools.controller
+//----------------------------------------------------------------------------------------
+
+
 import { apiList, apiDetails } from '../../../models/routes/tools/tools.model';
 import { base } from '../../common/controller.base';
 
 
-// call api to retrive tools list and save it into context storage
+// chimata per recuperare la lista dei tools da inviare alla view
 export const callToolsList = async ({ dispatch }) => {
   base({
     api: apiList,
@@ -19,7 +23,7 @@ export const callToolsList = async ({ dispatch }) => {
 };
 
 
-// call api to retrive tool details and save it into context storage
+// chimata per recuperare la lista dei dettagli di un tool da inviare alla view
 export const callToolDetails = async ({ data, dispatch }) => {
   const params = {
     id: data

@@ -1,6 +1,10 @@
-//-------------------------------------------------------------------
-// Session controller: controller for session
-//-------------------------------------------------------------------
+//----------------------------------------------------------------------------------------
+// File: session.controller.js
+//
+// Path: /src/controllers/session.controller
+//----------------------------------------------------------------------------------------
+
+
 import moment from 'moment';
 import { apiRefresh } from '../models/session.model';
 import store from '../store/redux.store';
@@ -8,6 +12,7 @@ import { types } from '../store/session.store';
 import history from '../models/common/history';
 
 
+// dato un determinato lasso di tempo, allo scadere di quest'ultimo, verifica se la sessione utente è ancora valida
 export const SessionValidity = () => {
   const { expiredAt, refreshExpiredAt, refreshToken } = store.getState();
 
@@ -35,7 +40,7 @@ export const SessionValidity = () => {
 };
 
 
-// call api to do login and set with valid credentials the session storage
+// chimata per il refresh automatico della sessione utente
 export const callRefresh = async ({ data }) => {
   const { refreshToken } = store.getState();
 
@@ -66,6 +71,8 @@ export const callRefresh = async ({ data }) => {
     console.log(error);
   }
 };
+
+
 
 // // call api to do a login refresh and set with valid credentials the session storage
 // const callRefresh = async ({ data, context }) => {

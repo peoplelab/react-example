@@ -1,6 +1,10 @@
-//-------------------------------------------------------------------
-// Login controller: controller for login
-//-------------------------------------------------------------------
+//----------------------------------------------------------------------------------------
+// File: login.controller.js
+//
+// Path: /src/controllers/login/login.controller
+//----------------------------------------------------------------------------------------
+
+
 import { apiLogin, apiCultureGet, apiLastLogin } from '../../../models/routes/login/login.model';
 import history from '../../../models/common/history';
 import store from '../../../store/redux.store';
@@ -8,7 +12,7 @@ import { types } from '../../../store/session.store';
 import { base } from '../../common/controller.base';
 
 
-// call api to do login and set with valid credentials the session storage
+// chimata di login e inizializzazione della sessione utente
 export const callLogin = async ({ data, dispatch }) => {
   const request = {
     UserName: data.username,
@@ -33,6 +37,7 @@ export const callLogin = async ({ data, dispatch }) => {
   });
 };
 
+// richiesta per il recupero della lista delle culture da passare alla view
 export const callCultureGet = async ({ data, dispatch }) => {
   base({
     api: apiCultureGet,
@@ -45,6 +50,7 @@ export const callCultureGet = async ({ data, dispatch }) => {
   });
 };
 
+// richiesta per il recupero della lista degli ultimi accessi da passare alla view
 export const callLastLogin = async ({ dispatch }) => {
   base({
     api: apiLastLogin,
