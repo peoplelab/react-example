@@ -1,4 +1,6 @@
 // import { pathOr } from "ramda";
+import store from '../../store/redux.store';
+import { types } from '../../store/session.store';
 
 /**
  * Regex to get ip address
@@ -25,7 +27,10 @@ const onIceCandidate = (pc) => ice => {
    * Store ip
    */
   console.log('> User IP address: ', ip);
-  sessionStorage.setItem('IP', ip);
+  store.dispatch({
+    type: types.SET_USER_IP,
+    payload: { ip },
+  });
 };
 
 /**
