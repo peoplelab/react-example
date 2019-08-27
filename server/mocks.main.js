@@ -1,3 +1,11 @@
+//-------------------------------------------------------------------------------------------------
+// File: mocks.main.js
+//
+// Desc: File di configurazione, comune a tutti gli ambienti, del server mock
+// Path: /src/server/mocks.main
+//-------------------------------------------------------------------------------------------------
+
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const mocks = require('../mocks');

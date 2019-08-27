@@ -1,3 +1,11 @@
+//---------------------------------------------------------------------------------------------
+// File: app.production.js
+//
+// Desc: File di configurazione del server dell'applicativo per il rilascio in produzione
+// Path: /src/server/app.production
+//---------------------------------------------------------------------------------------------
+
+
 const fs = require('fs');
 const express = require('express');
 const compression = require('compression');

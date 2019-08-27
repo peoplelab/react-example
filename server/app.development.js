@@ -1,3 +1,11 @@
+//--------------------------------------------------------------------------------------------------------------
+// File: app.development.js
+//
+// Desc: File di configurazione del server dell'applicativo per l'emulazione dell'ambiente di sviluppo in locale
+// Path: /src/server/app.development
+//--------------------------------------------------------------------------------------------------------------
+
+
 const path = require('path');
 const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');

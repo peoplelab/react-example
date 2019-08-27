@@ -1,3 +1,11 @@
+//-------------------------------------------------------------------------------------------------
+// File: app.main.js
+//
+// Desc: File di configurazione, comune a tutti gli ambienti, del server dell'applicativo
+// Path: /src/server/app.main
+//-------------------------------------------------------------------------------------------------
+
+
 const express = require('express');
 const proxy = require('http-proxy-middleware');
 
