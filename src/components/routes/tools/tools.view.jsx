@@ -1,8 +1,8 @@
 //----------------------------------------------------------------------------------------
-// File: Tools.view.jsx		[components]
+// File: tools.view.jsx
 //
-// Desc: Model principale della pagina "Gestione Tools"
-// Path: /src/routes/Tools/components
+// Desc: Pagina per la gestione dei tools
+// Path: /src/components/routes/login/tools.view
 //----------------------------------------------------------------------------------------
 
 import React, { PureComponent } from 'react';
@@ -29,6 +29,7 @@ class ToolsRoute extends PureComponent {
 	constructor(props) {
     super(props);
 
+    // inizializzazione dello stato della pagina
     this.state = {
       list: [],
       details  : {},
@@ -40,16 +41,19 @@ class ToolsRoute extends PureComponent {
     this.onCallList = this.onCallList.bind(this);
   }
 
+  // chimata per aggiornare lo stato corrente della pagina
   updateState(newState) {
     this.setState(newState);
   }
 
+  // richiesta della lista dei tools
   onCallList() {
     const dispatch = this.updateState;
 
     callToolsList({ dispatch });
   }
 
+  // renderizzazione della pagina
 	render() {
     return (
       <section className="tools">

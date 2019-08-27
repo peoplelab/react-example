@@ -1,3 +1,11 @@
+//----------------------------------------------------------------------------------------
+// File: home.view.jsx
+//
+// Desc: Pagina pubblica principale
+// Path: /src/components/routes/home/home.view
+//----------------------------------------------------------------------------------------
+
+
 import React, { PureComponent } from 'react';
 // import PropTypes from 'prop-types';
 import Box    from '../../layouts/Box';
@@ -13,10 +21,13 @@ class HomeRoute extends PureComponent {
 		this.onLogout = this.onLogout.bind(this);
   }
 
+  // chimata a logout
 	onLogout() {
+    // in assenza di parametri nel funzione del controller, è necessario passare sempre un oggetto vuoto
 		callLogout({});
 	}
 
+  // renderizzazione della pagina
 	render() {
     return (
 			<div>

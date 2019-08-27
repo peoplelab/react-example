@@ -1,3 +1,11 @@
+//-----------------------------------------------------------------------------------------------
+// File: tools.item.list.jsx
+//
+// Desc: Elemento proprio della pagina tools per la visualizzazione della lista degli strumenti
+// Path: /src/components/routes/tools/tools.item.list
+//-----------------------------------------------------------------------------------------------
+
+
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
@@ -6,6 +14,7 @@ import ButtonData from '../../layouts/ButtonData';
 import { callToolDetails } from '../../../controllers/routes/tools/tools.controller';
 
 
+// intestazioni delle colonne della tabella dei tools
 const header = (
   <tr key="tool-header">
     <th>id</th>
@@ -26,6 +35,7 @@ class ListItem extends PureComponent {
     this.mapList = this.mapList.bind(this);
   }
 
+  // richiesta dei dati di dettaglio di uno strumento
   onCallDetails(event) {
     const { data } = event;
 
@@ -37,6 +47,7 @@ class ListItem extends PureComponent {
     });
   }
 
+  // render della lista dei tools
   mapList(data) {
     const { id, type, code, diameter, displayName } = data;
 
@@ -63,6 +74,7 @@ class ListItem extends PureComponent {
     );
   }
 
+  // render della sezione della tabella dei tools
 	render() {
     const { toolsGetState } = this.props;
 

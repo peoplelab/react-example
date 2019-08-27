@@ -1,8 +1,17 @@
+//-----------------------------------------------------------------------------------------------
+// File: tools.item.details.jsx
+//
+// Desc: Elemento proprio della pagina tools per la visualizzazione dei dettagli di uno strumento
+// Path: /src/components/routes/tools/tools.item.details
+//-----------------------------------------------------------------------------------------------
+
+
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Box from '../../layouts/Box';
 
 
+// intestazioni delle colonne delle tabelle dei dettagli di un tool
 const MainHeader = (
   <tr>
     <th>id</th>
@@ -12,7 +21,6 @@ const MainHeader = (
     <th>display name</th>
   </tr>
 );
-
 const AttributesHeader = (
   <tr>
     <th>id</th>
@@ -31,6 +39,7 @@ class DetailsItem extends PureComponent {
     this.setMainTable = this.setMainTable.bind(this);
   }
 
+  // render dei dettagli del tool
   setAttributesTable(data) {
     const {
       id,
@@ -58,6 +67,7 @@ class DetailsItem extends PureComponent {
     );
   }
 
+  // render dei dettagli del tool
   setMainTable() {
     const { toolsGetState } = this.props;
     const { details } = toolsGetState;
@@ -82,6 +92,7 @@ class DetailsItem extends PureComponent {
     );
   }
 
+  // render della sezione dei dettagli del tool
 	render() {
     const { toolsGetState } = this.props;
     const { details } = toolsGetState;

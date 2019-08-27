@@ -1,3 +1,11 @@
+//----------------------------------------------------------------------------------------
+// File: cultures.view.jsx
+//
+// Desc: Pagina per la gestione delle culture
+// Path: /src/components/routes/cultures/cultures.view
+//----------------------------------------------------------------------------------------
+
+
 import React, { PureComponent } from 'react';
 // import PropTypes from 'prop-types';
 
@@ -15,6 +23,7 @@ import {
 import '../../../styles/routes/cultures.style.scss';
 
 
+// intestazioni delle colonne della tabella delle culture
 const header = (
   <tr key="cultures-header">
     <th>id</th>
@@ -28,6 +37,7 @@ class CulturesRoute extends PureComponent {
 	constructor(props) {
     super(props);
 
+    // inizializzazione dello stato della pagina
     this.state = {
       id: '',
       code: '',
@@ -48,10 +58,12 @@ class CulturesRoute extends PureComponent {
     this.mapList = this.mapList.bind(this);
   }
 
+  // chimata per aggiornare lo stato corrente della pagina
   updateState(newState) {
     this.setState(newState);
   }
 
+  // metodo per la gestione dell'evento onchange del campo ID di input
   onIdChange(event) {
     const { value } = event.target;
 
@@ -61,18 +73,21 @@ class CulturesRoute extends PureComponent {
     }
   }
 
+  // metodo per la gestione dell'evento onchange di un generico campo di input
   onChange(event) {
     const { name, value } = event.target;
 
     this.setState({ [name]: value });
   }
 
+  // chimata per ottenere la lista corrente delle culture (GET)
   onGetCultures() {
     callCulturesGet({
       dispatch: this.updateState,
     });
   }
 
+  // chimata per aggiungere una nuova culture (POST)
   onAddCulture() {
     const { code, description } = this.state;
 
@@ -83,6 +98,7 @@ class CulturesRoute extends PureComponent {
     });
   }
 
+  // chimata per rimuovere una culture (DELETE)
   onRemoveCulture(event) {
     const { data } = event;
 
@@ -93,6 +109,7 @@ class CulturesRoute extends PureComponent {
     });
   }
 
+  // chimata per aggiornare una culture (PUT)
   onUpdateCulture(event) {
     const { id, code, description } = this.state;
 
@@ -103,6 +120,7 @@ class CulturesRoute extends PureComponent {
     });
   }
 
+  // render della lista delle culture
   mapList(data) {
     const { id, code, description } = data;
 
@@ -126,13 +144,16 @@ class CulturesRoute extends PureComponent {
     );
   }
 
+  // renderizzazione della pagina
 	render() {
     const {
       id, code, description, data: list
     } = this.state;
 
+    // verifica che l'ID, se di tipo number, sia un valore valido
     const strID = isNaN(id) ? '' : id.toString();
 
+    // creazione della tabella delle culture
     const Table = list.map(this.mapList);
 
     return (

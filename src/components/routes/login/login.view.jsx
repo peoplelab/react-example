@@ -1,3 +1,11 @@
+//----------------------------------------------------------------------------------------
+// File: login.view.jsx
+//
+// Desc: Pagina per la gestione della login
+// Path: /src/components/routes/login/login.view
+//----------------------------------------------------------------------------------------
+
+
 import React, { Component } from 'react';
 // import PropTypes from 'prop-types';
 
@@ -18,7 +26,10 @@ import { callLogin, callCultureGet, callLastLogin } from '../../../controllers/r
 import '../../../styles/routes/login.style.scss'; // apply Login style to this route
 
 
+// lista dei campi obbligari
 const required = ['username', 'password'];
+
+// stato iniziale della form
 const initial = {
   username: '',
   password: '',
@@ -32,6 +43,7 @@ class LoginRoute extends Component {
 	constructor(props) {
     super(props);
 
+    // inizializzazione dello stato della pagina
     this.state = {
       ...initial,
       usersList: [],
@@ -45,6 +57,7 @@ class LoginRoute extends Component {
     this.onLogin = this.onLogin.bind(this);
   }
 
+  // a componente carico, viene richiesta la lista delle culture e degli ultimi accessi, quindi aggiornato lo stato corrente
   componentDidMount() {
     const dispatch = this.updateState;
 
@@ -52,22 +65,26 @@ class LoginRoute extends Component {
     callLastLogin({ dispatch });
   }
 
+  // chimata per aggiornare lo stato corrente della pagina
   updateState(newState) {
     this.setState(newState);
   }
 
+  // metodo per la gestione dell'evento onchange di un generico campo di input
   onChange(event) {
     const { name, value } = event.target;
 
     this.setState({ [name]: value });
   }
 
+  // metodo per impostare un valore username predefinito, proveniente dalla lista degli ultimi accessi, all'interno della form
   setUsername(event) {
     const { data } = event;
 
     this.setState(data);
   }
 
+  // esegue la richiesta di login
   onLogin(data, event) {
     const dispatch = this.updateState;
 
@@ -77,6 +94,7 @@ class LoginRoute extends Component {
     });
   }
 
+  // renderizzazione della pagina
 	render() {
     const { username, password, culture, data, usersList, cultureList, errorOnLogin } = this.state;
 

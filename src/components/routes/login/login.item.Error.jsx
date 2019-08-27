@@ -1,13 +1,16 @@
+//----------------------------------------------------------------------------------------
+// File: login.item.Error.jsx
+//
+// Desc: Elemento proprio della login per la visualizzazione di un messaggio di errore
+// Path: /src/components/routes/login/login.item.Error
+//----------------------------------------------------------------------------------------
+
+
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Box from '../../layouts/Box';
 
 
-/**
- * Login Error banner
- *
- * Note: item own of Login route
- */
 class ErrorItem extends PureComponent {
   render() {
     const {
