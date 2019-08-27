@@ -1,3 +1,11 @@
+//----------------------------------------------------------------------------------------
+// File: client.js
+//
+// Desc: Variabili globali, in sola lettura, della applicativo lato client
+// Path: /src/config/global/client
+//----------------------------------------------------------------------------------------
+
+
 const { DefinePlugin } = require('webpack');
 
 

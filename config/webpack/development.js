@@ -1,3 +1,11 @@
+//----------------------------------------------------------------------------------------
+// File: development.js
+//
+// Desc: File di configurazione di webpack per i rilasci in ambiente di sviluppo
+// Path: /src/config/webpack/development
+//----------------------------------------------------------------------------------------
+
+
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 

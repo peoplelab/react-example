@@ -1,3 +1,12 @@
+//----------------------------------------------------------------------------------------
+// File: client.js
+//
+// Desc: Entry point del file di configurazione di webpack del server mock
+// Path: /src/config/global/client
+//----------------------------------------------------------------------------------------
+
+
+
 const path = require('path');
 const globalVars = require('./config/globals/mocks');
 const { ServerConfig } = require('./config/plugin/webpack.externals');

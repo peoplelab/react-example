@@ -1,3 +1,12 @@
+//----------------------------------------------------------------------------------------
+// File: client.js
+//
+// Desc: Entry point del file di configurazione di webpack per l'applicativo lato client
+// Path: /src/config/global/client
+//----------------------------------------------------------------------------------------
+
+
+
 const merge = require('webpack-merge');
 
 const common = require('./config/webpack/common');

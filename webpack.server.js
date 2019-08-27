@@ -1,3 +1,11 @@
+//----------------------------------------------------------------------------------------
+// File: client.js
+//
+// Desc: Entry point del file di configurazione di webpack per l'applicativo lato server
+// Path: /src/config/global/client
+//----------------------------------------------------------------------------------------
+
+
 const path = require('path');
 const globalVars = require('./config/globals/server');
 const { ServerConfig } = require('./config/plugin/webpack.externals');

@@ -1,3 +1,11 @@
+//----------------------------------------------------------------------------------------
+// File: production.js
+//
+// Desc: File di configurazione di webpack per i rilasci in produzione
+// Path: /src/config/webpack/production
+//----------------------------------------------------------------------------------------
+
+
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 

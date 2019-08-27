@@ -1,3 +1,11 @@
+//----------------------------------------------------------------------------------------
+// File: mocks.js
+//
+// Desc: Variabili globali, in sola lettura, del server mock
+// Path: /src/config/global/mocks
+//----------------------------------------------------------------------------------------
+
+
 const { DefinePlugin } = require('webpack');
 
 

@@ -1,3 +1,11 @@
+//----------------------------------------------------------------------------------------
+// File: common.js
+//
+// Desc: File di configurazione di webpack comune a tutti gli ambienti di rilascio
+// Path: /src/config/webpack/common
+//----------------------------------------------------------------------------------------
+
+
 const { HotModuleReplacementPlugin } = require('webpack');
 const globalVars = require('../globals/client');
 
