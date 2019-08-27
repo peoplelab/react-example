@@ -1,12 +1,10 @@
 //----------------------------------------------------------------------------------------
 // File: controller.base.js
 //
-// Desc: Funzione base del controller
-//
-// export funzione "base"
+// Desc: Funzione base del controller per la gestione delle chimate alle api
 //
 // input (singolo parametro JSON):
-//    request: dati della request da passare all'api (opzionale)
+//    request: oggetto request da passare all'api (opzionale)
 //    api: metodo di chimata all'api
 //    success: funzione di callback (opzionale)
 //    failure: funzione di callback (opzionale)
