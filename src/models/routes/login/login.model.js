@@ -1,19 +1,22 @@
-//-------------------------------------------------------------------
-// Login model: Login api interface
-//-------------------------------------------------------------------
+//----------------------------------------------------------------------------------------
+// File: login.model.js
+//
+// Path: /src/model/login/login.model
+//----------------------------------------------------------------------------------------
+
 
 import { base } from '../../common/model.base';
 
 
+// dati predefiniti della request
 const IP = '1';
-
 const defaultData = {
   GrantType: 'Password',
   IP,
 };
 
 
-// do login
+// interfaccia dell'api di login per eseguire l'accesso
 export const apiLogin = async ({ request: data }) => {
   const body = {
     ...defaultData,
@@ -31,9 +34,7 @@ export const apiLogin = async ({ request: data }) => {
   return base('/api/v1/Token', request);
 };
 
-
-
-// get cultures list
+// interfaccia api per ottenere la lista corrente delle culture
 export const apiCultureGet = async () => {
   const request = {
     method: "get",
@@ -45,8 +46,7 @@ export const apiCultureGet = async () => {
   return base('/api/v1/Cultures', request);
 };
 
-
-// get last users logged list
+// interfaccia api per ottenere la lista corrente degli ultimi accessi all'applicazione
 export const apiLastLogin = async () => {
   const request = {
     method: "get",

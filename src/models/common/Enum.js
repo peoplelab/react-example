@@ -1,27 +1,26 @@
+//----------------------------------------------------------------------------------------
+// File: Enum.js
+//
+// Path: /src/model/common/Enum
+//----------------------------------------------------------------------------------------
+
+
 import {
   isKey,
   isObject,
 } from './checks';
 
 
-/**
- * Enumerator objects handler
- */
+// classe per la gestione di enumeratori
 class Enum {
-  /**
-   * Static function to generate an enumerator object from a list
-   * @param  {...string} args Array of strings
-   */
+  // Metodo statico per generare un oggetto enumeratore partendo da una lista di stringhe
   static from(...args) {
     const response = args.every(value => isKey(value));
 
     return response && args.reduce((acc, value) => ({ ...acc, [value]: value }), {});
   }
 
-  /**
-   * Static function to generate a list from an enumerator object
-   * @param  {object} obj Enumerator object
-   */
+  // Metodo statico per generare una lista di stringhe partendo da un oggetto enumeratore
   static to(obj) {
     if (!isObject(obj)) {
       return false;

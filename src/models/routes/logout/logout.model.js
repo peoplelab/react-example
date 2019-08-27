@@ -1,11 +1,14 @@
-//-------------------------------------------------------------------
-// Logout model: Logout api interface
-//-------------------------------------------------------------------
+//----------------------------------------------------------------------------------------
+// File: logout.model.js
+//
+// Path: /src/model/logout/logout.model
+//----------------------------------------------------------------------------------------
+
 
 import { base } from '../../common/model.base';
 
 
-// do logout
+// interfaccia dell'api di logout per terminare la sessione utente
 export const apiLogout = async ({ headers }) => {
   const request = {
     method: "put",

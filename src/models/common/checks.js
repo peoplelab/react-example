@@ -1,17 +1,15 @@
-/**
- * Check if the value is a valid enum key
- * @param {*} key
- */
+//----------------------------------------------------------------------------------------
+// File: checks.js
+//
+// Path: /src/model/common/checks
+//----------------------------------------------------------------------------------------
+
+
+// verifica che il valore passato sia una stringa valida come chiave da enumeratore
 export const isKey = key => typeof key === 'string' && /^[A-Za-z](([A-Za-z\d]|(_|-)(?=[A-Za-z\d]))*[A-Za-z\d])?$/.test(key);
 
-/**
- * Check if the value is undefined or null
- * @param {*} target
- */
+// verifica che il valore passato sia undefined o null
 export const isNil = target => target === undefined || target === null;
 
-/**
- * Check if the value is a defined object
- * @param {*} obj
- */
+// verifica che il valore passato sia un oggetto valido
 export const isObject = obj => typeof obj === 'object' && obj !== null;

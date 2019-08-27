@@ -1,16 +1,18 @@
 //-------------------------------------------------------------------
-// Base model: handler for api comunication
+// File: model.base.js
 //
-// export base function
+// Desc: Funzione base del model per gestione della comunicazione con le api
 //
-// input object is a json of:
-//    config: json with params to set the api call (url, method, ...)
-//    callback: callback function
+// input:
+//    url: stringa di percorso all'api
+//    request: oggetto request da passare all'api (opzionale)
 //
-// output object is json of:
-//    httpcode: api response code
-//    rawdata: api response raw data (null if an error occurs)
-//    rawerror: api error thrown (null if api success)
+// output (tramite Promise):
+//    httpcode: codice dello stato http della chimata
+//    dataraw: dati grezzi della response
+//    error: oggetto Error tornato in caso sia stato impossibile eseguire la chimata
+//
+// Path: /src/model/common/model.base
 //-------------------------------------------------------------------
 
 export const base = async (url, request) => {

@@ -1,8 +1,14 @@
+//----------------------------------------------------------------------------------------
+// File: history.js
+//
+// Path: /src/model/common/history
+//----------------------------------------------------------------------------------------
+
+
 import { createBrowserHistory } from "history";
 
-/**
- * Browser history handler
- */
+
+// costante per la gestione della storia di navigazione nell'applicativo
 const history = createBrowserHistory();
 
 

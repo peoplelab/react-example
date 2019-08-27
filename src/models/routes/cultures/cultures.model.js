@@ -1,16 +1,16 @@
-//-------------------------------------------------------------------
-// Cultures model: Cultures api interface
-//-------------------------------------------------------------------
+//----------------------------------------------------------------------------------------
+// File: cultures.model.js
+//
+// Path: /src/model/cultures/cultures.model
+//----------------------------------------------------------------------------------------
 
 import { base } from '../../common/model.base';
 
 
-/**
- * Rest api cultrues path
- */
+// percorso dell'api
 const url = '/api/v1/Cultures';
 
-// get cultures list
+// interfaccia api per ottenere la lista corrente delle culture
 export const apiCultureGet = async ({ headers }) => {
   const request = {
     method: "get",
@@ -23,7 +23,7 @@ export const apiCultureGet = async ({ headers }) => {
   return base(url, request);
 };
 
-// add new culture to list
+// interfaccia api per aggiungere un nuovo elemento alla lista delle culture
 export const apiCulturePost = async ({ headers, request: data }) => {
   const request = {
     method: "post",
@@ -37,7 +37,7 @@ export const apiCulturePost = async ({ headers, request: data }) => {
   return base(url, request);
 };
 
-// delete culture from list
+// interfaccia api per rimuovere un elemento dalla lista delle culture
 export const apiCultureDelete = async ({ headers, params }) => {
   const request = {
     method: "delete",
@@ -50,7 +50,7 @@ export const apiCultureDelete = async ({ headers, params }) => {
   return base(`${url}/${params.id}`, request);
 };
 
-// update specific list culture
+// interfaccia api per aggiornare un elemento specifico della lista delle culture
 export const apiCulturePut = async ({ headers, request: data }) => {
   const request = {
     method: "put",
