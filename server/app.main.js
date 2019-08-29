@@ -7,27 +7,24 @@
 
 
 const express = require('express');
-const proxy = require('http-proxy-middleware');
+const proxy = require('express-http-proxy');
 
 
 /// proxy handler (logging requests)
-var proxyOpts = ({ URL, LOG_LEVEL }) => ({
-    target: URL,
+const proxyOpts = ({ URL }) => ({
+  proxyReqPathResolver: (req) => {
+    const apiUrl = '/api' + req.url;
+    // console.log('\x1b[36m--> PROXYING REQUEST: ' + req.url + '\x1b[0m');
+    console.log('\x1b[36m--> PROXYING REQUEST: ' + req.method + ' ' + apiUrl + ' to ' + URL + apiUrl + '\x1b[0m');
 
-    onProxyReq: function onProxyReq(proxyReq, req, res) {
-        console.log('\x1b[36m--> PROXYING REQUEST: ' + req.method + ' ' + req.path + ' to ' + URL + proxyReq.path + '\x1b[0m');
+    return apiUrl;
+  },
+  userResDecorator: (proxyRes, proxyResData, userReq, userRes) => {
+    console.log('\x1b[36m--> RESPONSE of' + userReq.originalUrl + ':\n' + proxyResData.toString('utf8') + '\x1b[0m');
 
-    },
-    //onError: function onError(err, req, res) {
-    //    console.error(err);
-    //    res.status(500);
-    //    res.json({ error: 'Error when connecting to remote server.' });
-    //},
-    logLevel: LOG_LEVEL,
-    changeOrigin: true,
-    secure: true
+    return proxyResData;
+  },
 });
-// end proxy handler
 
 
 module.exports = (callback_env, { COMPILE_ENV, SERVER_CONFIG }) => {
@@ -35,9 +32,10 @@ module.exports = (callback_env, { COMPILE_ENV, SERVER_CONFIG }) => {
   const app = express();
 
   // start proxy handler
-  const opts = proxyOpts(SERVER_CONFIG);
-  const proxyInst = proxy(opts);
-  app.use('/api', proxyInst);
+  // const opts = proxyOpts(SERVER_CONFIG);
+  // const proxyInst = proxy(opts);
+  // app.use('/api', proxyInst);
+  app.use('/api', proxy(SERVER_CONFIG.URL, proxyOpts(SERVER_CONFIG)));
 
   // add environment configuration
   callback_env(app);
