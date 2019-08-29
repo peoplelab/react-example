@@ -10,7 +10,7 @@ const express = require('express');
 const proxy = require('express-http-proxy');
 
 
-/// proxy handler (logging requests)
+// proxy handler (logging requests)
 const proxyOpts = ({ URL }) => ({
   proxyReqPathResolver: (req) => {
     const apiUrl = '/api' + req.url;
@@ -32,9 +32,6 @@ module.exports = (callback_env, { COMPILE_ENV, SERVER_CONFIG }) => {
   const app = express();
 
   // start proxy handler
-  // const opts = proxyOpts(SERVER_CONFIG);
-  // const proxyInst = proxy(opts);
-  // app.use('/api', proxyInst);
   app.use('/api', proxy(SERVER_CONFIG.URL, proxyOpts(SERVER_CONFIG)));
 
   // add environment configuration
