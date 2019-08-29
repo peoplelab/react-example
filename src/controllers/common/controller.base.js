@@ -40,12 +40,17 @@ export const base = async ({ request, api, success, failure, params }) => {
 
   // esecuzione dell'api model e recupero della response
   const response = api({ request, headers, params });
-  const { httpcode, dataraw, error } = await response;
+  const { httpcode, contentType, dataraw, error } = await response;
+
+  let jsondata = {};
+  if(contentType && contentType.includes("application/json")) {
+    jsondata = JSON.parse(dataraw);
+  }
 
   // success
   if (httpcode === 200) {
     if (typeof success === 'function') {
-      success({ dataraw });
+      success({ contentType, dataraw, jsondata });
     }
     console.log('----- Success call');
   }
