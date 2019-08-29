@@ -65,8 +65,8 @@ const dataPut = (state, payload) => {
 export const callCulturesGet = async ({ dispatch }) => {
   base({
     api: apiCultureGet,
-    success: ({ dataraw }) => {
-      dispatch({ data: dataraw });
+    success: ({ jsondata }) => {
+      dispatch({ data: jsondata });
     },
     failure: () => {
       dispatch({ data: [] });
@@ -82,11 +82,11 @@ export const callCulturesPost = async ({ data, dispatch, state }) => {
       description: data.description,
     },
     api: apiCulturePost,
-    success: ({ dataraw }) => {
-      dispatch(dataPost(state, { ...arg.request, id: dataraw }));
+    success: ({ jsondata }) => {
+      dispatch(dataPost(state, { ...arg.request, id: jsondata }));
     },
-    failure: ({ dataraw, error }) => {
-      dispatch({ error: dataraw || error });
+    failure: ({ jsondata, error }) => {
+      dispatch({ error: jsondata || error });
     }
   };
 
@@ -100,11 +100,11 @@ export const callCulturesDelete = async ({ data, dispatch, state }) => {
       id: data,
     },
     api: apiCultureDelete,
-    success: ({ dataraw }) => {
+    success: () => {
       dispatch(dataDelete(state, { id: arg.params.id }));
     },
-    failure: ({ dataraw, error }) => {
-      dispatch({ error: dataraw || error, id: '' });
+    failure: ({ jsondata, error }) => {
+      dispatch({ error: jsondata || error, id: '' });
     }
   };
 
@@ -120,12 +120,12 @@ export const callCulturesPut = async ({ data, dispatch, state }) => {
       description: data.description,
     },
     api: apiCulturePut,
-    success: ({ dataraw }) => {
+    success: () => {
       dispatch(dataPut(state, { ...arg.request }));
     },
-    failure: ({ dataraw, error }) => {
+    failure: ({ jsondata, error }) => {
       dispatch({
-        error: dataraw,
+        error: jsondata,
         id: '',
         code: '',
         description: '',

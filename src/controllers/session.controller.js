@@ -50,10 +50,10 @@ export const callRefresh = async () => {
   base({
     request,
     api: apiRefresh,
-    success: ({ dataraw }) => {
+    success: ({ jsondata }) => {
       store.dispatch({
         type: types.SET_SESSION,
-        payload: dataraw,
+        payload: jsondata,
       });
     },
     failure: () => {

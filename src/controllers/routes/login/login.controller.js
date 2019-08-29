@@ -23,10 +23,10 @@ export const callLogin = async ({ data, dispatch }) => {
   base({
     request,
     api: apiLogin,
-    success: ({ dataraw }) => {
+    success: ({ jsondata }) => {
       store.dispatch({
         type: types.SET_SESSION,
-        payload: dataraw,
+        payload: jsondata,
       });
       dispatch({ errorOnLogin: false });
       history.push('/');
@@ -41,8 +41,8 @@ export const callLogin = async ({ data, dispatch }) => {
 export const callCultureGet = async ({ dispatch }) => {
   base({
     api: apiCultureGet,
-    success: ({ dataraw }) => {
-      dispatch({ cultureList: dataraw });
+    success: ({ jsondata }) => {
+      dispatch({ cultureList: jsondata });
     },
     failure: ({ dataraw, error }) => {
       dispatch({ cultureList: dataraw || error });
@@ -54,8 +54,8 @@ export const callCultureGet = async ({ dispatch }) => {
 export const callLastLogin = async ({ dispatch }) => {
   base({
     api: apiLastLogin,
-    success: ({ dataraw }) => {
-      dispatch({ usersList: dataraw });
+    success: ({ jsondata }) => {
+      dispatch({ usersList: jsondata });
     },
     failure: ({ dataraw, error }) => {
       dispatch({ usersList: dataraw || error });

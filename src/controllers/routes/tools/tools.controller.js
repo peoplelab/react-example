@@ -13,8 +13,8 @@ import { base } from '../../common/controller.base';
 export const callToolsList = async ({ dispatch }) => {
   base({
     api: apiList,
-    success: ({ dataraw }) => {
-      dispatch({ list: dataraw });
+    success: ({ jsondata }) => {
+      dispatch({ list: jsondata });
     },
     failure: () => {
       dispatch({ list: [] });
@@ -32,8 +32,8 @@ export const callToolDetails = async ({ data, dispatch }) => {
   base({
     params,
     api: apiDetails,
-    success: ({ dataraw }) => {
-      dispatch({ details: dataraw });
+    success: ({ jsondata }) => {
+      dispatch({ details: jsondata });
     },
     failure: () => {
       dispatch({ details: {} });
