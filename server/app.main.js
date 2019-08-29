@@ -14,7 +14,6 @@ const proxy = require('express-http-proxy');
 const proxyOpts = ({ URL }) => ({
   proxyReqPathResolver: (req) => {
     const apiUrl = '/api' + req.url;
-    // console.log('\x1b[36m--> PROXYING REQUEST: ' + req.url + '\x1b[0m');
     console.log('\x1b[36m--> PROXYING REQUEST: ' + req.method + ' ' + apiUrl + ' to ' + URL + apiUrl + '\x1b[0m');
 
     return apiUrl;
