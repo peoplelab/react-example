@@ -7,7 +7,8 @@
 //    url: stringa di percorso all'api
 //    request: oggetto request da passare all'api (opzionale)
 //
-// output (tramite Promise):
+// output (Promise):
+//    contentType: stringa che specifica il tipo di testo di dataraw (segue il content-type della response http)
 //    httpcode: codice dello stato http della chimata
 //    dataraw: dati grezzi della response
 //    error: oggetto Error tornato in caso sia stato impossibile eseguire la chimata

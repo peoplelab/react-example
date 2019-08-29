@@ -4,23 +4,20 @@
 // Desc: Funzione base del controller per la gestione delle chimate alle api
 //
 // input (singolo parametro JSON):
-//    request: oggetto request da passare all'api (opzionale)
-//    api: metodo di chimata all'api
-//    success: funzione di callback (opzionale)
-//    failure: funzione di callback (opzionale)
-//    params: parametri da passare all'url dell'api (opzionale)
-//
-// output (tramite callback):
-//    on success:
-//                dataraw: dati grezzi della response
-//    on faliure:
-//                httpcode: codice dello stato http della chimata
-//                dataraw: dati grezzi della response di errore
-//                error: oggetto Error tornato in caso sia stato impossibile eseguire la chimata
+//    request: oggetto JSON, contiene gli elementi da passare all'api (la documentazione indicherà i valori da passare e in quale formato) [ si usa per metodi POST e PUT ]
+//    api: funzione generica di un model per eseguire la chimata all'api del server
+//    success: funzione di callback in caso di esito positivo
+//                dataraw: dati grezzi della response (testo generico)
+//                contentType: stringa che specifica il tipo di testo di di dataraw (segue il content-type della response http)
+//    failure: funzione di callback in caso di esito negativo
+//                httpcode: codice numerico dello stato http della chimata
+//                dataraw: dati grezzi della response di errore (testo generico)
+//                contentType: stringa che specifica il tipo di testo di di dataraw (segue il content-type della response http)
+//                error: oggetto di tipo Error tornato in caso sia stato impossibile eseguire la chimata
+//    params: oggetto JSON contente parametri specifici da passare all'api (la documentazione indicherà i parametri da passare e in quale formato) [ si usa per metodi GET e DELETE per il query string dell'url ]
 //
 // Path: /src/controllers/common/controller.base
 //----------------------------------------------------------------------------------------
-
 
 import store from '../../store/redux.store';
 

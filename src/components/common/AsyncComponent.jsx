@@ -9,6 +9,7 @@
 import React, { Component as ReactComponent } from 'react';
 
 
+// conferma nella chiamata asincrona se il componente è montato
 let IS_MOUNTED = false;
 
 // Recupera il componente React da caricare in modo asincrono
@@ -45,7 +46,7 @@ const AsyncComponent = importComponent => (
 
         let Component = component.default || component.Provider;
 
-        // Aggiorna lo stato solo quando AsyncComponent è stato completamente caricato completamente
+        // Aggiorna lo stato solo quando AsyncComponent è stato caricato completamente
         this.setState({ Component });
       });
     }
