@@ -13,6 +13,8 @@ import Anchor from '../../layouts/Anchor';
 import Button from '../../layouts/Button';
 import { callLogout } from '../../../controllers/routes/logout/logout.controller';
 
+import '../../../styles/routes/home.style.scss';
+
 
 class HomeRoute extends PureComponent {
 	constructor(props) {
@@ -30,31 +32,41 @@ class HomeRoute extends PureComponent {
   // renderizzazione della pagina
 	render() {
     return (
-			<div>
-			<h1 style={{textAlign: 'center', color: '#900'}} >
-				Home page
-			</h1>
-			<br/>
-			<br/>
-			<br/>
-			<Box style={{textAlign: 'center', margin: '20px auto 100px'}} >
-
-				<Button
-					className="login__button"
-					onClick={this.onLogout}
-					disabled={false}
-					style={{padding: '10px 30px'}}
-				>
-					Logout
-				</Button>
-			</Box>
-
-
-				<Anchor path="/login"> Vai a <b>Login</b></Anchor>
-				<Anchor path="/tools"> Vai a <b>Tools</b></Anchor>
-				<Anchor path="/cultures"> Vai a <b>Cultures</b></Anchor>
-
-			</div>
+      <Box className="home">
+        <nav className="home__nav">
+          <ul className="home__list">
+            <li className="home__item">
+              <Anchor path="/login">
+                Vai a <b>Login</b>
+              </Anchor>
+            </li>
+            <li className="home__item">
+              <Anchor className="home__anchor" path="/tools">
+                Vai a <b>Tools</b>
+              </Anchor>
+            </li>
+            <li className="home__item">
+              <Anchor className="home__anchor" path="/cultures">
+                Vai a <b>Cultures</b>
+              </Anchor>
+            </li>
+          </ul>
+        </nav>
+        <Box className="home__route">
+          <h1 className="home__title">
+            Home page
+          </h1>
+          <Box className="home__container">
+            <Button
+              className="home__button"
+              onClick={this.onLogout}
+              disabled={false}
+            >
+              Logout
+            </Button>
+          </Box>
+        </Box>
+      </Box>
 		);
 	}
 }

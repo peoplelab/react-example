@@ -21,6 +21,7 @@ import Button from '../../layouts/Button';
 import List from './tools.item.list';
 import Details from './tools.item.details';
 import { callToolsList } from '../../../controllers/routes/tools/tools.controller';
+import LoggedTemplate from '../../templates/logged.view';
 
 import '../../../styles/routes/tools.style.scss';
 
@@ -56,20 +57,22 @@ class ToolsRoute extends PureComponent {
   // renderizzazione della pagina
 	render() {
     return (
-      <section className="tools">
-        <h1 className="tools__title">
-          Tools
-        </h1>
-        <Box className="tools__container">
-          <Box className="tools__group">
-            <Button className="tools__button" onClick={this.onCallList}>
-              Get tools list
-            </Button>
+      <LoggedTemplate>
+        <section className="tools">
+          <h1 className="tools__title">
+            Tools
+          </h1>
+          <Box className="tools__container">
+            <Box className="tools__group">
+              <Button className="tools__button" onClick={this.onCallList}>
+                Get tools list
+              </Button>
+            </Box>
+            <List toolsSetState={this.updateState} toolsGetState={this.state} />
+            <Details toolsGetState={this.state} />
           </Box>
-          <List toolsSetState={this.updateState} toolsGetState={this.state} />
-          <Details toolsGetState={this.state} />
-        </Box>
-      </section>
+        </section>
+      </LoggedTemplate>
     );
 	}
 }

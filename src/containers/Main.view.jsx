@@ -71,14 +71,8 @@ class MainComponent extends Component {
 
     return (
       <Switch>
-        {/* <PrimaryTemplate> */}
-          {Primary}
-        {/* </PrimaryTemplate> */}
-
-        {/* <LoggedTemplate> */}
+        {Primary}
         {Logged}
-        {/* </LoggedTemplate> */}
-
         {/* {Secondary} */}
         {/* {Messages} */}
         {/* {External} */}

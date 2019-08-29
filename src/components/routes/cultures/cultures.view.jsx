@@ -19,6 +19,7 @@ import {
   callCulturesDelete,
   callCulturesPut,
 } from '../../../controllers/routes/cultures/cultures.controller';
+import LoggedTemplate from '../../templates/logged.view';
 
 import '../../../styles/routes/cultures.style.scss';
 
@@ -157,83 +158,85 @@ class CulturesRoute extends PureComponent {
     const Table = list.map(this.mapList);
 
     return (
-      <section className="cultures">
-        <h1 className="cultures__title">
-          Cultures
-        </h1>
-        <Box className="cultures__container">
-        <Box className="cultures__group">
-          <Button className="cultures__button" onClick={this.onGetCultures}>
-            Get cultures list
-          </Button>
-        </Box>
-        {(list.length > 0 && Table.length > 0) && (
-          <>
-            <br/>
-            <br/>
-            <br/>
-            <Box className="cultures__group">
-              <h2 className="cultures__sub-title">
-                List
-              </h2>
-              <table className="cultures__table">
-                <thead>
-                  {header}
-                </thead>
-                <tbody>
-                  {Table}
-                </tbody>
-              </table>
-            </Box>
-          </>
-        )}
-        {list.length > 0 && (
+      <LoggedTemplate>
+        <section className="cultures">
+          <h1 className="cultures__title">
+            Cultures
+          </h1>
+          <Box className="cultures__container">
           <Box className="cultures__group">
-            <form className="cultures__form">
-              <Field label="Culture id (only to update)" className="cultures__field">
-                <input
-                  className="input input__text cultures__text-input"
-                  name="id"
-                  id="id"
-                  type="text"
-                  value={strID}
-                  onChange={this.onIdChange}
-                />
-              </Field>
-              <Field label="Code" className="cultures__field">
-                <input
-                  className="input input__text cultures__text-input"
-                  name="code"
-                  id="code"
-                  type="text"
-                  value={code}
-                  onChange={this.onChange}
-                />
-              </Field>
-              <Field label="Description" className="cultures__field">
-                <input
-                  className="input input__text cultures__text-input"
-                  name="description"
-                  id="description"
-                  type="text"
-                  value={description}
-                  onChange={this.onChange}
-                />
-              </Field>
-              <Box className="cultures__field">
-                <Button
-                  className="cultures__button"
-                  onClick={!strID ? this.onAddCulture : this.onUpdateCulture}
-                  disabled={!code || !description}
-                >
-                  {!strID ? 'Add' : 'Update'}
-                </Button>
-              </Box>
-            </form>
+            <Button className="cultures__button" onClick={this.onGetCultures}>
+              Get cultures list
+            </Button>
           </Box>
-        )}
-        </Box>
-      </section>
+          {(list.length > 0 && Table.length > 0) && (
+            <>
+              <br/>
+              <br/>
+              <br/>
+              <Box className="cultures__group">
+                <h2 className="cultures__sub-title">
+                  List
+                </h2>
+                <table className="cultures__table">
+                  <thead>
+                    {header}
+                  </thead>
+                  <tbody>
+                    {Table}
+                  </tbody>
+                </table>
+              </Box>
+            </>
+          )}
+          {list.length > 0 && (
+            <Box className="cultures__group">
+              <form className="cultures__form">
+                <Field label="Culture id (only to update)" className="cultures__field">
+                  <input
+                    className="input input__text cultures__text-input"
+                    name="id"
+                    id="id"
+                    type="text"
+                    value={strID}
+                    onChange={this.onIdChange}
+                  />
+                </Field>
+                <Field label="Code" className="cultures__field">
+                  <input
+                    className="input input__text cultures__text-input"
+                    name="code"
+                    id="code"
+                    type="text"
+                    value={code}
+                    onChange={this.onChange}
+                  />
+                </Field>
+                <Field label="Description" className="cultures__field">
+                  <input
+                    className="input input__text cultures__text-input"
+                    name="description"
+                    id="description"
+                    type="text"
+                    value={description}
+                    onChange={this.onChange}
+                  />
+                </Field>
+                <Box className="cultures__field">
+                  <Button
+                    className="cultures__button"
+                    onClick={!strID ? this.onAddCulture : this.onUpdateCulture}
+                    disabled={!code || !description}
+                  >
+                    {!strID ? 'Add' : 'Update'}
+                  </Button>
+                </Box>
+              </form>
+            </Box>
+          )}
+          </Box>
+        </section>
+      </LoggedTemplate>
     );
 	}
 }
