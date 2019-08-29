@@ -28,20 +28,16 @@ export const base = async (url, request) => {
     console.log(response);
 
     const httpcode = response.status;
-    var contentType = response.headers.get("content-type");
-
-    let dataraw;
-    if(contentType && contentType.includes("application/json")) {
-      dataraw = await response.json();
-    } else {
-      dataraw = await response.text();
-    }
+    const contentType = response.headers.get("content-type");
+    const dataraw = await response.text();
 
     console.log('> REST API dataraw.');
+    console.log(contentType);
     console.log(dataraw);
 
     return {
       httpcode,
+      contentType,
       dataraw,
     };
   } catch (error) {
