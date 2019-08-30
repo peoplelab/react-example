@@ -40,7 +40,8 @@ export const SessionValidity = () => {
 };
 
 // chimata per il refresh automatico della sessione utentete
-export const callRefresh = async ({ base, ...args }) => {
+// al successo della chiamata, esegue un nuovo tentativo di connessione all'api rifiutata in precedenza
+export const callRefresh = async ({ base: callback, ...args }) => {
   const { refreshToken } = store.getState();
 
   const request = {
@@ -56,7 +57,7 @@ export const callRefresh = async ({ base, ...args }) => {
         payload: jsondata,
       });
 
-      base(...args);
+      callback(...args);
     },
     failure: () => {
       store.dispatch({
