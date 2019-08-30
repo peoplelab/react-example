@@ -6,7 +6,7 @@
 //---------------------------------------------------------------------------------------------
 
 
-const main = require('./mocks.main');
+const main = require('./mocks/mocks.main');
 
 
 // external file for server configuration
