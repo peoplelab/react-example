@@ -20,8 +20,8 @@
 // Path: /src/controllers/common/controller.base
 //----------------------------------------------------------------------------------------
 
+import { failureHandler } from './failure.handler';
 import store from '../../store/redux.store';
-import { callRefresh } from '../session.controller';
 
 
 // definizione degli header
@@ -59,9 +59,10 @@ export const base = async ({ request, api, success, failure, params, refresh }) 
       failure({ httpcode, dataraw, error });
     }
 
-    if (dataraw === 'sessionExpired' && (refresh === undefined || refresh)) {
-      callRefresh({ base, request, api, success, failure, params, refresh });
-    }
+    failureHandler({
+      input: { request, api, success, failure, params, refresh },
+      output: { httpcode, dataraw, error },
+    });
 
     console.log('----- Failure call');
   }
