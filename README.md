@@ -1,11 +1,15 @@
 
 # Mitrol
 
-## URL environment
+## URL delle API
+Tabella degli URL usati per le API in base all'ambiente in cui si vuole testare
 
-* http://localhost:4000 --> mocks
-* http://192.168.11.40 --> develop
-* http://172.30.57.26:4000 --> production
+| URL                      | Environment |
+|--------------------------|-------------|
+| http://localhost:4000    | MOCKS       |
+| http://192.168.11.40     | DEVELOPMENT |
+| http://172.30.57.26:4000 | PRODUCTION  |
+
 
 ## Commands
 Lista dei comandi `npm` e `yarn`
