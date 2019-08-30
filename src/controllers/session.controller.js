@@ -40,7 +40,7 @@ export const SessionValidity = () => {
 };
 
 // chimata per il refresh automatico della sessione utentete
-export const callRefresh = async () => {
+export const callRefresh = async ({ base, ...args }) => {
   const { refreshToken } = store.getState();
 
   const request = {
@@ -55,6 +55,8 @@ export const callRefresh = async () => {
         type: types.SET_SESSION,
         payload: jsondata,
       });
+
+      base(...args);
     },
     failure: () => {
       store.dispatch({

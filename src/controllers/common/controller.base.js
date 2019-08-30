@@ -15,11 +15,13 @@
 //                contentType: stringa che specifica il tipo di testo di di dataraw (segue il content-type della response http)
 //                error: oggetto di tipo Error tornato in caso sia stato impossibile eseguire la chimata
 //    params: oggetto JSON contente parametri specifici da passare all'api (la documentazione indicherà i parametri da passare e in quale formato) [ si usa per metodi GET e DELETE per il query string dell'url ]
+//    refresh: parametro booleano opzionale, indica se eseguire il refresh della sessione quando l'access token è scaduto
 //
 // Path: /src/controllers/common/controller.base
 //----------------------------------------------------------------------------------------
 
 import store from '../../store/redux.store';
+import { callRefresh } from '../session.controller';
 
 
 // definizione degli header
@@ -29,7 +31,7 @@ const headersFn = state => ({
 });
 
 
-export const base = async ({ request, api, success, failure, params }) => {
+export const base = async ({ request, api, success, failure, params, refresh }) => {
   // imposta gli header che verranno utilizzati per abilitare le chimate api
   const headers = headersFn(store.getState());
 
@@ -56,6 +58,11 @@ export const base = async ({ request, api, success, failure, params }) => {
     if (typeof failure === 'function') {
       failure({ httpcode, dataraw, error });
     }
+
+    if (dataraw === 'sessionExpired' && (refresh === undefined || refresh)) {
+      callRefresh({ base, request, api, success, failure, params, refresh });
+    }
+
     console.log('----- Failure call');
   }
 
