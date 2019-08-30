@@ -19,7 +19,7 @@
   },
   "betterScripts": {
     "mocks:start": {
-      "command": "node ./server/mocks.development.js",
+      "command": "nodemon ./server/mocks.development.js",
       "env": {
         "NODE_ENV": "DEVELOPMENT"
       }
@@ -47,7 +47,7 @@
       }
     },
     "start": {
-      "command": "node ./server/app.development.js",
+      "command": "nodemon ./server/app.development.js",
       "env": {
         "COMPILE_ENV": "DEVELOPMENT",
         "BABEL_ENV": "dev",
@@ -56,7 +56,7 @@
       }
     },
     "start:mocks": {
-      "command": "node ./server/app.development.js",
+      "command": "nodemon ./server/app.development.js",
       "env": {
         "COMPILE_ENV": "DEVELOPMENT",
         "BABEL_ENV": "dev",
@@ -108,6 +108,7 @@
     "html-webpack-plugin": "3.2.0",
     "moment": "2.24.0",
     "node-sass": "4.12.0",
+    "nodemon": "1.19.1",
     "postcss": "7.0.17",
     "postcss-loader": "3.0.0",
     "sass-loader": "7.1.0",
