@@ -13,7 +13,7 @@ import {
 
 // classe per la gestione di enumeratori
 class Enum {
-  // Metodo statico per generare un oggetto enumeratore partendo da una lista di stringhe
+  // Metodo statico per generare un oggetto enumeratore partendo da una lista di parametri di tipo stringa
   static from(...args) {
     const response = args.every(value => isKey(value));
 

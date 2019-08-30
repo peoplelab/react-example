@@ -32,7 +32,7 @@ const enhancer = composeEnhancers();
 const store = createStore(reducer, initialState, enhancer);
 
 
-// Abilitazione dell'hot-reload dello store
+// Abilitazione dell'hot-reloading dello store
 if (module.hot) {
   module.hot.accept('./session.store', () => {
     store.replaceReducer(reducer);

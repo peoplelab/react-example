@@ -2,7 +2,7 @@
 // File: Gallery.jsx
 //
 // Desc: Componente React per l'inizializzazione e la gestione di una galleria di elementi
-//       Ogni elemento viene creato tramite un componente templete presente in props.children
+//       Ogni elemento viene creato tramite un componente template presente in props.children
 // Path: /src/components/layouts/Gallery
 //-------------------------------------------------------------------------------------------
 
@@ -29,6 +29,7 @@ class Gallery extends PureComponent {
     this.makeSlides = this.makeSlides.bind(this);
   }
 
+  // Visualizza la slide precedente
   onPrev() {
     const { itemVisible } = this.props;
     let { currentIndex } = this.state;
@@ -42,6 +43,7 @@ class Gallery extends PureComponent {
     this.setState({ currentIndex });
   }
 
+  // Visualizza la slide successiva
   onNext() {
     const { list, itemVisible } = this.props;
     let { currentIndex } = this.state;
@@ -55,6 +57,8 @@ class Gallery extends PureComponent {
     this.setState({ currentIndex });
   }
 
+  // vengono generate slide (il gruppo di elementi a video) e gli elementi da esse contenuti
+  // gli elementi sono creati partendo dal template di props.children
   makeSlides() {
     const {
       list,
@@ -91,6 +95,7 @@ class Gallery extends PureComponent {
     return slides;
   }
 
+  // render della gallery
   render() {
     const {
       list,
@@ -135,10 +140,10 @@ class Gallery extends PureComponent {
 
 
 Gallery.propTypes = {
-  children: PropTypes.node.isRequired,
-  list: PropTypes.arrayOf(PropTypes.object).isRequired,
-  className: PropTypes.string,
-  itemVisible: PropTypes.number,
+  children: PropTypes.element.isRequired, // template degli elementi della slide
+  list: PropTypes.arrayOf(PropTypes.object).isRequired, // lista dei dati necessari a crostruire gli elementi della gallery
+  className: PropTypes.string, // css class
+  itemVisible: PropTypes.number, // numero di elementi contenuti all'interno di una singola slide
 };
 
 Gallery.defaultProps = {
