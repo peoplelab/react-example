@@ -16,7 +16,7 @@ const { URL_ENV, COMPILE_ENV } = process.env;
 // server configuration object
 const SERVER_CONFIG = {
   PORT: 3500,
-  URL: URL_ENV === 'MITROL' ? 'http://192.168.11.40:4000' : 'http://localhost:4000',
+  URL: URL_ENV === 'MITROL' ? 'http://172.30.57.26:4000' : 'http://localhost:4000',
   LOG_LEVEL: 'debug',
 };
 
