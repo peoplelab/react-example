@@ -15,7 +15,7 @@ const { COMPILE_ENV } = process.env;
 
 const config = {
   "PORT": 3500,
-  "URL": COMPILE_ENV === 'PRODUCTION' ? 'http://192.168.11.40:4000' : 'http://localhost:4000',
+  "URL": COMPILE_ENV === 'PRODUCTION' ? 'http://172.30.57.26:4000' : 'http://localhost:4000',
   "LOG_LEVEL": "debug"
 };
 

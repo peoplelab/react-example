@@ -1,6 +1,12 @@
 
 # Mitrol
 
+## URL environment
+
+* http://localhost:4000 --> mocks
+* http://192.168.11.40 --> develop
+* http://172.30.57.26:4000 --> production
+
 ## Commands
 Lista dei comandi `npm` e `yarn`
 
