@@ -1,7 +1,8 @@
 //----------------------------------------------------------------------------------------
 // File: ButtonData.jsx
 //
-// Desc: Pulsante per l'esecuzione di azioni e il passaggio di dati al loro interno
+// Desc: Pulsante per l'esecuzione di azioni e l'invio di dati
+//       Indicati dei dati, questi verranno inviati tramite l'evento dell'azione
 // Path: /src/components/layouts/ButtonData
 //----------------------------------------------------------------------------------------
 

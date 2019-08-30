@@ -5,7 +5,7 @@
 //----------------------------------------------------------------------------------------
 
 
-// verifica che il valore passato sia una stringa valida come chiave da enumeratore
+// verifica che il valore passato sia una stringa valida, nel caso venga usata come chiave di un enumeratore
 export const isKey = key => typeof key === 'string' && /^[A-Za-z](([A-Za-z\d]|(_|-)(?=[A-Za-z\d]))*[A-Za-z\d])?$/.test(key);
 
 // verifica che il valore passato sia undefined o null
