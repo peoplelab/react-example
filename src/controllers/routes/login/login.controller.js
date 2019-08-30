@@ -33,7 +33,8 @@ export const callLogin = async ({ data, dispatch }) => {
     },
     failure: () => {
       dispatch({ errorOnLogin: true });
-    }
+    },
+    refresh: false
   });
 };
 
@@ -46,7 +47,8 @@ export const callCultureGet = async ({ dispatch }) => {
     },
     failure: ({ dataraw, error }) => {
       dispatch({ cultureList: dataraw || error });
-    }
+    },
+    refresh: false
   });
 };
 
@@ -59,7 +61,8 @@ export const callLastLogin = async ({ dispatch }) => {
     },
     failure: ({ dataraw, error }) => {
       dispatch({ usersList: dataraw || error });
-    }
+    },
+    refresh: false
   });
 };
 

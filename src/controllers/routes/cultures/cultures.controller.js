@@ -70,7 +70,8 @@ export const callCulturesGet = async ({ dispatch }) => {
     },
     failure: () => {
       dispatch({ data: [] });
-    }
+    },
+    refresh: false
   });
 };
 
