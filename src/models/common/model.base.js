@@ -18,13 +18,11 @@
 
 export const base = async (url, request) => {
   try {
-    //eslint-disable-next-line
     console.log('> Calling REST API:' + url);
     console.log(request);
 
     const response = await fetch(url, request);
 
-    //eslint-disable-next-line
     console.log('> REST API executed.');
     console.log(response);
 
@@ -42,7 +40,6 @@ export const base = async (url, request) => {
       dataraw,
     };
   } catch (error) {
-    //eslint-disable-next-line
     console.log('> REST API failed.');
     console.log(error);
 
