@@ -1,14 +1,18 @@
 
 # Mitrol
 
-## URL delle API
+## Proxy
+Tutte le cliamate client alle API sono intercettate da un proxy, il quale provvede a fare un redirect della chiamata a un url
+specifico, indicato all'interno del file JSON server.config, relativo all'ambiente scelto per la chiamata
+
+### URL API
 Tabella degli URL usati per le API in base all'ambiente in cui si vuole testare
 
-| URL                      | Environment |
-|--------------------------|-------------|
-| http://localhost:4000    | MOCKS       |
-| http://192.168.11.40     | DEVELOPMENT |
-| http://172.30.57.26:4000 | PRODUCTION  |
+| URL                       | Environment |
+|---------------------------|-------------|
+| http://localhost:4000     | MOCKS       |
+| http://192.168.11.40:4000 | DEVELOPMENT |
+| http://172.30.57.26:4000  | PRODUCTION  |
 
 
 ## Commands
@@ -18,7 +22,6 @@ Lista dei comandi `npm` e `yarn`
   npm run [command]
   yarn [command]
 ```
-
 
 ### Lint
 Lista dei comandi per la ricerca di errori e warning
@@ -43,6 +46,7 @@ Lista dei comandi per la creazione di distribuzioni del progetto
 Lista dei comandi per l'emulazione in locale del progetto
 * `start` Emulazione di un rilascio `build`, i servizi puntano diretta alle api di Mitrol
 * `start:mocks` Emulazione di un rilascio `build`, i servizi puntano al server mock locale
+
 
 ## Folders Tree
 Alberatura del progetto
