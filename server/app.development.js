@@ -28,6 +28,7 @@ const app = express();
 app.use('/api', proxyMiddleware({ route: '/api', ...SERVER_CONFIG }));
 
 
+// add webpack integration into express server
 app.use(devMiddleware);
 
 // add webpack hot reloading middleware
