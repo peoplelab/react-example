@@ -1,51 +1,39 @@
 const express = require('express');
 const mime = require('mime/lite');
-const fs = require('fs');
 
 
 // Initialize router
 const router = express.Router();
 
 
-// handle request
-const handleRequest = (res, { url, filePath }) => {
+// router logger
+const logger = ({ url, filePath, mimeType }) => {
+  console.log('\x1b[33m', '> URL request: ' + url, '\n\t - File path: ', filePath, '\n\t - File mime-type: ', mimeType, '\x1b[0m');
+};
+
+
+// common router handler
+const commonHandler = ({ req, res, filePath }) => {
   const mimeType = mime.getType(filePath);
 
-  console.log('> URL request: ', url);
-  console.log('> File path: ', filePath);
-  console.log('> File mime-type: ', mimeType);
-
-  // res.setHeader('Content-Security-Policy', 'default-src \'self\'');
   res.setHeader('Content-Type', mimeType);
-  res.end(fs.readFileSync('.' + filePath));
+
+  logger({ url: req.url, filePath, mimeType });
+
+  return res.sendFile('.' + filePath, { root: './' });
 };
 
-// handle routes
-const routesHandler = (req, res, next) => {
-  const { url } = req;
-  const filePath = '/index.html';
-
-  handleRequest(res, { url, filePath });
-
-  next();
-};
 
 // handle files
-const filesHandler = (req, res, next) => {
+router.get(/\.[^/]+$/, (req, res) => {
   const { url } = req;
   const filePath = url.replace(/\?.+$/, '');
 
-  handleRequest(res, { url, filePath });
+  return commonHandler({ req, res, filePath });
+});
 
-  next();
-};
-
-
-// handle routes
-router.get(/^(\/(\w+(?!\.))*)?$/, routesHandler);
-
-// handle files
-router.get(/\..+$/, filesHandler);
+// handler routes
+router.get("/*", (req, res) => commonHandler({ req, res, filePath: '/index.html' }));
 
 
 module.exports = { router };
