@@ -8,6 +8,10 @@ const proxyOpts = ({ URL, route }) => ({
 
     return apiUrl;
   },
+  proxyReqBodyDecorator: (bodyContent, srcReq) => {
+    console.log(bodyContent.toString('utf8'));
+    return bodyContent;
+  },
   userResDecorator: (proxyRes, proxyResData, userReq, userRes) => {
     console.log('\x1b[36m--> RESPONSE of' + userReq.originalUrl + ':\x1b[0m');
     console.log(proxyResData.toString('utf8'));
