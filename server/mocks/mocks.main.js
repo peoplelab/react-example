@@ -8,7 +8,7 @@
 
 const express = require('express');
 const bodyParser = require('body-parser');
-const mocks = require('../mocks');
+const mocks = require('../../mocks');
 
 
 const app = express();

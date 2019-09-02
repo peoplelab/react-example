@@ -10,9 +10,9 @@ const { HotModuleReplacementPlugin } = require('webpack');
 const globalVars = require('../global/client');
 
 
-const { COMPILE_ENV } = process.env;
+const { NODE_ENV } = process.env;
 
-const entry = COMPILE_ENV === 'PRODUCTION' ? ['./src/index.js'] : ['./src/index.js', 'webpack-hot-middleware/client'];
+const entry = NODE_ENV === 'RELEASE' ? ['./src/index.js'] : ['./src/index.js', 'webpack-hot-middleware/client'];
 
 
 module.exports = {
