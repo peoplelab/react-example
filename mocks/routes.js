@@ -30,7 +30,7 @@ module.exports = [
   },
   {
     "url": `${url.tool}/:id`,
-    "api": require(`.${url.tool}/id`),
+    "api": require(`.${url.tool}`),
   },
   {
     "url": url.tools,
