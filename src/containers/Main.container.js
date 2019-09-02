@@ -25,6 +25,7 @@ export const logged = (state) => {
 // Traforma gli stati Redux in proprietà del componente React
 const mapStateToProps = state => ({
   isUserLogged: logged(state) || false,
+  refreshToken: state.refreshToken || '',
 });
 
 

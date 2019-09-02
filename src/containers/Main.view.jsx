@@ -48,7 +48,16 @@ class MainComponent extends Component {
     this.timer = null;
   }
 
-  // A componente montato, verifica che la sessione sia valida entro un determinato lasso di tempo, indicato nella response del servizio di login
+  // Viene verificato se il refreshToken è stato aggiornato
+  // In caso affermativo, viene inizizializzato un nuovo timer in componentDidUpdate
+  // In caso contrario, vengono bloccati eventuali aggiornamenti
+  shouldComponentUpdate(nextProps, nextState) {
+    return nextProps.refreshToken !== this.props.refreshToken;
+  }
+
+  // A componente montato, viene avviato un timer una volta che l'utente ha fatto login
+  // Una volta scaduto il timer, verrà invalidato, lato client, il refreshToken e la sessione corrente
+  // La durata di vita del refreshToken e della sessione è indicata, nella response del servizio di login, da refreshExpiredAt
   componentDidUpdate() {
     if (this.timer !== null) {
       clearTimeout(this.timer);
@@ -87,6 +96,7 @@ class MainComponent extends Component {
  */
 MainComponent.propTypes = {
   isUserLogged: PropTypes.bool.isRequired,
+  refreshToken: PropTypes.string.isRequired,
 };
 
 /**
