@@ -59,9 +59,7 @@ class MainComponent extends Component {
   // Una volta scaduto il timer, verrà invalidato, lato client, il refreshToken e la sessione corrente
   // La durata di vita del refreshToken e della sessione è indicata, nella response del servizio di login, da refreshExpiredAt
   componentDidUpdate() {
-    if (this.timer !== null) {
-      clearTimeout(this.timer);
-    }
+    clearTimeout(this.timer);
 
     this.timer = SessionValidity();
   }

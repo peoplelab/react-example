@@ -26,13 +26,11 @@ export const SessionValidity = () => {
 
   console.log('> session timeout - ', refreshExpiredAt, ' - ', timeout + ' ms');
 
-  const timer = setTimeout(() => {
+  return setTimeout(() => {
     store.dispatch({ type: types.RESET_SESSION });
     history.replace('/login');
     console.log('> session timeout - done');
   }, timeout);
-
-  return timer;
 };
 
 // chimata per il refresh automatico della sessione utentete
