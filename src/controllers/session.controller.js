@@ -15,25 +15,21 @@ import history from '../models/common/history';
 
 // dato un determinato lasso di tempo, allo scadere di quest'ultimo, verifica se la sessione utente è ancora valida
 export const SessionValidity = () => {
-  const { expiredAt, refreshExpiredAt } = store.getState();
+  const { refreshExpiredAt } = store.getState();
 
-  const token = moment(expiredAt);
+  // const token = moment(expiredAt);
   const refresh = moment(refreshExpiredAt);
   const login = moment();
 
-  let timeout = token.diff(login).valueOf();
+  let timeout = refresh.diff(login).valueOf();
   timeout = timeout > 0 ? timeout : 0;
 
-  console.log('session timer - ', timeout);
+  console.log('> session timeout - ', refreshExpiredAt, ' - ', timeout + ' ms');
 
   const timer = setTimeout(() => {
-    if (moment().isAfter(refresh)) {
-      store.dispatch({ type: types.RESET_SESSION });
-      history.replace('/login');
-    } else if (moment().isAfter(token)) {
-      callRefresh({});
-    }
-    console.log('session timer - ', 'done');
+    store.dispatch({ type: types.RESET_SESSION });
+    history.replace('/login');
+    console.log('> session timeout - done');
   }, timeout);
 
   return timer;
