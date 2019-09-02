@@ -46,7 +46,7 @@ module.exports = [
   },
   {
     "url": `${url.cultures}/:id`,
-    "api": require(`.${url.cultures}/id`),
+    "api": require(`.${url.cultures}`),
   },
   {
     "url": url.fnc,
