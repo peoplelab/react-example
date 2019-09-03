@@ -13,7 +13,7 @@ Indicare, nel file JSON server.config, uno dei seguenti valore nella chiave `LOG
 Tutte le cliamate client alle API sono intercettate da un proxy, il quale provvede a fare un redirect della chiamata a un url
 specifico, indicato all'interno del file JSON server.config, relativo all'ambiente scelto per la chiamata
 
-### URL API
+### API URL (origin)
 Tabella degli URL usati per le API in base all'ambiente in cui si vuole testare
 
 | URL                       | Environment |
@@ -52,14 +52,14 @@ Lista dei comandi per la creazione di distribuzioni del progetto
 
 ### Emulazione
 Lista dei comandi per l'emulazione in locale del progetto
-* `start` Emulazione di un rilascio `build`, i servizi puntano diretta alle api di Mitrol
+* `start` Emulazione di un rilascio `build`, i servizi puntano direttamente alle api di Mitrol
 * `start:mocks` Emulazione di un rilascio `build`, i servizi puntano al server mock locale
 
 
 ## Alberatura del progetto
 
 ### config
-Contiene i file per la configurazione globale del progetto per eseguire sviluppo e rilasci
+Contiene i file per la configurazione globale del progetto per eseguire lo sviluppo e i rilasci
 
 ### mocks
 Contiene le response di esempio delle api per i test in ambiente locale
@@ -72,7 +72,7 @@ Es:
 * index.html
 
 ### server
-Contine i server per l'esecuzione e di test del progetto; i server saranno eseguiti su localhost, ognuno rispettivamente alla porta indicata
+Contine i server per eseguire e/o testare il progetto; i server saranno eseguiti su localhost, ognuno rispettivamente alla porta indicata all'interno del file JSON server.config
 
 ### src
 Contiene le risorse del progetto
@@ -99,6 +99,9 @@ Contiene i file controller dei componenti React
 #### src/models
 Contiene i file model dei componenti React
 
+#### src/presenters
+Contiene i file presenter dei componenti React
+
 #### src/store
 Contiene lo store globale, relativo alla sessione, dell'applicativo
 
@@ -106,7 +109,7 @@ Contiene lo store globale, relativo alla sessione, dell'applicativo
 Contiene i file di stile dei componenti React
 
 
-## Files organization
+## Organizzazione dei file
 Fatta eccezione per `src/controllers` e `src/store`, tutte le directory in src, presentano la stessa alberatura, di seguito riportata
 ``` plain/text
 ° [category]
@@ -157,7 +160,7 @@ Es:
 | index.html         | entry point dell'applicativo      |
 | server.config.json | file di configurazione del server |
 | server.js          | server client                     |
-| server.js.map      | map del server client             |
+| server.js.map      | map del server                    |
 
 <br />
 
