@@ -10,7 +10,7 @@ import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import createRoutes from './Router';
-import { SessionValidity } from '../controllers/session.controller';
+// import { SessionValidity } from '../controllers/session.controller';
 
 
 /**
@@ -42,27 +42,27 @@ const mapRoutes = (routeProps) => {
 
 // Definizione del gestore delle pagine dell'applicativo
 class MainComponent extends Component {
-  constructor(props) {
-    super(props);
+  // constructor(props) {
+  //   super(props);
 
-    this.timer = null;
-  }
+  //   this.timer = null;
+  // }
 
-  // Viene verificato se il refreshToken è stato aggiornato
-  // In caso affermativo, viene inizizializzato un nuovo timer in componentDidUpdate
-  // In caso contrario, vengono bloccati eventuali aggiornamenti
-  shouldComponentUpdate(nextProps, nextState) {
-    return nextProps.refreshToken !== this.props.refreshToken;
-  }
+  // // Viene verificato se il refreshToken è stato aggiornato
+  // // In caso affermativo, viene inizizializzato un nuovo timer in componentDidUpdate
+  // // In caso contrario, vengono bloccati eventuali aggiornamenti
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   return nextProps.refreshToken !== this.props.refreshToken;
+  // }
 
   // A componente montato, viene avviato un timer una volta che l'utente ha fatto login
   // Una volta scaduto il timer, verrà invalidato, lato client, il refreshToken e la sessione corrente
   // La durata di vita del refreshToken e della sessione è indicata, nella response del servizio di login, da refreshExpiredAt
-  componentDidUpdate() {
-    clearTimeout(this.timer);
+  // componentDidUpdate() {
+  //   clearTimeout(this.timer);
 
-    this.timer = SessionValidity();
-  }
+  //   this.timer = SessionValidity();
+  // }
 
   render() {
     const { isUserLogged } = this.props;
@@ -94,7 +94,7 @@ class MainComponent extends Component {
  */
 MainComponent.propTypes = {
   isUserLogged: PropTypes.bool.isRequired,
-  refreshToken: PropTypes.string.isRequired,
+  // refreshToken: PropTypes.string.isRequired,
 };
 
 /**

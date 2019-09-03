@@ -20,7 +20,7 @@
 // Path: /src/controllers/common/controller.base
 //----------------------------------------------------------------------------------------
 
-import { failureHandler } from './failure.handler';
+// import { failureHandler } from './failure.handler';
 import store from '../../store/redux.store';
 
 
@@ -59,10 +59,10 @@ export const base = async ({ request, api, success, failure, params, refresh }) 
       failure({ httpcode, dataraw, error });
     }
 
-    failureHandler({
-      input: { request, api, success, failure, params, refresh },
-      output: { httpcode, dataraw, error },
-    });
+    // failureHandler({
+    //   input: { request, api, success, failure, params, refresh },
+    //   output: { httpcode, dataraw, error },
+    // });
 
     console.log('----- Failure call');
   }
