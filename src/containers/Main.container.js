@@ -7,25 +7,14 @@
 
 
 import { connect } from 'react-redux';
-import moment from 'moment';
 import Main from './Main.view';
-
-
-// Verifica che l'utente sia in possesso di credenziali valide
-export const logged = (state) => {
-  const { accessToken, sessionId, expiredAt } = state;
-
-  const expired = moment(expiredAt, 'YYYY-MM-DDThh:mm:ss.SSSSSSS+z');
-  const now = moment();
-
-  return accessToken && sessionId && expired.isAfter(now);
-};
+import { logged } from '../presenter/session.presenter';
 
 
 // Traforma gli stati Redux in proprietà del componente React
 const mapStateToProps = state => ({
-  isUserLogged: logged(state) || false,
-  refreshToken: state.refreshToken || '',
+  isUserLogged: logged(state),
+  // refreshToken: state.refreshToken || '',
 });
 
 
