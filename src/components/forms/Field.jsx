@@ -11,9 +11,6 @@ import PropTypes from 'prop-types';
 import Box from '../layouts/Box';
 
 
-/**
- * Form field
- */
 const Field = (props) => {
   const {
     children,

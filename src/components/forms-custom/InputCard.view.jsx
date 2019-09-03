@@ -28,7 +28,7 @@ const InputCard = (props) => {
     onClick,
   } = props;
 
-  // se il dato predefiti non è indicato, torna il componente per l'inserimento manuale dei dati
+  // se il dato predefito non è indicato, torna il componente per l'inserimento manuale dei dati
   if (data === null) {
     return children;
   }

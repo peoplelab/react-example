@@ -1,9 +1,10 @@
-// Style of private routes template
+// Style own of home route
 
 @import '../colors.scss';
 
 /** @define home */
 
+// Style of pubblic section
 .home {
   display: flex;
   height: 100vh;
@@ -40,7 +41,7 @@
   }
 }
 
-
+// Style of logged section
 .home__logged {
   padding: 3rem;
 

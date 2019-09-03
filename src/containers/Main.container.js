@@ -13,8 +13,8 @@ import { logged } from '../presenters/session.presenter';
 
 // Traforma gli stati Redux in proprietà del componente React
 const mapStateToProps = state => ({
-  isUserLogged: logged(state),
-  // refreshToken: state.refreshToken || '',
+  isUserLogged: logged(state), // Verifica che l'utente sia in possesso di credenziali valide
+  // refreshToken: state.refreshToken || '', // Recupera il valore corrente del refreshToken
 });
 
 

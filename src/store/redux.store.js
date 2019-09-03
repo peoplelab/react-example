@@ -8,14 +8,14 @@
 
 import { compose, createStore, applyMiddleware } from 'redux'; // Import dei componneti di redux
 import { reducer } from './session.store';    // Import del reducer della sessione per la gestione dello store
-import { logger } from '../middlewares/logger.middleware'; // Logga tutti gli state le action ad ogni chiamata di store.dispatch
+import { logger } from '../middlewares/logger.middleware'; // Log di tutte le modifiche allo stato dello store e delle action passate allo store.dispatch
 
 
 // Stato iniziale dello store
 const initialState = {};
 
 
-// concatenazione delle middleware
+// Concatenazione delle middleware
 const middlewares = applyMiddleware(logger);
 
 
@@ -28,7 +28,7 @@ const composeEnhancers = (
     : compose
 );
 
-// Inizializzazione del middleware
+// Inizializzazione delle middleware
 const enhancer = composeEnhancers(middlewares);
 
 

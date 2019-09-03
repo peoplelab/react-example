@@ -13,10 +13,7 @@ import createRoutes from './Router';
 // import { SessionValidity } from '../controllers/session.controller';
 
 
-/**
- * Iterate an array of objects to return the application routes
- * @param {*} routeProps Route properties
- */
+// Partendo da una lista di oggetti, ritorna una lista di componeti React di tipo Route, corrispondenti alle pagine dell'applicativo
 const mapRoutes = (routeProps) => {
   const {
     Component,

@@ -57,8 +57,8 @@ class Gallery extends PureComponent {
     this.setState({ currentIndex });
   }
 
-  // vengono generate slide (il gruppo di elementi a video) e gli elementi da esse contenuti
-  // gli elementi sono creati partendo dal template di props.children
+  // genera le slide (il gruppo di elementi a video) e gli elementi da esse contenuti
+  // gli elementi sono creati partendo dal template indicato da props.children
   makeSlides() {
     const {
       list,
