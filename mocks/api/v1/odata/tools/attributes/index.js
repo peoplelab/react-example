@@ -1,6 +1,9 @@
+const { base } = require('../../../../../mock.base');
+
+
 module.exports = {
-  GET: (req, res) => {
-    res.status(200).json([
+  GET: base(
+    () => [
       {
         "id": 10,
         "code": "FastApproachPosition",
@@ -19,6 +22,6 @@ module.exports = {
         "description": "Posizione di partenza foro [mm]",
         "displayName": "SF"
       }
-    ]);
-  }
+    ]
+  )
 };

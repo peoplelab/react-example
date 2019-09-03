@@ -22,7 +22,7 @@ module.exports = [
   },
   {
     "url": `${url.tools}/attributes/:toolTypeId`,
-    "api": require(`.${url.tools}/attributes/toolTypeId`),
+    "api": require(`.${url.tools}/attributes`),
   },
   {
     "url": `${url.tools}/categories`,
@@ -38,7 +38,7 @@ module.exports = [
   },
   {
     "url": `${url.tools}/Types/:categoryId`,
-    "api": require(`.${url.tools}/Types/categoryId`),
+    "api": require(`.${url.tools}/Types`),
   },
   {
     "url": url.cultures,

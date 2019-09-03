@@ -1,6 +1,9 @@
+const { base } = require('../../../../../mock.base');
+
+
 module.exports = {
-  GET: (req, res) => {
-    res.status(200).json([
+  GET: base(
+    () => [
       {
         "toolComponentCategoryId": 1,
         "id": 31,
@@ -29,6 +32,6 @@ module.exports = {
         "description": "Sbavatura con utensile tradizionale",
         "displayName": "TS_34"
       }
-    ]);
-  }
+    ]
+  )
 };
