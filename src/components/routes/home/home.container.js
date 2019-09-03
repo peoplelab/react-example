@@ -8,7 +8,7 @@
 
 import { connect } from 'react-redux';
 import Home from './home.view';
-import { logged } from '../../../presenter/session.presenter';
+import { logged } from '../../../presenters/session.presenter';
 
 
 // Traforma gli stati Redux in proprietà del componente React
