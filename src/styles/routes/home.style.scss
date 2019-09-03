@@ -37,18 +37,23 @@
       margin: 2rem auto;
       text-align: center;
     }
+  }
+}
 
-    .home__container {
-      width: 100%;
 
-      .home__button {
-        background-color: $dark-grey;
-        color: $light-grey;
-        cursor: pointer;
-        display: block;
-        margin: 2rem auto;
-        padding: 0.8rem 1.2rem;
-      }
+.home__logged {
+  padding: 3rem;
+
+  .home__container {
+    width: 100%;
+
+    .home__button {
+      background-color: $dark-grey;
+      color: $light-grey;
+      cursor: pointer;
+      display: block;
+      margin: 2rem auto;
+      padding: 0.8rem 1.2rem;
     }
   }
 }

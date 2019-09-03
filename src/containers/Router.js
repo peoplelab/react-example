@@ -7,6 +7,7 @@
 
 import lazy from '../components/common/AsyncComponent';
 
+
 // Lista delle rotte dell'applicativo
 const createRoutes = () => ({
   // Lista delle pagine pubbliche
@@ -15,7 +16,7 @@ const createRoutes = () => ({
       path: '/',
       key: 'home',
       exact: true,
-      Component: lazy(() => import(/* webpackChunkName: "Home" */ '../components/routes/home/home.view')),
+      Component: lazy(() => import(/* webpackChunkName: "Home" */ '../components/routes/home/home.container')),
     },
     {
       path: '/login',
