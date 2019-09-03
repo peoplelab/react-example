@@ -1,7 +1,7 @@
 const proxy = require('express-http-proxy');
 
 // proxy handler (logging requests)
-const proxyOpts = ({ URL, route }) => ({
+const proxyOpts = ({ URL, LOG_LEVEL, route }) => (LOG_LEVEL === 'debug' ? {
   proxyReqPathResolver: (req) => {
     const apiUrl = route + req.url;
     console.log('\x1b[36m--> PROXYING REQUEST: ' + req.method + ' ' + apiUrl + ' to ' + URL + apiUrl + '\x1b[0m');
@@ -18,11 +18,13 @@ const proxyOpts = ({ URL, route }) => ({
 
     return proxyResData;
   },
+}: {
+  proxyReqPathResolver: (req) => route + req.url,
 });
 
 
 // start proxy handler
-const proxyMiddleware = ({ route, URL }) => proxy(URL, proxyOpts({ URL, route }));
+const proxyMiddleware = ({ route, URL, LOG_LEVEL }) => proxy(URL, proxyOpts({ URL, LOG_LEVEL, route }));
 
 
 module.exports = {

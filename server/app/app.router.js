@@ -1,9 +1,13 @@
+const fs = require('fs');
 const express = require('express');
 const mime = require('mime/lite');
 
 
 // Initialize router
 const router = express.Router();
+
+// external file for server configuration
+const { LOG_LEVEL } = JSON.parse(fs.readFileSync('./server.config.json'));
 
 
 // router logger
@@ -13,15 +17,23 @@ const logger = ({ url, filePath, mimeType }) => {
 
 
 // common router handler
-const commonHandler = ({ req, res, filePath }) => {
-  const mimeType = mime.getType(filePath);
+const commonHandler = (
+  LOG_LEVEL === 'debug'
+    ? ({ req, res, filePath }) => {
+      const mimeType = mime.getType(filePath);
 
-  res.setHeader('Content-Type', mimeType);
+      logger({ url: req.url, filePath, mimeType });
 
-  logger({ url: req.url, filePath, mimeType });
+      res.setHeader('Content-Type', mimeType);
+      return res.sendFile('.' + filePath, { root: './' });
+    }
+    : ({ req, res, filePath }) => {
+      const mimeType = mime.getType(filePath);
 
-  return res.sendFile('.' + filePath, { root: './' });
-};
+      res.setHeader('Content-Type', mimeType);
+      return res.sendFile('.' + filePath, { root: './' });
+    }
+);
 
 
 // handle files
