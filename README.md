@@ -1,6 +1,14 @@
 
 # Mitrol
 
+## Debug
+Indicare, nel file JSON server.config, uno dei seguenti valore nella chiave `LOG_LEVEL`, per abilitare o meno i log del server
+
+| code    |                       |
+|---------|-----------------------|
+| `debug` | tutti i log abilitati |
+| `none`  | log disabilitati      |
+
 ## Proxy
 Tutte le cliamate client alle API sono intercettate da un proxy, il quale provvede a fare un redirect della chiamata a un url
 specifico, indicato all'interno del file JSON server.config, relativo all'ambiente scelto per la chiamata
@@ -48,8 +56,7 @@ Lista dei comandi per l'emulazione in locale del progetto
 * `start:mocks` Emulazione di un rilascio `build`, i servizi puntano al server mock locale
 
 
-## Folders Tree
-Alberatura del progetto
+## Alberatura del progetto
 
 ### config
 Contiene i file per la configurazione globale del progetto per eseguire sviluppo e rilasci
@@ -79,14 +86,12 @@ Contiene i file view dei componenti React
 #### src/containers
 Contiene i file per la gestione dell'applicativo
 
-##### src/containers/App.jsx
-Gestisce i componenti di configurazione del progetto
-
-##### src/containers/[Main.container.js && Main.view.jsx]
-Gestisce le route da visualizzare e la loro accessibilità da parte dell'utente
-
-##### src/containers/Router.js
-Gestisce il recupero asincrono delle route da fornire nel Main
+| files | |
+|-------|-|
+|App.jsx|Gestisce i componenti di configurazione del progetto|
+|Main.container.js|Connette il Main.view con lo store globale di Redux
+|Main.view.jsx|Gestisce le route da visualizzare e la loro accessibilità da parte dell'utente
+|Router.js|Gestisce il recupero asincrono delle route da fornire nel Main
 
 #### src/controllers
 Contiene i file controller dei componenti React
@@ -143,3 +148,21 @@ Es:
     ° login
       ° login.style.scss
 ```
+
+## Alberatura dei rilascio
+
+| files              |                                   |
+|--------------------|-----------------------------------|
+| favicon.ico        | icona dell'applicativo            |
+| index.html         | entry point dell'applicativo      |
+| server.config.json | file di configurazione del server |
+| server.js          | server client                     |
+| server.js.map      | map del server client             |
+
+<br />
+
+| folders | contenuto     |
+|---------|---------------|
+| images  | file immagine |
+| map     | file .map     |
+| scripts | file .js      |
