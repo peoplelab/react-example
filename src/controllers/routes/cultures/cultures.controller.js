@@ -101,8 +101,10 @@ export const callCulturesDelete = async ({ data, dispatch, state }) => {
       id: data,
     },
     api: apiCultureDelete,
-    success: () => {
-      dispatch(dataDelete(state, { id: arg.params.id }));
+    success: ({ jsondata }) => {
+      if (jsondata) {
+        dispatch(dataDelete(state, { id: arg.params.id }));
+      }
     },
     failure: ({ jsondata, error }) => {
       dispatch({ error: jsondata || error, id: '' });
@@ -121,8 +123,10 @@ export const callCulturesPut = async ({ data, dispatch, state }) => {
       description: data.description,
     },
     api: apiCulturePut,
-    success: () => {
-      dispatch(dataPut(state, { ...arg.request }));
+    success: ({ jsondata }) => {
+      if (jsondata) {
+        dispatch(dataPut(state, { ...arg.request }));
+      }
     },
     failure: ({ jsondata, error }) => {
       dispatch({
