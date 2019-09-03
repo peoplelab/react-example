@@ -48,8 +48,4 @@ module.exports = [
     "url": `${url.cultures}/:id`,
     "api": require(`.${url.cultures}`),
   },
-  {
-    "url": url.fnc,
-    "api": require(`.${url.fnc}`),
-  },
 ];
