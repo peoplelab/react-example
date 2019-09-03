@@ -6,11 +6,10 @@
 //-----------------------------------------------------------------------------------
 
 
-import React, { Component } from 'react';
+import React, { memo } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import createRoutes from './Router';
-import { SessionValidity } from '../controllers/session.controller';
 
 
 /**
@@ -41,45 +40,28 @@ const mapRoutes = (routeProps) => {
 
 
 // Definizione del gestore delle pagine dell'applicativo
-class MainComponent extends Component {
-  constructor(props) {
-    super(props);
+const MainComponent = (props) => {
+  const { isUserLogged } = props;
 
-    this.timer = null;
-  }
+  // Recupero delle pagine dell'applicativo
+  const routes = createRoutes();
 
-  // A componente montato, verifica che la sessione sia valida entro un determinato lasso di tempo, indicato nella response del servizio di login
-  componentDidUpdate() {
-    if (this.timer !== null) {
-      clearTimeout(this.timer);
-    }
+  const Primary = routes.primary.map(mapRoutes);                   // Lista delle pagine pubbliche
+  const Logged = isUserLogged && routes.logged.map(mapRoutes);     // Lista delle pagine private
+  // const Secondary = routes.secondary.map(mapRoutes);               // Pagine pubbliche di supporto
+  // const Messages = isUserLogged && routes.messages.map(mapRoutes); // Pagine private di supporto
+  // const External = routes.external.map(mapRoutes);                 // Lista delle landing page esterne all'applicativo
 
-    this.timer = SessionValidity();
-  }
-
-  render() {
-    const { isUserLogged } = this.props;
-
-    // Recupero delle pagine dell'applicativo
-    const routes = createRoutes();
-
-    const Primary = routes.primary.map(mapRoutes);                   // Lista delle pagine pubbliche
-    const Logged = isUserLogged && routes.logged.map(mapRoutes);     // Lista delle pagine private
-    // const Secondary = routes.secondary.map(mapRoutes);               // Pagine pubbliche di supporto
-    // const Messages = isUserLogged && routes.messages.map(mapRoutes); // Pagine private di supporto
-    // const External = routes.external.map(mapRoutes);                 // Lista delle landing page esterne all'applicativo
-
-    return (
-      <Switch>
-        {Primary}
-        {Logged}
-        {/* {Secondary} */}
-        {/* {Messages} */}
-        {/* {External} */}
-      </Switch>
-    );
-  }
-}
+  return (
+    <Switch>
+      {Primary}
+      {Logged}
+      {/* {Secondary} */}
+      {/* {Messages} */}
+      {/* {External} */}
+    </Switch>
+  );
+};
 
 
 /**
@@ -96,4 +78,4 @@ MainComponent.defaultProps = {
 };
 
 
-export default MainComponent;
+export default memo(MainComponent);
